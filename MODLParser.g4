@@ -142,7 +142,7 @@ condition_test
   ;
 
 operator
-  // operator within conditionals 
+  // operator within conditionals
   : EQUALS | GTHAN | GTHAN EQUALS | LTHAN | LTHAN EQUALS | EXCLAM EQUALS
   ;
 
