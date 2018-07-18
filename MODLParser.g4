@@ -37,14 +37,14 @@ structure
 map
   // ( key = value; key = value )
   : LBRAC NEWLINE*
-        map_item (SC? NEWLINE* map_item )* NEWLINE*
+        ( map_item (SC? NEWLINE* map_item )* NEWLINE* )?
     RBRAC
   ;
 
 array
   // [ item; item ]
   : LSBRAC NEWLINE*
-        array_item (SC? NEWLINE* array_item )* SC? NEWLINE*
+        ( array_item (SC? NEWLINE* array_item )* SC? NEWLINE* )?
     RSBRAC
   ;
 
