@@ -137,8 +137,8 @@ value_conditional
     ;
 
 condition_test
-  // country=gb|us?
-  : EXCLAM? ( condition | condition_group ) (( AMP | PIPE ) ( condition | condition_group ) )*
+  // country=gb|language=en?
+  : EXCLAM? ( condition | condition_group ) (( AMP | PIPE ) EXCLAM? ( condition | condition_group ) )*
   ;
 
 operator
