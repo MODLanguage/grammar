@@ -40,7 +40,7 @@ modl_map
 modl_array
   // [ item; item ]
   : LSBRAC NEWLINE*
-        ( ( modl_array_item | modl_nb_array ) ((SC+ | NEWLINE+) ( modl_array_item | modl_nb_array ) )* SC? NEWLINE* )?
+        ( ( modl_array_item | modl_nb_array ) ((SC+ | NEWLINE+) ( modl_array_item | modl_nb_array ) )* NEWLINE* )?
     RSBRAC
   ;
 
@@ -115,7 +115,7 @@ modl_array_conditional
     RCBRAC
   ;
   modl_array_conditional_return
-    : modl_array_item ( ( SC | NEWLINE+ | SC NEWLINE* ) modl_array_item )* SC? NEWLINE*
+    : modl_array_item ( ( SC | NEWLINE+ | SC NEWLINE* ) modl_array_item )* NEWLINE*
     ;
     modl_array_item
       : modl_array_value_item | modl_array_conditional
