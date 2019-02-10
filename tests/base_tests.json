@@ -574,4 +574,36 @@
   "input": "o=``",
   "minimised_modl": "o=``",
   "expected_output": "{\n  \"o\" : \"\"]\n}"
+}, {
+  "input": "_test=(\n  numbers=[[1;2;3;4;5];[6;7;8;9;10]]\n)\n \ntesting=%test>numbers>0>0",
+  "minimised_modl": "_test=(numbers=[[1;2;3;4;5];[6;7;8;9;10]]);testing=%test>numbers>0>0",
+  "expected_output": "{\n  \"testing\" : 1\n}"
+}, {
+  "input": "_test=(\n  numbers=(\"one\"=1)\n)\n \ntesting = this is a string that includes a reference with a letter s after it `%test>numbers>one`s",
+  "minimised_modl": "_test=(numbers=(one=1));testing=this is a string that includes a reference with a letter s after it `%test>numbers>one`s",
+  "expected_output": "{\n  \"testing\" : \"this is a string that includes a reference with a letter s after it 1s\"\n}"
+}, {
+  "input": "_test=(\n  numbers=(\"v\"=TEST)\n)\n \ntesting = this is a string that includes extra transforms for the value `%test>numbers>v.d`_value",
+  "minimised_modl": "_test=(numbers=(v=TEST));testing=this is a string that includes extra transforms for the value `%test>numbers>v.d`_value",
+  "expected_output": "{\n  \"testing\" : \"this is a string that includes extra transforms for the value test_value\"\n}"
+}, {
+  "input": "_test=(\n  first=(\"v\"=TEST)\n  second=(\"v\"=TEST2)\n)\n \ntesting = this is a string that includes extra transforms for the value `%test>second>v.d`_value",
+  "minimised_modl": "_test=(first=(v=TEST);second=(v=TEST2));testing=this is a string that includes extra transforms for the value `%test>second>v.d`_value",
+  "expected_output": "{\n  \"testing\" : \"this is a string that includes extra transforms for the value test2_value\"\n}"
+}, {
+  "input": "_test=(\n  first=(\"v1\"=one)\n  second=(\"v2\"=two:three)\n)\n \ntesting = \"`%test>second>v2>1`\"",
+  "minimised_modl": "_test=(first=(v1=one);second=(v2=two:three));testing=`%test>second>v2>1`",
+  "expected_output": "{\n  \"testing\" : \"three\"\n}\n"
+}, {
+  "input": "_test=(\n  first=(\"v1\"=[one])\n  second=(\"v2\"=two:three)\n)\n \ntesting = \"`%test>first>v1>0``%test>second>v2>0``%test>second>v2>1`\"",
+  "minimised_modl": "_test=(first=(v1=[one]);second=(v2=two:three));testing=`%test>first>v1>0``%test>second>v2>0``%test>second>v2>1`",
+  "expected_output": "{\n  \"testing\" : \"onetwothree\"\n}\n"
+}, {
+  "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n)\n \ntesting = \"`%test>first>v1>0>0>0`\"",
+  "minimised_modl": "_test=(first=(v1=(one=(two=three))));testing=`%test>first>v1>0>0>0`",
+  "expected_output": "{\n  \"testing\" : {\n    \"two\" : \"three\"\n  }\n}"
+}, {
+  "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n)\n \ntesting = \"`%test>first>v1>one>two`\"",
+  "minimised_modl": "_test=(first=(v1=(one=(two=three))));testing=`%test>first>v1>one>two`",
+  "expected_output": "{\n  \"testing\" : \"three\"\n}\n"
 }]
