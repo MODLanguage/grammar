@@ -75,3 +75,7 @@ fabric.properties
 
 # mac file system
 .DS_Store
+
+# ANTLR4 tokens files not needed.
+*.tokens
+
