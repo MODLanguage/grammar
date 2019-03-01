@@ -124,9 +124,9 @@ modl_array_conditional
 modl_value_conditional
   // Conditionals within values DO require else
   // e.g. { country=gb? this /country=us? that /? other }
-  : LCBRAC NEWLINE* modl_condition_test QMARK NEWLINE* modl_value_conditional_return NEWLINE*
+  : LCBRAC NEWLINE* modl_condition_test QMARK (NEWLINE* modl_value_conditional_return NEWLINE*
         (FSLASH NEWLINE* modl_condition_test QMARK NEWLINE* modl_value_conditional_return )* NEWLINE*
-        (FSLASH NEWLINE* QMARK NEWLINE* modl_value_conditional_return) NEWLINE*
+        (FSLASH NEWLINE* QMARK NEWLINE* modl_value_conditional_return) NEWLINE*)?
     RCBRAC
   ;
   modl_value_conditional_return
