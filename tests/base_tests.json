@@ -1,4 +1,26 @@
-[{
+[
+  {"input": "x=[1;;;;;;;2:::::::::3;;;;;;;;;;4:::::::::5]",
+   "minimised_modl": "x=[1;;;;;;;2:::::::::3;;;;;;;;;;4:::::::::5]",
+   "expected_output": "{\"x\" : [ 1, null, null, null, null, null, null, [2, null, null, null, null, null, null, null, null, 3], null, null, null, null, null, null, null, null, null, [4, null, null, null, null, null, null, null, null, 5] ]}"},
+  {"input": "b=2;c=2;d=2;e=2;a={{b=c & d=e}?v1:v2:v3/?v4:v5:v6}",
+   "minimised_modl": "b=2;c=2;d=2;e=2;a={{b=c & d=e}?v1:v2:v3/?v4:v5:v6}",
+   "expected_output": "[{\"b\": 2},{\"c\": 2},{\"d\": 2},{\"e\": 2}, {\"a\": [\"v1\",\"v2\",\"v3\"]}]"},
+  {"input": "_c=de\nresult={c!=de|at?German or Austrian/?Other}",
+   "minimised_modl": "_c=de\nresult={c!=de|at?German or Austrian/?Other}",
+   "expected_output": "\"result\":\"Other\""},
+  {"input": "_test = 1\nresult={!test!=1?one/?Other}",
+   "minimised_modl": "_test = 1\nresult={!test!=1?one/?Other}",
+   "expected_output": "\"result\":\"one\""},
+  {"input": "a=2;b=!a=2",
+   "minimised_modl": "a=2;b=!a=2",
+   "expected_output": "\"a\":2, \"b\":false"},
+  {"input": "x=[1;2:3:4]\na=%x>1>1",
+   "minimised_modl": "x=[1;2:3:4]\na=%x>1>1",
+   "expected_output": "{\"x\": [1,[2,3,4]], \"a\":3}"},
+  {"input": "a=1\nb=2\nx={a=b?}",
+   "minimised_modl": "a=1;b=2;x={a=b?}",
+   "expected_output": "\"x\"=false"},
+  {
   "input": "_testing = quick-test of John's variable_methods\nupcase_example = %testing.u\ndowncase_example = %testing.d\ninitcap_example = %testing.i\nsentence_example = %testing.s\nurl_encode_example = %testing.ue",
   "minimised_modl": "_testing=quick-test of John's variable_methods;upcase_example=%testing.u;downcase_example=%testing.d;initcap_example=%testing.i;sentence_example=%testing.s;url_encode_example=%testing.ue",
   "expected_output": "[ {\n \"upcase_example\" : \"QUICK-TEST OF JOHN'S VARIABLE_METHODS\"\n}, {\n \"downcase_example\" : \"quick-test of john's variable_methods\"\n}, {\n \"initcap_example\" : \"Quick-test Of John's Variable_methods\"\n}, {\n \"sentence_example\" : \"Quick-test of John's variable_methods\"\n}, {\n \"url_encode_example\" : \"quick-test+of+John%27s+variable_methods\"\n} ]"
