@@ -21,7 +21,7 @@ options {
 
 modl
   // Valid MODL is zero or more MODL structures separated by semi-colons, newlines or both
-  : (NEWLINE* modl_structure ( ( SC | NEWLINE+ | SC NEWLINE+ ) modl_structure )* SC?)? NEWLINE* EOF;
+  : (NEWLINE* modl_structure ( NEWLINE* SC? NEWLINE* modl_structure NEWLINE*)* )? NEWLINE* SC? NEWLINE* EOF;
 
 modl_structure
   : modl_map
@@ -61,7 +61,7 @@ modl_pair
   // It's also possible to do the same with an array pair
   // e.g. numbers[1;2;3] – equivalent to numbers=[1;2;3]
 
-  : ( STRING | QUOTED) EQUALS ( modl_value_item )                              // key = value        (standard pair)
+  : ( STRING | QUOTED) NEWLINE* EQUALS NEWLINE* modl_value_item                // key = value        (standard pair)
   | STRING modl_map                                                            // key( key = value ) (map pair)
   | STRING modl_array                                                          // key[ item; item ]  (array pair)
   ;
@@ -124,9 +124,9 @@ modl_array_conditional
 modl_value_conditional
   // Conditionals within values DO require else
   // e.g. { country=gb? this /country=us? that /? other }
-  : LCBRAC NEWLINE* modl_condition_test QMARK NEWLINE* modl_value_conditional_return NEWLINE*
+  : LCBRAC NEWLINE* modl_condition_test QMARK (NEWLINE* modl_value_conditional_return NEWLINE*
         (FSLASH NEWLINE* modl_condition_test QMARK NEWLINE* modl_value_conditional_return )* NEWLINE*
-        (FSLASH NEWLINE* QMARK NEWLINE* modl_value_conditional_return) NEWLINE*
+        (FSLASH NEWLINE* QMARK NEWLINE* modl_value_conditional_return) NEWLINE*)?
     RCBRAC
   ;
   modl_value_conditional_return
