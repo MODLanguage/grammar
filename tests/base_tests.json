@@ -1,4 +1,37 @@
 [
+  {"input": "*class(*id=a;*name=age);a=10",
+    "minimised_modl": "*class(*id=a;*name=age);a=10",
+    "expected_output": "{\"age\":10}"
+  },
+  {"input": "*class(*id=a;*name=age;*superclass=num);a=10",
+    "minimised_modl": "*class(*id=a;*name=age;*superclass=num);a=10",
+    "expected_output": "{\"age\":10}"
+  },
+  {"input": "*class(*id=a;*name=age;*superclass=str);a=10",
+    "minimised_modl": "*class(*id=a;*name=age;*superclass=str);a=10",
+    "expected_output": "{\"age\":\"10\"}"
+  },
+  {"input": "*class(*id=newstr;*superclass=str);*class(*id=a;*name=age;*superclass=newstr);a=10",
+    "minimised_modl": "*class(*id=newstr;*superclass=str);*class(*id=a;*name=age;*superclass=newstr);a=10",
+    "expected_output": "{\"age\":\"10\"}"
+  },
+  {"input": "?[[a;b;c]];letters=%0",
+    "minimised_modl": "?[[a;b;c]];letters=%0",
+    "expected_output": "{\"letters\": [ \"a\", \"b\", \"c\"]}"
+  },
+  {"input": "?=[a;b;c;d]:[1;2;3;4;5]\ntest=%1>0",
+    "minimised_modl": "?=[a;b;c;d]:[1;2;3;4;5];test=%1>0",
+    "expected_output": "{\n \"test\" : 1\n}\n"
+  },
+  {"input":  "_test=123;object(print_test = %test.test)",
+    "minimised_modl":  "_test=123;object(print_test = %test.test)",
+    "expected_output":   "{\"object\":{\"print_test\":\"123.test\"}}"},
+  {"input":  "?=[[a;b]];letters2=%0>0>0",
+    "minimised_modl":  "?=[[a;b]];letters2=%0>0>0",
+    "expected_output":   "{\"letters2\": \"a\"}"},
+  {"input":  "_test=[[a;b]];letters2=%test>0>0",
+    "minimised_modl":  "_test=[[a;b]];letters2=%test>0>0",
+    "expected_output":   "{\"letters2\": \"a\"}"},
   {"input":  "?=one:two:three;test1=%0;test2=%1;test3=%2;test4=%3;test5=%4;test6=%5;test7=%6;test8=%7;test9=%8",
     "minimised_modl":  "?=one:two:three;test1=%0;test2=%1;test3=%2;test4=%3;test5=%4;test6=%5;test7=%6;test8=%7;test9=%8",
     "expected_output":   "[{\"test1\": \"one\"},{\"test2\": \"two\"},{\"test3\": \"three\"},{\"test4\": \"%3\"},{\"test5\": \"%4\"},{\"test6\": \"%5\"},{\"test7\": \"%6\"},{\"test8\": \"%7\"},{\"test9\": \"%8\"}]"},
@@ -168,11 +201,7 @@
   "input": "_C=gb\n_COUNTRIES(\n us=United States\n gb=United Kingdom\n de=Germany\n)\n\ncountry_name = %COUNTRIES>%C",
   "minimised_modl": "_C=gb;_COUNTRIES(us=United States;gb=United Kingdom;de=Germany);country_name=%COUNTRIES>%C",
   "expected_output": "{\n \"country_name\" : \"United Kingdom\"\n}\n"
-}, {
-  "input": "?=[a;b;c;d]:[1;2;3;4;5]\ntest=%1>0",
-  "minimised_modl": "?=[a;b;c;d]:[1;2;3;4;5];test=%1>0",
-  "expected_output": "{\n \"test\" : 1\n}\n"
-}, {
+},  {
   "input": "*class(\n *id=car\n *name=car\n *superclass=map\n *assign=[\n   [m]\n   [m;md]\n ]\n)\n\n_C=gb\n\ncar=Bentley:{C=ru?ContinentalRussia GT/?Continental GT}",
   "minimised_modl": "*c(*i=car;*n=car;*s=map;*a=[m]:[m;md]);_C=gb;car=Bentley:{C=ru?ContinentalRussia GT/?Continental GT}",
   "expected_output": "{\n \"car\" : {\n   \"m\" : \"Bentley\",\n   \"md\" : \"Continental GT\"\n }\n}\n"

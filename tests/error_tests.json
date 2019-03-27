@@ -1,4 +1,6 @@
 [
+  "*class(*id=n;*name=name;*superclass=num);n=Elliott",
+  "*class(*id=newstr*superclass=str);*class(*id=a;*name=age;*superclass=anotherstr);a=10",
   "!a=1",
   "a!=1",
   "!a!=1",
