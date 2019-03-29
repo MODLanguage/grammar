@@ -192,7 +192,7 @@
 }, {
   "input": "_person(  \n name(\n   first=John\n   last=Smith\n )\n)\nsay=%person[name[first]]",
   "minimised_modl": "_person(name(first=John;last=Smith));say=%person[name[first]]",
-  "expected_output": "{\"say\":{\"%person\":{\"%person\":[{\"name\":[\"first\"]}]}}}"
+  "expected_output": "{\"say\":{\"%person\":[{\"name\":[\"first\"]}]}}"
 }, {
   "input": "_person(  \n name(\n   first=John\n   last=Smith\n )\n)\nsay=%person>name>first",
   "minimised_modl": "_person(name(first=John;last=Smith));say=%person>name>first",
