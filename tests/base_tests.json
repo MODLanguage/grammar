@@ -90,9 +90,9 @@
     "minimised_modl": "_a=1;_b=2;x={a=b?}",
     "expected_output": "{\"x\":false}"},
   {
-    "input": "_testing = quick-test of John's variable_methods\nupcase_example = %testing.u\ndowncase_example = %testing.d\ninitcap_example = %testing.i\nsentence_example = %testing.s\nurl_encode_example = %testing.ue",
-    "minimised_modl": "_testing=quick-test of John's variable_methods;upcase_example=%testing.u;downcase_example=%testing.d;initcap_example=%testing.i;sentence_example=%testing.s;url_encode_example=%testing.ue",
-    "expected_output": "[ {\n \"upcase_example\" : \"QUICK-TEST OF JOHN'S VARIABLE_METHODS\"\n}, {\n \"downcase_example\" : \"quick-test of john's variable_methods\"\n}, {\n \"initcap_example\" : \"Quick-test Of John's Variable_methods\"\n}, {\n \"sentence_example\" : \"Quick-test of John's variable_methods\"\n}, {\n \"url_encode_example\" : \"quick-test+of+John%27s+variable_methods\"\n} ]"
+    "input": "_testing = quick-test of John's variable_methods\nupcase_example = %testing.u\ndowncase_example = %testing.d\ninitcap_example = %testing.i\nsentence_example = %testing.s\nurl_encode_example = %testing.u.e",
+    "minimised_modl": "_testing=quick-test of John's variable_methods;upcase_example=%testing.u;downcase_example=%testing.d;initcap_example=%testing.i;sentence_example=%testing.s;url_encode_example=%testing.u.e",
+    "expected_output": "[ {\n \"upcase_example\" : \"QUICK-TEST OF JOHN'S VARIABLE_METHODS\"\n}, {\n \"downcase_example\" : \"quick-test of john's variable_methods\"\n}, {\n \"initcap_example\" : \"Quick-test Of John's Variable_methods\"\n}, {\n \"sentence_example\" : \"Quick-test of John's variable_methods\"\n}, {\n \"url_encode_example\" : \"QUICK-TEST+OF+JOHN%27S+VARIABLE_METHODS\"\n} ]"
   }, {
   "input": "*VERSION=1\n\"test\"=1",
   "minimised_modl": "*VERSION=1;test=1",
@@ -192,7 +192,7 @@
 }, {
   "input": "_person(  \n name(\n   first=John\n   last=Smith\n )\n)\nsay=%person[name[first]]",
   "minimised_modl": "_person(name(first=John;last=Smith));say=%person[name[first]]",
-  "expected_output": "{\"say\":{\"obsolete\":{\"name\":{\"first\":\"John\",\"last\":\"Smith\"}}}}"
+  "expected_output": "{\"say\":{\"%person\":{\"%person\":[{\"name\":[\"first\"]}]}}}"
 }, {
   "input": "_person(  \n name(\n   first=John\n   last=Smith\n )\n)\nsay=%person>name>first",
   "minimised_modl": "_person(name(first=John;last=Smith));say=%person>name>first",
@@ -506,44 +506,44 @@
   "minimised_modl": "_country=gb;{!{country=us|gb|au}?support_number=441270123456/?support_number=International Clients:14161234567}",
   "expected_output": "{\n \"support_number\" : [ \"International Clients\", 14161234567 ]\n}\n"
 }, {
-  "input": "*I=\"http://config.modl.uk/demo/message-thread.txt\"\n*class(\n *id=m\n *name=message\n *superclass=map\n *assign=[\n   [direction;date_time;message]\n ]\n method=sms\n)\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
-  "minimised_modl": "*I=http~://config.modl.uk/demo/message-thread.txt;*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
+  "input": "*L=\"http://config.modl.uk/demo/message-thread.txt\"\n*class(\n *id=m\n *name=message\n *superclass=map\n *assign=[\n   [direction;date_time;message]\n ]\n method=sms\n)\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
+  "minimised_modl": "*L=http~://config.modl.uk/demo/message-thread.txt;*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
   "expected_output": "[ {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Hello, how are you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi, good thanks\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"How about you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Yes, fine thanks. What are you up to?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Just testing out MODL\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Cool!\",\n   \"method\" : \"sms\"\n }\n} ]\n"
 }, {
-  "input": "_var=2\n*I=\"http://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!\"\nprint=%update_date\n",
+  "input": "_var=2\n*L=\"http://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!\"\nprint=%update_date\n",
   "minimised_modl": "_var=2;*I=http~://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!;print=%update_date",
   "expected_output": "{\n \"print\" : \"20180921 08:20 2\"\n}\n"
 }, {
-  "input": "_T=grammar_tests/demo\n*I=`%T`_config",
-  "minimised_modl": "_T=grammar_tests/demo;*I=`%T`_config",
+  "input": "_T=grammar_tests/demo\n*L=`%T`_config",
+  "minimised_modl": "_T=grammar_tests/demo;*L=`%T`_config",
   "expected_output": "\n"
 }, {
-  "input": "*I=grammar_tests/1:grammar_tests/2:grammar_tests/3\nthe_number=%number",
-  "minimised_modl": "*I=grammar_tests/1:grammar_tests/2:grammar_tests/3;the_number=%number",
+  "input": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3\nthe_number=%number",
+  "minimised_modl": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3;the_number=%number",
   "expected_output": "{\n \"the_number\" : 3\n}\n"
 }, {
-  "input": "*I=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1\nthe_number=%number",
-  "minimised_modl": "*I=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;the_number=%number",
+  "input": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1\nthe_number=%number",
+  "minimised_modl": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;the_number=%number",
   "expected_output": "{\n \"the_number\" : 1\n}\n"
 }, {
-  "input": "*I[grammar_tests/1;grammar_tests/2;grammar_tests/3;grammar_tests/1]\nthe_number=%number",
-  "minimised_modl": "*I=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;the_number=%number",
+  "input": "*L[grammar_tests/1;grammar_tests/2;grammar_tests/3;grammar_tests/1]\nthe_number=%number",
+  "minimised_modl": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;the_number=%number",
   "expected_output": "{\n \"the_number\" : 1\n}\n"
 }, {
-  "input": "*I=grammar_tests/a:grammar_tests/b:grammar_tests/c\nvar=%var",
-  "minimised_modl": "*I=grammar_tests/a:grammar_tests/b:grammar_tests/c;var=%var",
+  "input": "*L=grammar_tests/a:grammar_tests/b:grammar_tests/c\nvar=%var",
+  "minimised_modl": "*L=grammar_tests/a:grammar_tests/b:grammar_tests/c;var=%var",
   "expected_output": "{\n \"var\" : \"abc\"\n}\n"
 }, {
-  "input": "*I=grammar_tests/demo_config\n*class(\n *id=m\n *name=message\n *superclass=map\n *assign=[\n   [direction;date_time;message]\n ]\n method=sms\n)\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
-  "minimised_modl": "*I=grammar_tests/demo_config;*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
+  "input": "*L=grammar_tests/demo_config\n*class(\n *id=m\n *name=message\n *superclass=map\n *assign=[\n   [direction;date_time;message]\n ]\n method=sms\n)\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
+  "minimised_modl": "*L=grammar_tests/demo_config;*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
   "expected_output": "[ {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Hello, how are you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi, good thanks\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"How about you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Yes, fine thanks. What are you up to?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Just testing out MODL\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Cool!\",\n   \"method\" : \"sms\"\n }\n} ]\n"
 }, {
-  "input": "## country\n_c = us\n## language\n_l = en\n\n*I=grammar_tests/import_config.modl\n\ncountry = %c\nlanguage = %l\ntime_zone = %tz",
-  "minimised_modl": "_c=us;_l=en;*I=grammar_tests/import_config.modl;country=%c;language=%l;time_zone=%tz",
+  "input": "## country\n_c = us\n## language\n_l = en\n\n*L=grammar_tests/import_config.modl\n\ncountry = %c\nlanguage = %l\ntime_zone = %tz",
+  "minimised_modl": "_c=us;_l=en;*L=grammar_tests/import_config.modl;country=%c;language=%l;time_zone=%tz",
   "expected_output": "[ {\n \"country\" : \"us\"\n}, {\n \"language\" : \"en\"\n}, {\n \"time_zone\" : \"EST\"\n} ]\n"
 }, {
-  "input": "*I=grammar_tests/test_import_dir/test_import.txt\n*class(\n *id=m\n *name=message\n *superclass=map\n *assign=[\n   [direction;date_time;message]\n ]\n method=sms\n)\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
-  "minimised_modl": "*I=grammar_tests/test_import_dir/test_import.txt;*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
+  "input": "*L=grammar_tests/test_import_dir/test_import.txt\n*class(\n *id=m\n *name=message\n *superclass=map\n *assign=[\n   [direction;date_time;message]\n ]\n method=sms\n)\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
+  "minimised_modl": "*L=grammar_tests/test_import_dir/test_import.txt;*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
   "expected_output": "[ {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Hello, how are you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi, good thanks\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"How about you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Yes, fine thanks. What are you up to?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Just testing out MODL\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Cool!\",\n   \"method\" : \"sms\"\n }\n} ]\n"
 }, {
   "input": "o=[test;test;t=Customer Service:44123]",
