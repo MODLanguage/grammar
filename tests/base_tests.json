@@ -1,4 +1,19 @@
 [
+  {"input":  "_test=[[a;b]];letters2=%test>0>0",
+    "minimised_modl":  "_test=[[a;b]];letters2=%test>0>0",
+    "expected_output":   "{\"letters2\": \"a\"}"},
+  {"input": "?=`e1afmkfd`:` -7sbcecqbdsccxfizhcp6b8ah`;(name=%0.p;department=%1.p)",
+    "minimised_modl": "?=`e1afmkfd`:` -7sbcecqbdsccxfizhcp6b8ah`;(name=%0.p;department=%1.p)",
+    "expected_output": "{\"name\":\"пример\",\"department\":\"обслуживание клиентов\"}"
+  },
+  {"input": "*class(*id=object;*superclass=array);sales(name=John Smith;telephone=44800 555 555);service(name=Jim Brown;telephone=44800 666 666)",
+    "minimised_modl": "*c(*id=object;*superclass=array);sales(name=John Smith;telephone=44800 555 555);service(name=Jim Brown;telephone=44800 666 666)",
+    "expected_output": "[{\"sales\": {\"name\": \"John Smith\",\"telephone\": \"44800 555 555\"}},{\"service\": {\"name\": \"Jim Brown\",\"telephone\": \"44800 666 666\"}}]"
+  },
+  {"input": "*class(\n *id=p\n *NAME=person\n)\n\np(name=John Smith;dob=01/01/2001)",
+    "minimised_modl": "*c(*i=p;*N=person);p(name=John Smith;dob=01/01/2001)",
+    "expected_output": "{\n \"person\" : {\n   \"name\" : \"John Smith\",\n   \"dob\" : \"01/01/2001\"\n }\n}\n"
+  },
   {"input": "*class(*id=a;*name=age);a=10",
     "minimised_modl": "*class(*id=a;*name=age);a=10",
     "expected_output": "{\"age\":10}"
@@ -26,12 +41,6 @@
   {"input":  "_test=123;object(print_test = %test.test)",
     "minimised_modl":  "_test=123;object(print_test = %test.test)",
     "expected_output":   "{\"object\":{\"print_test\":\"123.test\"}}"},
-  {"input":  "?=[[a;b]];letters2=%0>0>0",
-    "minimised_modl":  "?=[[a;b]];letters2=%0>0>0",
-    "expected_output":   "{\"letters2\": \"a\"}"},
-  {"input":  "_test=[[a;b]];letters2=%test>0>0",
-    "minimised_modl":  "_test=[[a;b]];letters2=%test>0>0",
-    "expected_output":   "{\"letters2\": \"a\"}"},
   {"input":  "?=one:two:three;test1=%0;test2=%1;test3=%2;test4=%3;test5=%4;test6=%5;test7=%6;test8=%7;test9=%8",
     "minimised_modl":  "?=one:two:three;test1=%0;test2=%1;test3=%2;test4=%3;test5=%4;test6=%5;test7=%6;test8=%7;test9=%8",
     "expected_output":   "[{\"test1\": \"one\"},{\"test2\": \"two\"},{\"test3\": \"three\"},{\"test4\": \"%3\"},{\"test5\": \"%4\"},{\"test6\": \"%5\"},{\"test7\": \"%6\"},{\"test8\": \"%7\"},{\"test9\": \"%8\"}]"},
@@ -134,22 +143,18 @@
   "minimised_modl": "*c(*i=desc;*n=description;*s=str);*c(*i=val;*n=value;*s=str);*c(*i=media1;*n=media1;*s=map;*a[[desc;val]]);*c(*i=media2;*n=media2;*s=map;*a[[desc;val]]);*c(*i=list;*n=list;*s=map;*a[[media1;media2]]);list=[tel;fb]:[yt;tw]",
   "expected_output": "{\n \"list\" : {\n   \"media1\" : {\n     \"description\" : \"tel\",\n     \"value\" : \"fb\"\n   },\n   \"media2\" : {\n     \"description\" : \"yt\",\n     \"value\" : \"tw\"\n   }\n }\n}\n"
 }, {
-  "input": "*class(\n *id=p\n *name=person\n *superclass=map\n)\n\np(name=John Smith;dob=01/01/2000)",
-  "minimised_modl": "*c(*i=p;*n=person;*s=map);p(name=John Smith;dob=01/01/2000)",
+  "input": "*CLASS(\n *id=p\n *name=person\n *SUPERCLASS=map\n)\n\np(name=John Smith;dob=01/01/2000)",
+  "minimised_modl": "*C(*i=p;*n=person;*S=map);p(name=John Smith;dob=01/01/2000)",
   "expected_output": "{\n \"person\" : {\n   \"name\" : \"John Smith\",\n   \"dob\" : \"01/01/2000\"\n }\n}\n"
 }, {
-  "input": "*c(\n *i=m\n *n=message\n *s=map\n *a=[\n   [direction;date_time;message]\n ]\n method=sms\n)\nm=in:2018-03-22:hi",
-  "minimised_modl": "*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);m=in:2018-03-22:hi",
+  "input": "*c(\n *i=m\n *n=message\n *S=map\n *a=[\n   [direction;date_time;message]\n ]\n method=sms\n)\nm=in:2018-03-22:hi",
+  "minimised_modl": "*c(*i=m;*n=message;*S=map;*a[[direction;date_time;message]];method=sms);m=in:2018-03-22:hi",
   "expected_output": "{\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22\",\n   \"message\" : \"hi\",\n   \"method\" : \"sms\"\n }\n}\n"
 }, {
   "input": "*class(\n *id=car\n *name=car\n *superclass=map\n)\n\ncar(\n make=Bentley\n)",
   "minimised_modl": "*c(*i=car;*n=car;*s=map);car(make=Bentley)",
   "expected_output": "{\n \"car\" : {\n   \"make\" : \"Bentley\"\n }\n}\n"
-}, {
-  "input": "*class(\n *id=p\n *name=person\n)\n\np(name=John Smith;dob=01/01/2001)",
-  "minimised_modl": "*c(*i=p;*n=person);p(name=John Smith;dob=01/01/2001)",
-  "expected_output": "{\n \"person\" : {\n   \"name\" : \"John Smith\",\n   \"dob\" : \"01/01/2001\"\n }\n}\n"
-}, {
+},  {
   "input": "?=[one;two]\ntest=Blah `%0.s` %1.s",
   "minimised_modl": "?=one:two;test=Blah `%0.s` %1.s",
   "expected_output": "{\n \"test\" : \"Blah One Two\"\n}\n"
@@ -242,9 +247,9 @@
   "minimised_modl": "{!test?result=test is not defined/?result=test is defined}",
   "expected_output": "{\n \"result\" : \"test is not defined\"\n}\n"
 }, {
-  "input": "_colour = green\n_test = { colour=green? true /? false } \n\n{\n !test?\n   result=it’s not green\n /?\n   result=it’s green\n}",
-  "minimised_modl": "_colour=green;_test={colour=green?01/?00};{!test?result=it’s not green/?result=it’s green}",
-  "expected_output": "{\n \"result\" : \"it’s green\"\n}\n"
+  "input": "_colour = green\n_test = { colour=green? true /? false } \n\n{\n !test?\n   result=it's not green\n /?\n   result=it's green\n}",
+  "minimised_modl": "_colour=green;_test={colour=green?01/?00};{!test?result=it's not green/?result=it's green}",
+  "expected_output": "{\n \"result\" : \"it's green\"\n}\n"
 }, {
   "input": "_test=1\nresult={\n %test=1?\n   yes\n /?\n   no\n}",
   "minimised_modl": "_test=1;result={%test=1?yes/?no}",
@@ -511,12 +516,20 @@
   "expected_output": "[ {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Hello, how are you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi, good thanks\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"How about you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Yes, fine thanks. What are you up to?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Just testing out MODL\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Cool!\",\n   \"method\" : \"sms\"\n }\n} ]\n"
 }, {
   "input": "_var=2\n*L=\"http://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!\"\nprint=%update_date\n",
-  "minimised_modl": "_var=2;*I=http~://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!;print=%update_date",
+  "minimised_modl": "_var=2;*L=http~://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!;print=%update_date",
   "expected_output": "{\n \"print\" : \"20180921 08:20 2\"\n}\n"
 }, {
   "input": "_T=grammar_tests/demo\n*L=`%T`_config",
   "minimised_modl": "_T=grammar_tests/demo;*L=`%T`_config",
   "expected_output": "\n"
+}, {
+  "input": "*l=grammar_tests/1;*L=grammar_tests/1;a=1",
+  "minimised_modl": "*l=grammar_tests/1;*L=grammar_tests/1;a=1",
+  "expected_output": "{\n \"a\" : 1\n}\n"
+}, {
+  "input": "*l=grammar_tests/1;*l=grammar_tests/1;a=1",
+  "minimised_modl": "*L=grammar_tests/1;*l=grammar_tests/1;a=1",
+  "expected_output": "{\n \"a\" : 1\n}\n"
 }, {
   "input": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3\nthe_number=%number",
   "minimised_modl": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3;the_number=%number",
