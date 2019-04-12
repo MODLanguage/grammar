@@ -5,7 +5,7 @@ For more information about MODL take a look at the ![MODL Specification](http://
 
 Machine diagrams are shown below:
 
-![MODL Machine Diagrams](http://modl.uk/images/machine-diagrams-big.png)
+![MODL Machine Diagrams](http://modl.uk/images/machine-diagrams.png)
 
 ## ANTLR4
 
