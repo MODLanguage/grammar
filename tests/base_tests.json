@@ -1,4 +1,7 @@
 [
+  {"input":  "_country = gb\nsupport_contact = {\ncountry=gb?\n}",
+    "minimised_modl":  "_country=gb;support_contact={country=gb?}",
+    "expected_output":   "{\"support_contact\": true}"},
   {"input":  "*class(\n *id=a\n *name=alpha\n *superclass=map\n v=victor\n)\n*class(\n *id=b\n *name=bravo\n *superclass=a\n w=whisky\n)\n*class(\n *id=c\n *name=charlie\n *superclass=b\n x=xray\n)\n*class(\n *id=d\n *name=delta\n *superclass=c\n y=yankee\n)\nd(test1=test2)",
     "minimised_modl":  "tbd",
     "expected_output":   "{\"delta\": {\"test1\": \"test2\",\"y\": \"yankee\",\"x\": \"xray\",\"w\": \"whisky\",\"v\": \"victor\"}}"},
@@ -101,6 +104,9 @@
   {"input": "_a=1\n_b=2\nx={a=b?}",
     "minimised_modl": "_a=1;_b=2;x={a=b?}",
     "expected_output": "{\"x\":false}"},
+  {"input": "_a=1\n_b=1\nx={a=b?}",
+    "minimised_modl": "_a=1;_b=1;x={a=b?}",
+    "expected_output": "{\"x\":true}"},
   {
     "input": "_testing = quick-test of John's variable_methods\nupcase_example = %testing.u\ndowncase_example = %testing.d\ninitcap_example = %testing.i\nsentence_example = %testing.s\nurl_encode_example = %testing.u.e",
     "minimised_modl": "_testing=quick-test of John's variable_methods;upcase_example=%testing.u;downcase_example=%testing.d;initcap_example=%testing.i;sentence_example=%testing.s;url_encode_example=%testing.u.e",

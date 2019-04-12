@@ -126,7 +126,7 @@ modl_value_conditional
   // e.g. { country=gb? this /country=us? that /? other }
   : LCBRAC NEWLINE* modl_condition_test QMARK (NEWLINE* modl_value_conditional_return NEWLINE*
         (FSLASH NEWLINE* modl_condition_test QMARK NEWLINE* modl_value_conditional_return )* NEWLINE*
-        (FSLASH NEWLINE* QMARK NEWLINE* modl_value_conditional_return) NEWLINE*)?
+        (FSLASH NEWLINE* QMARK NEWLINE* modl_value_conditional_return))? NEWLINE*
     RCBRAC
   ;
   modl_value_conditional_return
