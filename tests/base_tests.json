@@ -1,4 +1,10 @@
 [
+  {"input":  "[\none;\ntwo;\nthree;\n]",
+    "minimised_modl":  "[one;two;three;]",
+    "expected_output":   "[\"one\",\"two\",\"three\"]"},
+  {"input":  "[\none;\ntwo;\nthree\n]",
+    "minimised_modl":  "[one;two;three]",
+    "expected_output":   "[\"one\",\"two\",\"three\"]"},
   {"input":  "_country = gb\nsupport_contact = {\ncountry=gb?\n}",
     "minimised_modl":  "_country=gb;support_contact={country=gb?}",
     "expected_output":   "{\"support_contact\": true}"},

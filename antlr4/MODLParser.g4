@@ -40,14 +40,14 @@ modl_map
 modl_array
   // [ item; item ]
   : LSBRAC NEWLINE*
-        ( ( modl_array_item | modl_nb_array ) ((SC+ | NEWLINE+)* ( modl_array_item | modl_nb_array ) (SC+ | NEWLINE+)* )* )?
+        ( ( modl_array_item | modl_nb_array ) ((SC+ | NEWLINE+)* ( modl_array_item | modl_nb_array ) (SC+ | NEWLINE+)* )* )? NEWLINE*
     RSBRAC
   ;
 
 modl_nb_array
   // non-bracketed array with missing elements
   // numbers=1:2:3:::4:5:6
-  : (modl_array_item NEWLINE* (COLON NEWLINE*)*)+
+  : (modl_array_item NEWLINE* COLON+ NEWLINE*)+ (modl_array_item)* COLON?
   ;
 
 modl_pair
