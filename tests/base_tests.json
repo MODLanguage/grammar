@@ -1,4 +1,7 @@
 [
+  { "input":  "(\n  _name = John\n  %name.u = \"Developer\"\n  foo = %name.u\n)",
+    "minimised_modl":  "(_name = John;%name.u = \"Developer\";foo = %name.u)",
+    "expected_output":   "{\n  \"JOHN\" : \"Developer\",   \n  \"foo\" : \"JOHN\"\n}"},
   { "input":  "(\n  _name = John\n  %name.u = \"Developer\"\n  foo = %JOHN\n)",
     "minimised_modl":  "(_name=John;%name.u=\"Developer\";foo = %JOHN)",
     "expected_output":   "{\n  \"JOHN\" : \"Developer\",     \n  \"foo\" : \"Developer\"\n}"},
