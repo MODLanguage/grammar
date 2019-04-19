@@ -1,4 +1,5 @@
 [
+  "*VERSION=100;\"123\"=1",
   "*method(*id=hy;*name=hyp1;*transform=`replace( ,-)`);*method(*id=hy;*name=hyp2;*transform=`replace( ,-)`)",
   "*method(*id=hy;*name=hyp1;*transform=`replace( ,-)`);*method(*id=hy1;*name=hyp1;*transform=`replace( ,-)`)",
   "*method(*id=hy;*name=hyp;*transform=`replace( ,-)`);*method(*id=hyp1;*name=hy;*transform=`replace( ,-)`)",
