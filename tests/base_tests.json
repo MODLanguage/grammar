@@ -1,4 +1,7 @@
 [
+  { "input":  "`80aafnhi4ae`.p.u=`lsa12dvaxki`.p.u",
+    "minimised_modl":  "`80aafnhi4ae`.p=`lsa12dvaxki`.p",
+    "expected_output":   "{\n  \"название\" : \"бори́с\"\n}"},
   { "input":  "(\n  _name = John\n  %name.u = \"Developer\"\n  foo = %name.u\n)",
     "minimised_modl":  "(_name = John;%name.u = \"Developer\";foo = %name.u)",
     "expected_output":   "{\n  \"JOHN\" : \"Developer\",   \n  \"foo\" : \"JOHN\"\n}"},
