@@ -1,4 +1,7 @@
 [
+  { "input":  "(name=`e1afmkfd`.p;department=` -7sbcecqbdsccxfizhcp6b8ah`.p)",
+    "minimised_modl":  "(name=`e1afmkfd`.p;department=` -7sbcecqbdsccxfizhcp6b8ah`.p)",
+    "expected_output":   "{\n    \"name\": \"пример\",\n    \"department\": \"обслуживание клиентов\"\n}"},
   { "input":  "`80aafnhi4ae`.p.u=`lsa12dvaxki`.p.u",
     "minimised_modl":  "`80aafnhi4ae`.p=`lsa12dvaxki`.p",
     "expected_output":   "{\n  \"название\" : \"бори́с\"\n}"},
