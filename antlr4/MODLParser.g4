@@ -145,7 +145,7 @@ modl_operator
 
 modl_condition
   // e.g. country=gb
-  : NEWLINE* STRING? modl_operator? modl_value (PIPE modl_value )* NEWLINE*
+  : NEWLINE* STRING? modl_operator? modl_primitive (PIPE modl_primitive )* NEWLINE*
   ;
 
 modl_condition_group
@@ -158,7 +158,18 @@ modl_value
   | modl_array
   | modl_nb_array
   | modl_pair
-  | QUOTED
+  | modl_primitive
+;
+
+modl_array_value_item
+  : modl_map
+  | modl_pair
+  | modl_array
+  | modl_primitive
+;
+
+modl_primitive
+  : QUOTED
   | NUMBER
   | STRING
   | TRUE
@@ -166,14 +177,3 @@ modl_value
   | NULL
 ;
 
-modl_array_value_item
-  : modl_map
-  | modl_pair
-  | modl_array
-  | QUOTED
-  | NUMBER
-  | STRING
-  | TRUE
-  | FALSE
-  | NULL
-;
