@@ -145,7 +145,7 @@ modl_operator
 
 modl_condition
   // e.g. country=gb
-  : NEWLINE* STRING? modl_operator? modl_primitive (PIPE modl_primitive )* NEWLINE*
+  : NEWLINE* modl_primitive? modl_operator? modl_primitive (PIPE modl_primitive )* NEWLINE*
   ;
 
 modl_condition_group
