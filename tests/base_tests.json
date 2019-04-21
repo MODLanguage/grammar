@@ -1,4 +1,7 @@
 [
+  { "input":  "?=a:b:c:d;12%3=1",
+    "minimised_modl":  "?=a:b:c:d;12%3=1",
+    "expected_output":   "{\"12d\":1}"},
   { "input":  "(name=`e1afmkfd`.p;department=` -7sbcecqbdsccxfizhcp6b8ah`.p)",
     "minimised_modl":  "(name=`e1afmkfd`.p;department=` -7sbcecqbdsccxfizhcp6b8ah`.p)",
     "expected_output":   "{\n    \"name\": \"пример\",\n    \"department\": \"обслуживание клиентов\"\n}"},
