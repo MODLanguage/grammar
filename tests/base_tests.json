@@ -1,4 +1,10 @@
 [
+  { "input":  "_country=gb\n{\n  country = gb | country = us?\n    support_number=+441270123456\n  /?\n    support_number=+14161234567\n}",
+    "minimised_modl":  "_country=gb{country = gb | country = us?support_number=+441270123456/?support_number=+14161234567}",
+    "expected_output":   "{\n    \"support_number\": \"+441270123456\"\n}"},
+  { "input":  "_country=gb\n{\n  country = us | country = gb?\n    support_number=+441270123456\n  /?\n    support_number=+14161234567\n}",
+    "minimised_modl":  "_country=gb{country = us | country = gb?support_number=+441270123456/?support_number=+14161234567}",
+    "expected_output":   "{\n    \"support_number\": \"+441270123456\"\n}"},
   { "input":  "?=a:b:c:d;12%3=1",
     "minimised_modl":  "?=a:b:c:d;12%3=1",
     "expected_output":   "{\"12d\":1}"},
