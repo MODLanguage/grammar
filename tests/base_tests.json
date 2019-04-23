@@ -592,20 +592,20 @@
   "minimised_modl": "_co=ca;{co=fr?support_number=14161234567/?support_number=441270123456}",
   "expected_output": "{\n \"support_number\" : 441270123456\n}\n"
 }, {
-  "input": "_country=gb\n{\n country=us|gb|au?\n   support_number=441270123456\n /?\n   support_number=International Clients:14161234567\n}",
-  "minimised_modl": "_country=gb;{country=us|gb|au?support_number=441270123456/?support_number=International Clients:14161234567}",
+  "input": "_country=gb\n{\n country=us/gb/au?\n   support_number=441270123456\n /?\n   support_number=International Clients:14161234567\n}",
+  "minimised_modl": "_country=gb;{country=us/gb/au?support_number=441270123456/?support_number=International Clients:14161234567}",
   "expected_output": "{\n \"support_number\" : 441270123456\n}\n"
 }, {
-  "input": "_test=gb\nresult={test=gb|au?No/?Yes}",
-  "minimised_modl": "_test=gb;result={test=gb|au?No/?Yes}",
+  "input": "_test=gb\nresult={test=gb/au?No/?Yes}",
+  "minimised_modl": "_test=gb;result={test=gb/au?No/?Yes}",
   "expected_output": "{\n \"result\" : \"No\"\n}\n"
 }, {
   "input": "_number=42\n{\n !{number>41}?\n   support_number=441270123456\n /?\n   support_number=International Clients:14161234567\n}",
   "minimised_modl": "_number=42;{!{number>41}?support_number=441270123456/?support_number=International Clients:14161234567}",
   "expected_output": "{\n \"support_number\" : [ \"International Clients\", 14161234567 ]\n}\n"
 }, {
-  "input": "_country=gb\n{\n !{country=us|gb|au}?\n   support_number=441270123456\n /?\n   support_number=International Clients:14161234567\n}",
-  "minimised_modl": "_country=gb;{!{country=us|gb|au}?support_number=441270123456/?support_number=International Clients:14161234567}",
+  "input": "_country=gb\n{\n !{country=us/gb/au}?\n   support_number=441270123456\n /?\n   support_number=International Clients:14161234567\n}",
+  "minimised_modl": "_country=gb;{!{country=us/gb/au}?support_number=441270123456/?support_number=International Clients:14161234567}",
   "expected_output": "{\n \"support_number\" : [ \"International Clients\", 14161234567 ]\n}\n"
 }, {
   "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\"\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
@@ -888,8 +888,8 @@
 
   },
 
-  {"input": "_c=de\nresult={c!=de|at?German or Austrian/?Other}",
-    "minimised_modl": "_c=de\nresult={c!=de|at?German or Austrian/?Other}",
+  {"input": "_c=de\nresult={c!=de/at?German or Austrian/?Other}",
+    "minimised_modl": "_c=de\nresult={c!=de/at?German or Austrian/?Other}",
     "expected_output": "{\"result\":\"Other\"}"},
   {"input": "_test = 1\nresult={!test!=1?one/?Other}",
     "minimised_modl": "_test = 1\nresult={!test!=1?one/?Other}",
