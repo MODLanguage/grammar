@@ -1,4 +1,10 @@
 [
+  { "input":  "_test1=one\n_one=two\n{\ntest1=`one`?\n  result=match\n/?\n  result=nomatch\n}",
+    "minimised_modl":  "_test1=one;_one=two{test1=`one`?result=match/?result=nomatch}",
+    "expected_output":   "{\n  \"result\": \"match\"\n}"},
+  { "input":  "_test1=one\n_one=two\n{\ntest1=\"one\"?\n  result=match\n/?\n  result=nomatch\n}",
+    "minimised_modl":  "_test1=one;_one=two{test1=`one`?result=match/?result=nomatch}",
+    "expected_output":   "{\n  \"result\": \"match\"\n}"},
   { "input":  "_x=a:b:c:d\n_y=[1;2;3;4]\nz={%x.1=b | %y.2=1?}\n",
     "minimised_modl":  "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=b | %y.2=1?}",
     "expected_output":   "{\"z\":true}"},
