@@ -145,7 +145,7 @@ modl_operator
 
 modl_condition
   // e.g. country=gb
-  : NEWLINE* modl_primitive? modl_operator? modl_primitive (FSLASH modl_primitive )* NEWLINE*
+  : NEWLINE* STRING? modl_operator? modl_value (FSLASH modl_value )* NEWLINE*
   ;
 
 modl_condition_group
