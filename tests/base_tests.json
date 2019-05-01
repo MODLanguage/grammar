@@ -1,4 +1,12 @@
 [
+  {
+    "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\"\n\nclasses=*class",
+    "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";classes=*class",
+    "expected_output": "{\"classes\":\"*class\"}"},
+  {
+    "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\"\n*class(\n *id=a\n *name=alpha\n *superclass=map\n v=victor\n)\n*class(\n *id=b\n *name=bravo\n *superclass=alpha\n w=whisky\n)\n*class(\n *id=c\n *name=charlie\n *superclass=bravo\n x=xray\n)\n*class(\n *id=d\n *name=delta\n *superclass=charlie\n y=yankee\n)\nclasses=%*class",
+    "minimised_modl": "*L=\"https://www.modl.uk/tests/message-thread.txt\";*class(*id=a;*name=alpha;*superclass=map;v=victor)*class(*id=b;*name=bravo;*superclass=alpha;w=whisky);*class(*id=c;*name=charlie;*superclass=bravo;x=xray)*class(*id=d;*name=delta;*superclass=charlie;y=yankee)classes=%*class",
+    "expected_output": "{\n  \"classes\": [\n    {\n      \"m\": {\n        \"name\": \"message\",\n        \"superclass\": \"map\",\n        \"assign\": [\n          [\n            \"direction\",\n            \"date_time\",\n            \"message\"\n          ]\n        ],\n        \"method\": \"sms\"\n      }\n    },\n    {\n      \"a\": {\n        \"name\": \"alpha\",\n        \"superclass\": \"map\",\n        \"v\": \"victor\"\n      }\n    },\n    {\n      \"b\": {\n        \"name\": \"bravo\",\n        \"superclass\": \"alpha\",\n        \"w\": \"whisky\"\n      }\n    },\n    {\n      \"c\": {\n        \"name\": \"charlie\",\n        \"superclass\": \"bravo\",\n        \"x\": \"xray\"\n      }\n    },\n    {\n      \"d\": {\n        \"name\": \"delta\",\n        \"superclass\": \"charlie\",\n        \"y\": \"yankee\"\n      }\n    }\n  ]\n}"},
   { "input":  "_test1=one\n_one=two\n{\ntest1=`one`?\n  result=match\n/?\n  result=nomatch\n}",
     "minimised_modl":  "_test1=one;_one=two{test1=`one`?result=match/?result=nomatch}",
     "expected_output":   "{\n  \"result\": \"match\"\n}"},
@@ -52,7 +60,7 @@
     "expected_output":   "{\n    \"name\": \"пример\",\n    \"department\": \"обслуживание клиентов\"\n}"},
   { "input":  "`80aafnhi4ae`.p.u=`lsa12dvaxki`.p.u",
     "minimised_modl":  "`80aafnhi4ae`.p=`lsa12dvaxki`.p",
-    "expected_output":   "{\n  \"название\" : \"бори́с\"\n}"},
+    "expected_output":   "{\n  \"НАЗВАНИЕ\":\"БОРИ́С\"\n}"},
   { "input":  "(\n  _name = John\n  %name.u = \"Developer\"\n  foo = %name.u\n)",
     "minimised_modl":  "(_name = John;%name.u = \"Developer\";foo = %name.u)",
     "expected_output":   "{\n  \"JOHN\" : \"Developer\",   \n  \"foo\" : \"JOHN\"\n}"},
@@ -93,10 +101,10 @@
     "minimised_modl":  "_country=gb;support_contact={country=gb?}",
     "expected_output":   "{\"support_contact\": true}"},
   {"input":  "*class(\n *id=a\n *name=alpha\n *superclass=map\n v=victor\n)\n*class(\n *id=b\n *name=bravo\n *superclass=alpha\n w=whisky\n)\n*class(\n *id=c\n *name=charlie\n *superclass=bravo\n x=xray\n)\n*class(\n *id=d\n *name=delta\n *superclass=charlie\n y=yankee\n)\nd(test1=test2)",
-    "minimised_modl":  "tbd",
+    "minimised_modl":  "*class(*id=a;*name=alpha;*superclass=map;v=victor)*class(*id=b;*name=bravo;*superclass=alpha;w=whisky)*class(*id=c;*name=charlie;*superclass=bravo;x=xray);*class(*id=d;*name=delta;*superclass=charlie;y=yankee)d(test1=test2)",
     "expected_output":   "{\"delta\": {\"test1\": \"test2\",\"y\": \"yankee\",\"x\": \"xray\",\"w\": \"whisky\",\"v\": \"victor\"}}"},
   {"input":  "*class(\n *id=a\n *name=alpha\n *superclass=map\n v=victor\n)\n*class(\n *id=b\n *name=bravo\n *superclass=a\n w=whisky\n)\n*class(\n *id=c\n *name=charlie\n *superclass=b\n x=xray\n)\n*class(\n *id=d\n *name=delta\n *superclass=c\n y=yankee\n)\nd(test1=test2)",
-    "minimised_modl":  "tbd",
+    "minimised_modl":  "*class(*id=a;*name=alpha;*superclass=map;v=victor)*class(*id=b;*name=bravo;*superclass=a;w=whisky)*class(*id=c;*name=charlie;*superclass=b;x=xray)*class(*id=d;*name=delta;*superclass=c;y=yankee)d(test1=test2)",
     "expected_output":   "{\"delta\": {\"test1\": \"test2\",\"y\": \"yankee\",\"x\": \"xray\",\"w\": \"whisky\",\"v\": \"victor\"}}"},
   {"input":  "_test=[[a;b]];letters2=%test.0.0",
     "minimised_modl":  "_test=[[a;b]];letters2=%test.0.0",
@@ -618,7 +626,7 @@
   "expected_output": "{\n \"support_number\" : [ \"International Clients\", 14161234567 ]\n}\n"
 }, {
   "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\"\n\nm=out:2018-03-22 15\\:25:Hi\nm=in:2018-03-22 15\\:26:Hello, how are you?\nm=out:2018-03-22 15\\:25:Hi, good thanks\nm=out:2018-03-22 15\\:26:How about you?\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?\nm=out:2018-03-22 15\\:25:Just testing out MODL\nm=in:2018-03-22 15\\:26:Cool!",
-  "minimised_modl": "*L=https://config.modl.uk/demo/message-thread.txt;m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
+  "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!",
   "expected_output": "[ {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Hello, how are you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Hi, good thanks\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"How about you?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Yes, fine thanks. What are you up to?\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"out\",\n   \"date_time\" : \"2018-03-22 15:25\",\n   \"message\" : \"Just testing out MODL\",\n   \"method\" : \"sms\"\n }\n}, {\n \"message\" : {\n   \"direction\" : \"in\",\n   \"date_time\" : \"2018-03-22 15:26\",\n   \"message\" : \"Cool!\",\n   \"method\" : \"sms\"\n }\n} ]\n"
 }, {
   "input": "_var=2\n*L=\"http://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!\"\nprint=%update_date\n",
