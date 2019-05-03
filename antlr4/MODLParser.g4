@@ -33,14 +33,14 @@ modl_structure
 modl_map
   // ( key = value; key = value )
   : LBRAC
-        ( modl_map_item (SC modl_map_item )* )?
+        ( modl_map_item (ARR_SEP modl_map_item )* )?
     RBRAC
   ;
 
 modl_array
   // [ item; item ]
   : LSBRAC
-        ( ( modl_array_item | modl_nb_array ) (COMMA+ ( modl_array_item | modl_nb_array ) COMMA* )* )?
+        ( ( modl_array_item | modl_nb_array ) (ARR_SEP+ ( modl_array_item | modl_nb_array ) ARR_SEP* )* )?
     RSBRAC
   ;
 
@@ -99,7 +99,7 @@ modl_map_conditional
     RCBRAC
   ;
   modl_map_conditional_return
-    : (modl_map_item  SC )+
+    : (modl_map_item  STRUCT_SEP )+
     ;
     modl_map_item
       : modl_pair | modl_map_conditional
@@ -115,7 +115,7 @@ modl_array_conditional
     RCBRAC
   ;
   modl_array_conditional_return
-    : (modl_array_item  SC )+
+    : (modl_array_item  STRUCT_SEP )+
     ;
     modl_array_item
       : modl_array_value_item | modl_array_conditional
