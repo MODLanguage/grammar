@@ -21,7 +21,7 @@ options {
 
 modl
   // Valid MODL is zero or more MODL structures separated by semi-colons, newlines or both
-  : ( modl_structure (modl_structure )* )?  EOF;
+  : ( modl_structure (STRUCT_SEP modl_structure )* )?  EOF;
 
 modl_structure
   : modl_map
