@@ -21,7 +21,7 @@ options {
 
 modl
   // Valid MODL is zero or more MODL structures separated by semi-colons, newlines or both
-  : ( modl_structure?) | (modl_structure (STRUCT_SEP modl_structure )* ) EOF;
+  : ( modl_structure?) | (modl_structure (STRUCT_SEP modl_structure )* ) STRUCT_SEP? EOF;
 
 modl_structure
   : modl_map
@@ -99,7 +99,7 @@ modl_map_conditional
     RCBRAC
   ;
   modl_map_conditional_return
-    : (modl_map_item  STRUCT_SEP )+
+    : (modl_map_item )+
     ;
     modl_map_item
       : modl_pair | modl_map_conditional
@@ -115,7 +115,7 @@ modl_array_conditional
     RCBRAC
   ;
   modl_array_conditional_return
-    : (modl_array_item  STRUCT_SEP )+
+    : (modl_array_item )+
     ;
     modl_array_item
       : modl_array_value_item | modl_array_conditional
