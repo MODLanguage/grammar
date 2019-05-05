@@ -21,7 +21,7 @@ options {
 
 modl
   // Valid MODL is zero or more MODL structures separated by semi-colons, newlines or both
-  : ( modl_structure (STRUCT_SEP modl_structure )* )?  EOF;
+  : ( modl_structure?) | (modl_structure (STRUCT_SEP modl_structure )* ) EOF;
 
 modl_structure
   : modl_map
@@ -33,14 +33,14 @@ modl_structure
 modl_map
   // ( key = value; key = value )
   : LBRAC
-        ( modl_map_item (ARR_SEP modl_map_item )* )?
+        ( modl_map_item (STRUCT_SEP modl_map_item )* )?
     RBRAC
   ;
 
 modl_array
   // [ item; item ]
   : LSBRAC
-        ( ( modl_array_item | modl_nb_array ) (ARR_SEP+ ( modl_array_item | modl_nb_array ) ARR_SEP* )* )?
+        ( ( modl_array_item | modl_nb_array ) (STRUCT_SEP+ ( modl_array_item | modl_nb_array ) STRUCT_SEP* )* )?
     RSBRAC
   ;
 

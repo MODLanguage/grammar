@@ -43,10 +43,10 @@ lexer grammar MODLLexer;
   STRING : '# '? ( ESCAPED | UNRESERVED | GRAVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'?) ( ESCAPED | UNRESERVED | GRAVED )+ )* ;
     // These two should be identical except for regex inversion on first
     fragment UNRESERVED
-      : ~ ( ','|'#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( ','|'#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
@@ -113,10 +113,10 @@ mode CONDITIONAL;
     : (CESCAPED | CUNRESERVED | CGRAVED)+ (' '+ (CESCAPED | CUNRESERVED | CGRAVED)+)* -> type(STRING)
     ;
     fragment CUNRESERVED
-    : ~ (','|'#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
+    : ~ ('#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
     ;
     fragment CRESERVED_CHARS
-    :   (','|'#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
+    :   ('#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
     ;
     fragment CESCAPED
       // Standard JSON escaping, e.g. \t for tab
