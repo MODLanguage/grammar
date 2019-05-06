@@ -1,7 +1,19 @@
 [
   {
-    "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\"\n\nclasses=*class",
+    "input": "*L=grammar_tests/test_import_dir/nested_import1.txt;\nfiles=%*load",
+    "minimised_modl": "*L=grammar_tests/test_import_dir/nested_import1.txt;files=%*load",
+    "expected_output": "{\"files\":[\"grammar_tests/test_import_dir/nested_import1.txt\",\"grammar_tests/test_import_dir/nested_import2.txt\",\"grammar_tests/test_import_dir/nested_import3.txt\",\"grammar_tests/test_import_dir/test_import.txt\"]}"},
+  {
+    "input": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;\nfiles=%*load",
+    "minimised_modl": "*L=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;files=%*load",
+    "expected_output": "{\"files\":[\"grammar_tests/1.modl\",\"grammar_tests/2.modl\",\"grammar_tests/3.modl\",\"grammar_tests/1.modl\"]}"},
+  {
+    "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\";\n\nclasses=*class",
     "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";classes=*class",
+    "expected_output": "{\"classes\":\"*class\"}"},
+  {
+    "input": "*L=\"http://modules.num.uk/1.txt\";\n\nclasses=%*class",
+    "minimised_modl": "*L=\"http://modules.num.uk/1.txt\";classes=%*class",
     "expected_output": "{\"classes\":\"*class\"}"},
   {
     "input": "*method(\n ## The method can be called by it's ID or name\n *id=cn;\n *name=company_name;\n ## The value of the object that the method is called on is transformed using the following methods:\n *transform=`replace(-, ).trim(.).initcap`\n);\n\nm=%*method",
