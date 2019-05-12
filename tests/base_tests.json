@@ -590,7 +590,7 @@
 }, {
   "input": "_L=en;\n{\n C=ca?\n    o(\n      n=Tesco Canada;\n      s={L=fr?\n        Chaque Petite Contribution\n      /?\n        Every Little Helps\n      }\n    )\n}",
   "minimised_modl": "_L=en;{C=ca?o(n=Tesco Canada;s={L=fr?Chaque Petite Contribution/?Every Little Helps})}",
-  "expected_output": "\n"
+  "expected_output": "null"
 }, {
   "input": "_letter=a;\n{\n letter=a?\n   word=Apple\n /letter=b?\n   word=Bee\n /?\n   word=Other\n}",
   "minimised_modl": "_letter=a;{letter=a?word=Apple/letter=b?word=Bee/?word=Other}",
@@ -634,7 +634,7 @@
 }, {
   "input": "_test = 123;\n_test2 = abc",
   "minimised_modl": "_test=123;_test2=abc",
-  "expected_output": "\n"
+  "expected_output": "null"
 }, {
   "input": "_co=gb;\ntest=123",
   "minimised_modl": "_co=gb;test=123",
@@ -698,7 +698,7 @@
 }, {
   "input": "_T=grammar_tests/demo;\n*L=`%T`_config",
   "minimised_modl": "_T=grammar_tests/demo;*L=`%T`_config",
-  "expected_output": "\n"
+  "expected_output": "null"
 }, {
   "input": "*l=grammar_tests/1;*L=grammar_tests/1;a=1",
   "minimised_modl": "*l=grammar_tests/1;*L=grammar_tests/1;a=1",
@@ -995,5 +995,5 @@
     "expected_output": "{\"x\" : [ 1, null, null, null, null, null, null, [2, null, null, null, null, null, null, null, null, 3], null, null, null, null, null, null, null, null, null, [4, null, null, null, null, null, null, null, null, 5] ]}"},
   {"input": "*LOAD=\"http://modules.num.uk/1.txt\";o=Tesco:Every Little Helps:[t=Customer Service:0845555555];",
     "minimised_modl": "*LOAD=\"http://modules.num.uk/1.txt\";o=Tesco:Every Little Helps:[t=Customer Service:0845555555];",
-    "expected_output": "{\n  \"organisation\": {\n    \"name\": \"Tesco\",\n    \"slogan\": \"Every Little Helps\",\n    \"objects\": [\n      {\n        \"telephone\": {\n          \"object_type\": \"media\",\n          \"object_display_name\": \"Telephone\",\n          \"description_default\": \"Call\",\n          \"prefix\": \"tel://\",\n          \"media_type\": \"core\",\n          \"description\": \"Customer Service\",\n          \"value\": \"0845555555\"\n        }\n      }\n    ],\n    \"object_type\": \"entity\",\n    \"object_display_name\": \"Organisation\",\n    \"description_default\": \"View Organisation\"\n  }\n}"}
+    "expected_output": "{\"organisation\":{\"name\":\"Tesco\",\"slogan\":\"Every Little Helps\",\"objects\":[{\"telephone\":{\"description\":\"Customer Service\",\"value\":\"0845555555\",\"object_type\":\"media\",\"object_display_name\":\"Telephone\",\"description_default\":\"Call\",\"prefix\":\"tel://\",\"media_type\":\"core\"}}],\"object_type\":\"entity\",\"object_display_name\":\"Organisation\",\"description_default\":\"View Organisation\"}}"}
 ]
