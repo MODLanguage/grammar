@@ -601,7 +601,7 @@
   { "input": "_C=gb;\no(\n{C=gb?test1=123};\ntest2=456\n)",
     "minimised_modl": "_C=gb;o({C=gb?test1=123};test2=456)",
     "expected_output": "{\n \"o\" : {\n   \"test1\" : 123,\n   \"test2\" : 456\n }\n}\n",
-    "tested_features":["object_ref"]
+    "tested_features":["object_ref", "conditional"]
   }, 
   { "input": "{\ntrue?\n test=1\n}",
     "minimised_modl": "{01?test=1}",
