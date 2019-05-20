@@ -1248,5 +1248,100 @@
     "minimised_modl": "test=This is a \\`test~`",
     "expected_output": "{\n  \"test\" : \"This is a `test`\"\n}",
     "tested_features":["strings"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=b",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=b",
+    "expected_output": "{\n    \"alpha\": \"b\"\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=1",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=1",
+    "expected_output": "{\n    \"alpha\": 1\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=true",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=true",
+    "expected_output": "{\n    \"alpha\": true\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=null",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=null",
+    "expected_output": "{\n    \"alpha\": null\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=[1;2;3];b=4:5:6",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=[1;2;3];b=4:5:6",
+    "expected_output": "[\n    {\n        \"alpha\": [\n            1,\n            2,\n            3\n        ]\n    },\n    {\n        \"b\": [\n            4,\n            5,\n            6\n        ]\n    }\n]",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=(b=c)",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=(b=c)",
+    "expected_output": "{\n    \"alpha\": {\n        \"b\": \"c\"\n    }\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha;x=\"test\");a=1",
+    "minimised_modl": "*class(*id=a;*name=alpha;x=\"test\");a=1",
+    "expected_output": "{\n  \"alpha\": {\n    \"value\":1,\n    \"x\":\"test\"\n  }\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*assign[[x]]);a=1\n",
+    "minimised_modl": "*class(*id=a;*name=alpha;*assign[[x]]);a=1\n",
+    "expected_output": "{\n  \"alpha\": {\n    \"value\":1,\n    \"x\":\"test\"\n  }\n}",
+    "tested_features":["class", "superclass_inference"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=str);a=1",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=str);a=1",
+    "expected_output": "{\n    \"alpha\": \"1\"\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=str);a=true",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=str);a=true",
+    "expected_output": "{\n    \"alpha\": \"true\"\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=num);a=1\n",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=1\n",
+    "expected_output": "{\n    \"alpha\": 1\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=num);a=true",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=true",
+    "expected_output": "{\n    \"alpha\": 1\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=num);a=false",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=false",
+    "expected_output": "{\n    \"alpha\": 0\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=false",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=false",
+    "expected_output": "{\n    \"alpha\": false\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha);a=null",
+    "minimised_modl": "*class(*id=a;*name=alpha);a=null",
+    "expected_output": "{\n    \"alpha\": null\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=arr);a=b",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=b",
+    "expected_output": "{\n    \"alpha\": [\n        \"b\"\n    ]\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=map);a=b",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map);a=b",
+    "expected_output": "{\n    \"alpha\": {\n        \"value\": \"b\"\n    }\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=map);a=(c=d)",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map);a=(c=d)",
+    "expected_output": "{\n    \"alpha\": {\n        \"c\": \"d\"\n    }\n}",
+    "tested_features":["class", "superclass"]
+  },
+  { "input": "*class(*id=a;*name=alpha;*superclass=arr);a=[1;2;3]",
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=[1;2;3]",
+    "expected_output": "{\n    \"alpha\": [\n        1,\n        2,\n        3\n    ]\n}",
+    "tested_features":["class", "superclass"]
   }
 ]
