@@ -1291,7 +1291,7 @@
   },
   { "input": "*class(*id=a;*name=alpha;*assign[[x]]);a=1\n",
     "minimised_modl": "*class(*id=a;*name=alpha;*assign[[x]]);a=1\n",
-    "expected_output": "{\n  \"alpha\": {\n    \"value\":1,\n    \"x\":\"test\"\n  }\n}",
+    "expected_output": "{\n  \"alpha\": {\n    \"x\":1\n  }\n}",
     "tested_features":["class", "superclass_inference"]
   },
   { "input": "*class(*id=a;*name=alpha;*superclass=str);a=1",
