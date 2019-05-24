@@ -125,9 +125,9 @@
     "tested_features":["string_method", "object_ref"]
   },
   { "input": "(\n  _name = John;\n  %name = \"Developer\";\n  foo = %John\n)",
-      "minimised_modl":  "(_name=John;%name=\"Developer\";foo = %John)",
-      "expected_output":   "{\n  \"John\" : \"Developer\",     \n  \"foo\" : \"Developer\"\n}",
-      "tested_features":["object_ref"]
+    "minimised_modl":  "(_name=John;%name=\"Developer\";foo = %John)",
+    "expected_output":   "{\n  \"John\" : \"Developer\",     \n  \"foo\" : \"Developer\"\n}",
+    "tested_features":["object_ref"]
   },
   { "input": "_array[1;2];\n_array_item=%array.0;\ntest={\n  array_item=%array.0?\n     yes\n  /?\n     no\n}",
     "minimised_modl":  "_array[1;2];_array_item=%array.0;test={array_item=%array.0?yes/?no}",
@@ -383,7 +383,7 @@
     "minimised_modl": "_test=http~://www.tesco.com;result={test=\"http://www.tesco.com\"?yes/?no}",
     "expected_output": "{\n \"result\" : \"yes\"\n}\n",
     "tested_features":["class", "object_ref", "conditional"]
-  }, 
+  },
   { "input": "_branch=\"alex.\";_root=d;namespace=`%branch`blah.`%root`",
     "minimised_modl": "_branch=alex.;_root=d;namespace=`%branch`blah.`%root`",
     "expected_output": "{\n \"namespace\" : \"alex.blah.d\"\n}\n",
@@ -428,7 +428,7 @@
     "minimised_modl": "?=one:two;test=Blah `%0.s` %1.s",
     "expected_output": "{\n \"test\" : \"Blah One Two\"\n}\n",
     "tested_features":["object_ref", "graves","string_method"]
-  }, 
+  },
   { "input": "?=one:two;\ntest=Blah `%0.r(o,huzzah)` `%1.t(w)`",
     "minimised_modl": "?=one:two;test=Blah `%0.r(o,huzzah)` `%1.t(w)`",
     "expected_output": "{\n \"test\" : \"Blah huzzahne t\"\n}\n",
@@ -1339,5 +1339,15 @@
     "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=[1;2;3]",
     "expected_output": "{\n    \"alpha\": [\n        1,\n        2,\n        3\n    ]\n}",
     "tested_features":["class", "superclass"]
+  },
+  { "input": "*L=[grammar_tests/1;grammar_tests/1];a=1",
+    "minimised_modl": "*L=[grammar_tests/1;grammar_tests/1];a=1",
+    "expected_output": "{\"a\":1}",
+    "tested_features":["load"]
+  },
+  { "input": "*L=grammar_tests/1:grammar_tests/1;a=1",
+    "minimised_modl": "*L=grammar_tests/1:grammar_tests/1;a=1",
+    "expected_output": "{\"a\":1}",
+    "tested_features":["load"]
   }
 ]
