@@ -15,6 +15,12 @@
     $.getJSON("https://raw.githubusercontent.com/MODLanguage/grammar/master/tests/base_tests.json", function (json) {
         let txt = '';
         txt += "<div class='container-fluid' style='word-wrap: break-word'>";
+        txt += "<div class='row'>";
+        txt += "<div class='col-1 border border-dark'>Test</div>";
+        txt += "<div class='col-5 border border-dark'>Input</div>";
+        txt += "<div class='col-5 border border-dark'>Expected Result</div>";
+        txt += "<div class='col-1 border border-dark'>Tested Features</div>";
+        txt += "</div>";
         let count = 1;
         for (x in json) {
 
