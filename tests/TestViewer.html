@@ -16,30 +16,32 @@
         let txt = '';
         txt += "<div class='container-fluid' style='word-wrap: break-word'>";
         txt += "<div class='row'>";
-        txt += "<div class='col-1 border border-dark'>Test</div>";
+        txt += "<div class='col-1 border border-dark'>ID</div>";
         txt += "<div class='col-5 border border-dark'>Input</div>";
         txt += "<div class='col-5 border border-dark'>Expected Result</div>";
         txt += "<div class='col-1 border border-dark'>Tested Features</div>";
         txt += "</div>";
+
         let count = 1;
         for (x in json) {
 
             let i = json[x].input;
+            let id = json[x].id;
             let e = JSON.stringify(JSON.parse(json[x].expected_output), null, 4);
-            console.log(e);
+
             let f = json[x].tested_features;
 
             txt += "<div class='row'>";
-            txt += "<div class='col-1 border border-dark'>" + count + "</div>";
+            txt += "<div class='col-1 border border-dark'>" + id + "</div>";
             txt += "<div class='col-5 border border-dark'>" + i + "</div>";
             txt += "<div class='col-5 border border-dark'><pre>" + e + "</pre></div>";
             txt += "<div class='col-1 border border-dark'>" + f + "</div>";
             txt += "</div>";
-            count +=1;
+
+            count += 1;
         }
         txt += "</div>";
         document.getElementById("json-data").innerHTML = txt;
-
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
