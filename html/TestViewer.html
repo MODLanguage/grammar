@@ -10,69 +10,206 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
           rel="stylesheet"/>
+    <link href="viewer.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
 <h1>MODL Grammar Base Tests</h1>
+<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+    <h2>Json File</h2>
+    <input type='file' id='fileinput'>
+    <input type='button' class='btn btn-sm btn-warning' id='btnLoad' value='Load' onclick='loadFile();'>
+</form>
+
+<div class='container-fluid' style='word-wrap: break-word'>
+    <div class='col-xs-12'>
+        <div class='row'>
+            <div class='col-xs-5'>
+            </div>
+            <div class='col-xs-1'>
+                <div id="savefile" class='btn btn-sm btn-success'>Save</div>
+            </div>
+        </div>
+
+        <div class='row table-bordered table-condensed'>
+            <div class='col-xs-1 border border-dark'><h3>ID</h3></div>
+            <div class='col-xs-3 border border-dark'><h3>Input</h3></div>
+            <div class='col-xs-3 border border-dark'><h3>Minimised</h3></div>
+            <div class='col-xs-4 border border-dark'><h3>Expected Result</h3></div>
+            <div class='col-xs-1 border border-dark'><h3>Tested Features</h3></div>
+        </div>
+    </div>
+</div>
+
 <div id="json-data"></div>
+
 <script>
-    $.getJSON("https://raw.githubusercontent.com/MODLanguage/grammar/master/tests/base_tests.json", function (json) {
-        let txt = '';
-        txt += "<div class='container-fluid' style='word-wrap: break-word'>";
-        txt += "<div class='col-xs-12'>";
-        txt += "<div class='row table-bordered table-condensed'>";
-        txt += "<div class='col-xs-1 border border-dark'>ID</div>";
-        txt += "<div class='col-xs-5 border border-dark'>Input</div>";
-        txt += "<div class='col-xs-5 border border-dark'>Expected Result</div>";
-        txt += "<div class='col-xs-1 border border-dark'>Tested Features</div>";
-        txt += "</div>";
 
-        let count = 1;
-        for (x in json) {
+    function loadFile() {
+        var input, file, fr;
 
-            let i = json[x].input;
-            let id = json[x].id;
-            let e = JSON.stringify(JSON.parse(json[x].expected_output), null, 4);
-
-            let f = json[x].tested_features;
-
-            txt += '<div class="row table-bordered table-condensed">';
-            txt += '<div class="col-xs-1 border border-dark">' + id + '</div>';
-            // input editor
-            txt += '<div class="col-xs-5 border border-dark">';
-            txt += '<a href="#" id="testInput' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
-            txt += i;
-            txt += '</a>';
-            txt += '</div>';
-
-
-            txt += '<div class="col-xs-5 border border-dark"><pre>';
-            txt += '<a href="#" id="expected' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
-            txt += e;
-            txt += '</a>';
-            txt += '</pre></div>';
-            txt += '<div class="col-xs-1 border border-dark">' + f + '</div>';
-            txt += '</div>';
-
-            count += 1;
-        }
-        txt += "</div>";
-        txt += "</div>";
-        document.getElementById("json-data").innerHTML = txt;
-
-        $.fn.editable.defaults.mode = 'inline';
-
-        count = 1;
-        for (x in json) {
-            $('#testInput' + count).editable();
-            $('#expected' + count).editable();
-            count += 1;
+        if (typeof window.FileReader !== 'function') {
+            alert("The file API isn't supported on this browser yet.");
+            return;
         }
 
+        input = document.getElementById('fileinput');
+        if (!input) {
+            alert("Um, couldn't find the fileinput element.");
+        } else if (!input.files) {
+            alert("This browser doesn't seem to support the `files` property of file inputs.");
+        } else if (!input.files[0]) {
+            alert("Please select a file before clicking 'Load'");
+        } else {
+            file = input.files[0];
+            fr = new FileReader();
+            fr.onload = receivedText;
+            fr.readAsText(file);
+        }
 
-    });
+        function receivedText(e) {
+            let lines = e.target.result;
+            var json = JSON.parse(lines);
+            let txt = '';
+
+            txt += "<div class='container-fluid' style='word-wrap: break-word'>";
+            txt += "<div class='row'>";
+            txt += "<div class='col-xs-12'>";
+
+            let count = 1;
+            for (x in json) {
+
+                let i = json[x].input;
+                let id = json[x].id;
+                let e = '';
+                let m = json[x].minimised_modl;
+                try {
+                    e = JSON.stringify(JSON.parse(json[x].expected_output), null, 4);
+                } catch (err) {
+                    e = json[x].expected_output;
+                }
+
+
+                let f = json[x].tested_features;
+
+                txt += '<div id="dataRow' + count + '" class="testDataRow row table-bordered table-condensed">';
+                txt += '<div id="testID' + count + '" class="col-xs-1 border border-dark">' + id + '</div>';
+                // input editor
+                txt += '<div class="col-xs-3 border border-dark">';
+                txt += '<a href="#" id="testInput' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+                txt += i;
+                txt += '</a>';
+                txt += '</div>';
+
+                txt += '<div class="col-xs-3 border border-dark">';
+                txt += '<a href="#" id="minimisedModl' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+                txt += m;
+                txt += '</a>';
+                txt += '</div>';
+
+
+                txt += '<div class="col-xs-4 border border-dark"><pre>';
+                txt += '<a href="#" id="expected' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+                txt += e;
+                txt += '</a>';
+                txt += '</pre></div>';
+                txt += '<div class="col-xs-1 border border-dark">';
+                txt += '<a href="#" id="testedFeatures' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+                txt += f;
+                txt += '</a>';
+                txt += '</div>';
+                txt += '</div>';
+
+                count += 1;
+            }
+            txt += "</div>";
+            txt += "</div>";
+            txt += "</div>";
+            document.getElementById("json-data").innerHTML = txt;
+
+            count = 1;
+            for (x in json) {
+                $('#testInput' + count).editable({rows: 20, placement: 'right', defaultValue: 'null', emptytext: ''});
+                $('#expected' + count).editable({rows: 20, placement: 'left', defaultValue: 'null', emptytext: ''});
+                $('#minimisedModl' + count).editable({
+                    rows: 2,
+                    placement: 'right',
+                    defaultValue: 'null',
+                    emptytext: ''
+                });
+                $('#testedFeatures' + count).editable({
+                    rows: 5,
+                    placement: 'left',
+                    defaultValue: 'null',
+                    emptytext: ''
+                });
+                count += 1;
+            }
+        }
+    }
+
+    function saveData(data, fileName) {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style = "display: none";
+
+        blob = new Blob([data], {type: "text/json;charset=utf-8"});
+        url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+    }
+
+
+    function main() {
+        var savefile = document.getElementById("savefile")
+        savefile.addEventListener("click", saveFile, false)
+    }
+
+
+    function getSaveData() {
+        let result = [];
+
+        let items = $('.testDataRow');
+        $.each(items, function (i) {
+            let id = $('#testID' + i).text();
+            let input = $('#testInput' + i).text();
+            let expected = $('#expected' + i).text();
+            let testedFeatures = $('#testedFeatures' + i).text();
+            let minimised_modl = $('#minimisedModl' + i).text();
+
+            let f = [];
+
+            if (testedFeatures.includes(',')) {
+                let parts = testedFeatures.split(',');
+                parts.forEach(p => f.push(p));
+            } else {
+                f.push(testedFeatures);
+            }
+
+            result.push({
+                id: id,
+                input: input,
+                expected_output: expected,
+                tested_features: f,
+                minimised_modl: minimised_modl
+            });
+        });
+
+        return JSON.stringify(result, false, 4);
+    }
+
+    function saveFile(e) {
+        saveData(getSaveData(), "base_tests.json");
+        e.preventDefault()
+    }
+
+    window.onload = main
+
 </script>
 </body>
 </html>
