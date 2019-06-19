@@ -175,12 +175,12 @@
         let result = [];
 
         let items = $('.testDataRow');
-        $.each(items, function (i) {
-            let id = $('#testID' + i).text();
-            let input = $('#testInput' + i).text();
-            let expected = $('#expected' + i).text();
-            let testedFeatures = $('#testedFeatures' + i).text();
-            let minimised_modl = $('#minimisedModl' + i).text();
+        $.each(items, function (i, v) {
+            let id = v.children[0].innerText;
+            let input = v.children[1].innerText;
+            let minimised_modl = v.children[2].innerText;
+            let expected = v.children[3].innerText;
+            let testedFeatures = v.children[4].innerText;
 
             let f = [];
 
