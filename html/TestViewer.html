@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MODL Grammar Base Tests</title>
+
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+          rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<h1>MODL Grammar Base Tests</h1>
+<div id="json-data"></div>
+<script>
+    $.getJSON("https://raw.githubusercontent.com/MODLanguage/grammar/master/tests/base_tests.json", function (json) {
+        let txt = '';
+        txt += "<div class='container-fluid' style='word-wrap: break-word'>";
+        txt += "<div class='col-xs-12'>";
+        txt += "<div class='row table-bordered table-condensed'>";
+        txt += "<div class='col-xs-1 border border-dark'>ID</div>";
+        txt += "<div class='col-xs-5 border border-dark'>Input</div>";
+        txt += "<div class='col-xs-5 border border-dark'>Expected Result</div>";
+        txt += "<div class='col-xs-1 border border-dark'>Tested Features</div>";
+        txt += "</div>";
+
+        let count = 1;
+        for (x in json) {
+
+            let i = json[x].input;
+            let id = json[x].id;
+            let e = JSON.stringify(JSON.parse(json[x].expected_output), null, 4);
+
+            let f = json[x].tested_features;
+
+            txt += '<div class="row table-bordered table-condensed">';
+            txt += '<div class="col-xs-1 border border-dark">' + id + '</div>';
+            // input editor
+            txt += '<div class="col-xs-5 border border-dark">';
+            txt += '<a href="#" id="testInput' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+            txt += i;
+            txt += '</a>';
+            txt += '</div>';
+
+
+            txt += '<div class="col-xs-5 border border-dark"><pre>';
+            txt += '<a href="#" id="expected' + count + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+            txt += e;
+            txt += '</a>';
+            txt += '</pre></div>';
+            txt += '<div class="col-xs-1 border border-dark">' + f + '</div>';
+            txt += '</div>';
+
+            count += 1;
+        }
+        txt += "</div>";
+        txt += "</div>";
+        document.getElementById("json-data").innerHTML = txt;
+
+        $.fn.editable.defaults.mode = 'inline';
+
+        count = 1;
+        for (x in json) {
+            $('#testInput' + count).editable();
+            $('#expected' + count).editable();
+            count += 1;
+        }
+
+
+    });
+</script>
+</body>
+</html>
