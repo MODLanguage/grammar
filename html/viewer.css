@@ -1,6 +1,47 @@
+.page-header {
+    width:100%;
+    margin: auto;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
 .editable-input {
     padding: 3px 5px;
     width: 400px;
     height: 500px;
     font-size: 14px;
+}
+
+.test-list {
+    word-wrap: break-word;
+    overflow-scrolling: auto;
+    background-color: lightcyan;
+}
+
+.testDataRow {
+    background-color: lightcyan;
+}
+
+.main-panel {
+    height: 85%;
+    overflow: scroll;
+    width: 98%;
+    margin: auto;
+}
+
+.head-panel {
+    width: 98%;
+    margin: auto;
+    background-color: cyan;
+}
+
+.load-file {
+    width: 98%;
+    margin: auto;
+}
+
+html, body {
+    height: 100%;
+    background-color: darkcyan;
 }
