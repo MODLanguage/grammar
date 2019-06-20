@@ -3,6 +3,13 @@
 let rowCount = 1;
 
 //
+// Show or Hide the Help panel
+//
+function showHideHelp() {
+    $('#help').toggle();
+}
+
+//
 // Load a tests file chosen by the user - the file must conform to the format of base_tests.json in the tests directory of the grammar repo
 //
 function loadFile() {
@@ -45,7 +52,6 @@ function loadFile() {
         for (x in json) {
 
             let i = json[x].input;
-            let id = json[x].id;
             let e = '';
             let m = json[x].minimised_modl;
             try {
@@ -55,7 +61,7 @@ function loadFile() {
             }
             let f = json[x].tested_features;
 
-            txt += createRow(id, i, m, e, f);
+            txt += createRow(count, i, m, e, f);
             count += 1;
         }
         txt += "</div>";
@@ -64,6 +70,7 @@ function loadFile() {
         document.getElementById("json-data").innerHTML = txt;
         rowCount = count;
         makeEditable();
+        done();
     }
 }
 
@@ -101,6 +108,7 @@ function saveData(data, fileName) {
     a.click();
     window.URL.revokeObjectURL(url);
 
+    done();
 }
 
 //
@@ -217,10 +225,74 @@ function createRow(rowNumber, input, minified, result, features) {
 function deleteRow(row) {
     let v = $('#dataRow' + row);
 
-    v.children()[1].innerText = 'DELETED';
-    v.children()[2].innerText = 'DELETED';
-    v.children()[3].innerText = 'DELETED';
-    v.children()[4].innerText = 'DELETED';
+    let deletedInput = '<div class="col-xs-3 border border-dark">';
+    deletedInput += '<a href="#" id="testInput' + row + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+    deletedInput += 'DELETED';
+    deletedInput += '</a>';
+    deletedInput += '</div>';
+
+    let minifiedInput = '<div class="col-xs-3 border border-dark">';
+    minifiedInput += '<a href="#" id="minimisedModl' + row + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter minimised test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+    minifiedInput += 'DELETED';
+    minifiedInput += '</a>';
+    minifiedInput += '</div>';
+
+    let expectedOutput = '<div class="col-xs-3 border border-dark">';
+    expectedOutput += '<a href="#" id="expected' + row + '" data-type="textarea" data-pk="1" data-placeholder="Expected output..." data-title="Enter expected output" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+    expectedOutput += 'DELETED';
+    expectedOutput += '</a>';
+    expectedOutput += '</div>';
+
+    let features = '<div class="col-xs-3 border border-dark">';
+    features += '<a href="#" id="testedFeatures' + row + '" data-type="textarea" data-pk="1" data-placeholder="Features..." data-title="Enter tested features" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
+    features += 'DELETED';
+    features += '</a>';
+    features += '</div>';
+
+    v.children()[1].innerHTML = deletedInput;
+    v.children()[2].innerHTML = minifiedInput;
+    v.children()[3].innerHTML = expectedOutput;
+    v.children()[4].innerHTML = features;
 
     makeEditable();
+}
+
+//
+// Delete duplicates
+//
+function dedupe() {
+    let inputs = new Set();
+    let rowsToDelete = [];
+
+    let items = $('.testDataRow');
+    $.each(items, function (i, v) {
+        let input = v.children[1].innerText;
+        if (inputs.has(input)) {
+            rowsToDelete.push(i + 1);
+        } else {
+            inputs.add(input);
+        }
+    });
+
+    for (let row in rowsToDelete) {
+        deleteRow(rowsToDelete[row]);
+    }
+
+    done();
+}
+
+//
+// Show a 'done' message
+//
+function done() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () {
+        x.className = x.className.replace("show", "");
+    }, 3000);
 }
