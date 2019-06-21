@@ -28,7 +28,7 @@
     },
     {
         "id": "4",
-        "input": "*method(\n ## The method can be called by it's ID or name\n *id=cn;\n *name=company_name;\n ## The value of the object that the method is called on is transformed using the following methods:\n *transform=replace<-, >.trim<.>.initcap\n);\n\nm=%*method",
+        "input": "*method(\n *id=cn;\n *name=company_name;\n *transform=replace<-, >.trim<.>.initcap\n);\n\nm=%*method",
         "expected_output": "{\n    \"m\": [\n        {\n            \"cn\": {\n                \"name\": \"company_name\",\n                \"transform\": \"replace<-,>.trim<.>.initcap\"\n            }\n        }\n    ]\n}",
         "tested_features": [
             "method"
@@ -201,7 +201,7 @@
     },
     {
         "id": "22",
-        "input": "(name=%`e1afmkfd`.p;department=%` -7sbcecqbdsccxfizhcp6b8ah`.p)",
+        "input": "(\n  name=%`e1afmkfd`.p;\n  department=%` -7sbcecqbdsccxfizhcp6b8ah`.p\n)",
         "expected_output": "{\n    \"name\": \"пример\",\n    \"department\": \"обслуживание клиентов\"\n}",
         "tested_features": [
             "puny"
@@ -278,13 +278,13 @@
     },
     {
         "id": "30",
-        "input": "_person(  \n name(\n   speak=say;\n   first=John;\n   last=Smith\n )\n);\njust %person.name.speak.u%_this=Hello %person.name.first.d%!",
+        "input": "_person(  \n name(\n   speak=say;\n   first=John;\n   last=Smith\n )\n);\njust %person.name.speak.u%_this=Hello %person.name.first.d!",
         "expected_output": "{\n    \"just SAY_this\": \"Hello john!\"\n}",
         "tested_features": [
             "string_method",
             "object_ref"
         ],
-        "minimised_modl": "_person(name(speak=say;first=John;last=Smith));just %person.name.speak.u%_this=Hello %person.name.first.d%!"
+        "minimised_modl": "_person(name(speak=say;first=John;last=Smith));just %person.name.speak.u%_this=Hello %person.name.first.d!"
     },
     {
         "id": "31",
@@ -464,16 +464,16 @@
     },
     {
         "id": "50",
-        "input": "_test=123;object(print_test = %test%.test)",
+        "input": "_test=123;object(print_test = %test.test)",
         "expected_output": "{\n    \"object\": {\n        \"print_test\": \"123.test\"\n    }\n}",
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=123;object(print_test = %test%.test)"
+        "minimised_modl": "_test=123;object(print_test = %test.test)"
     },
     {
         "id": "51",
-        "input": "?=one:two:three;\ntest1=%0;\ntest2=%1;\ntest3=%2;\ntest4=%3;\ntest5=%4;\ntest6=%5;\ntest7=%6;\ntest8=%7;\ntest9=%8",
+        "input": "?=one:two:three;test1=%0;test2=%1;test3=%2;test4=%3;test5=%4;test6=%5;test7=%6;test8=%7;test9=%8",
         "expected_output": "[\n    {\n        \"test1\": \"one\"\n    },\n    {\n        \"test2\": \"two\"\n    },\n    {\n        \"test3\": \"three\"\n    },\n    {\n        \"test4\": \"%3\"\n    },\n    {\n        \"test5\": \"%4\"\n    },\n    {\n        \"test6\": \"%5\"\n    },\n    {\n        \"test7\": \"%6\"\n    },\n    {\n        \"test8\": \"%7\"\n    },\n    {\n        \"test9\": \"%8\"\n    }\n]",
         "tested_features": [
             "object_ref"
@@ -684,14 +684,14 @@
     },
     {
         "id": "74",
-        "input": "*class(\n *id=g;\n *name=glossary;\n *superclass=map\n);\n*class(\n *id=t;\n *name=title;\n *superclass=str\n);\n*class(\n *id=d;\n *name=GlossDiv;\n *superclass=map\n);\n*class(\n *id=l;\n *name=GlossList;\n *superclass=map\n);\n*class(\n *id=e;\n *name=GlossEntry;\n *superclass=map;\n *assign[\n   [i;s;gt;a;ab;gd;gs]\n ]\n);\n*class(\n *id=i;\n *name=ID;\n *superclass=str\n);\n*class(\n *id=s;\n *name=SortAs;\n *superclass=str\n);\n*class(\n *id=gt;\n *name=GlossTerm;\n *superclass=str\n);\n*class(\n *id=a;\n *name=Acronym;\n *superclass=str\n);\n*class(\n *id=ab;\n *name=Abbrev;\n *superclass=str\n);\n*class(\n *id=gd;\n *name=GlossDef;\n *superclass=map;\n *assign=[\n   [p];\n   [p;sa]\n ]\n);\n*class(\n *id=p;\n *name=para;\n *superclass=str\n);\n*class(\n *id=sa;\n *name=SeeAlso;\n *superclass=arr\n);\n*class(\n *id=gs;\n *name=GlossSee;\n *superclass=str\n);\n\ng(\n ?=[SGML;markup;language];\n t=example glossary;\n d(\n   t=S;\n   l(\n     e(\n       i=%0;\n       s=%0;\n       gt=Standard Generalized %1.s %2.s;\n       a=%0;\n       ab=ISO 8879\\:1986;\n       gd=A meta-%1 %2%, used to create %1 %2%s such as DocBook.\n         :[GML;XML];\n       gs=%1\n     )\n   )\n )\n)",
+        "input": "*class(\n *id=g;\n *name=glossary;\n *superclass=map\n);\n*class(\n *id=t;\n *name=title;\n *superclass=str\n);\n*class(\n *id=d;\n *name=GlossDiv;\n *superclass=map\n);\n*class(\n *id=l;\n *name=GlossList;\n *superclass=map\n);\n*class(\n *id=e;\n *name=GlossEntry;\n *superclass=map;\n *assign[\n   [i;s;gt;a;ab;gd;gs]\n ]\n);\n*class(\n *id=i;\n *name=ID;\n *superclass=str\n);\n*class(\n *id=s;\n *name=SortAs;\n *superclass=str\n);\n*class(\n *id=gt;\n *name=GlossTerm;\n *superclass=str\n);\n*class(\n *id=a;\n *name=Acronym;\n *superclass=str\n);\n*class(\n *id=ab;\n *name=Abbrev;\n *superclass=str\n);\n*class(\n *id=gd;\n *name=GlossDef;\n *superclass=map;\n *assign=[\n   [p];\n   [p;sa]\n ]\n);\n*class(\n *id=p;\n *name=para;\n *superclass=str\n);\n*class(\n *id=sa;\n *name=SeeAlso;\n *superclass=arr\n);\n*class(\n *id=gs;\n *name=GlossSee;\n *superclass=str\n);\n\ng(\n ?=[SGML;markup;language];\n t=example glossary;\n d(\n   t=S;\n   l(\n     e(\n       i=%0;\n       s=%0;\n       gt=Standard Generalized %1.s %2.s;\n       a=%0;\n       ab=ISO 8879\\:1986;\n       gd=A meta-%1 %2, used to create %1 %2%s such as DocBook.\n         :[GML;XML];\n       gs=%1\n     )\n   )\n )\n)",
         "expected_output": "{\n    \"glossary\": {\n        \"title\": \"example glossary\",\n        \"GlossDiv\": {\n            \"title\": \"S\",\n            \"GlossList\": {\n                \"GlossEntry\": {\n                    \"ID\": \"SGML\",\n                    \"SortAs\": \"SGML\",\n                    \"GlossTerm\": \"Standard Generalized Markup Language\",\n                    \"Acronym\": \"SGML\",\n                    \"Abbrev\": \"ISO 8879:1986\",\n                    \"GlossDef\": {\n                        \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\",\n                        \"SeeAlso\": [\n                            \"GML\",\n                            \"XML\"\n                        ]\n                    },\n                    \"GlossSee\": \"markup\"\n                }\n            }\n        }\n    }\n}",
         "tested_features": [
             "class",
             "object_ref",
             "string_method"
         ],
-        "minimised_modl": "*c(*i=g;*n=glossary;*s=map);*c(*i=t;*n=title;*s=str);*c(*i=d;*n=GlossDiv;*s=map);*c(*i=l;*n=GlossList;*s=map);*c(*i=e;*n=GlossEntry;*s=map;*a[[i;s;gt;a;ab;gd;gs]]);*c(*i=i;*n=ID;*s=str);*c(*i=s;*n=SortAs;*s=str);*c(*i=gt;*n=GlossTerm;*s=str);*c(*i=a;*n=Acronym;*s=str);*c(*i=ab;*n=Abbrev;*s=str);*c(*i=gd;*n=GlossDef;*s=map;*a=[p]:[p;sa]);*c(*i=p;*n=para;*s=str);*c(*i=sa;*n=SeeAlso;*s=arr);*c(*i=gs;*n=GlossSee;*s=str);g(?=SGML:markup:language;t=example glossary;d(t=S;l(e(i=%0;s=%0;gt=Standard Generalized %1.s %2.s;a=%0;ab=ISO 8879~:1986;gd=A meta-%1 %2%, used to create %1 %2%s such as DocBook.:[GML;XML];gs=%1))))"
+        "minimised_modl": "*c(*i=g;*n=glossary;*s=map);*c(*i=t;*n=title;*s=str);*c(*i=d;*n=GlossDiv;*s=map);*c(*i=l;*n=GlossList;*s=map);*c(*i=e;*n=GlossEntry;*s=map;*a[[i;s;gt;a;ab;gd;gs]]);*c(*i=i;*n=ID;*s=str);*c(*i=s;*n=SortAs;*s=str);*c(*i=gt;*n=GlossTerm;*s=str);*c(*i=a;*n=Acronym;*s=str);*c(*i=ab;*n=Abbrev;*s=str);*c(*i=gd;*n=GlossDef;*s=map;*a=[p]:[p;sa]);*c(*i=p;*n=para;*s=str);*c(*i=sa;*n=SeeAlso;*s=arr);*c(*i=gs;*n=GlossSee;*s=str);g(?=SGML:markup:language;t=example glossary;d(t=S;l(e(i=%0;s=%0;gt=Standard Generalized %1.s %2.s;a=%0;ab=ISO 8879~:1986;gd=A meta-%1 %2, used to create %1 %2%s such as DocBook.:[GML;XML];gs=%1))))"
     },
     {
         "id": "75",
@@ -731,12 +731,12 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_branch=alex.;_root=d;namespace=%branch%blah.%root"
+        "minimised_modl": "_branch=\"alex.\";_root=d;namespace=%branch%blah.%root"
     },
     {
         "id": "79",
         "input": "namespace=%branch%blah.%root",
-        "expected_output": "{\n    \"namespace\": \"%branchblah.%root\"\n}",
+        "expected_output": "{\n    \"namespace\": \"%branch%blah.%root\"\n}",
         "tested_features": [
             "pair",
             "graves"
@@ -814,7 +814,7 @@
     },
     {
         "id": "87",
-        "input": "?=one:two;\ntest=Blah %0.r %1.t",
+        "input": "?=one:two;\ntest=Blah %0.r<o,huzzah> %1.t<w>",
         "expected_output": "{\n    \"test\": \"Blah huzzahne t\"\n}",
         "tested_features": [
             "object_ref",
@@ -839,7 +839,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_var=NotThisOne;_var=%var%blah;out=%var%deblah"
+        "minimised_modl": "_var = NotThisOne;_var=%var%blah;out=%var%deblah"
     },
     {
         "id": "90",
@@ -848,7 +848,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_var=NotThisOne;_var=blah;out=%var%deblah"
+        "minimised_modl": "_var = NotThisOne;_var=blah;out=%var%deblah"
     },
     {
         "id": "91",
@@ -1074,7 +1074,7 @@
     },
     {
         "id": "114",
-        "input": "?[[a;b;c];[one;two;three]];\nletters=%0;\nnumbers=%1",
+        "input": "?[[a;b;c];[one;two;three]];letters=%0;numbers=%1",
         "expected_output": "[\n    {\n        \"letters\": [\n            \"a\",\n            \"b\",\n            \"c\"\n        ]\n    },\n    {\n        \"numbers\": [\n            \"one\",\n            \"two\",\n            \"three\"\n        ]\n    }\n]",
         "tested_features": [
             "object_ref"
@@ -1083,7 +1083,7 @@
     },
     {
         "id": "115",
-        "input": "?=[a;b;c]:[one;two;three];\nletters=%0;\nnumbers=%1",
+        "input": "?=[a;b;c]:[one;two;three];letters=%0;numbers=%1",
         "expected_output": "[\n    {\n        \"letters\": [\n            \"a\",\n            \"b\",\n            \"c\"\n        ]\n    },\n    {\n        \"numbers\": [\n            \"one\",\n            \"two\",\n            \"three\"\n        ]\n    }\n]",
         "tested_features": [
             "object_ref"
@@ -1092,7 +1092,7 @@
     },
     {
         "id": "116",
-        "input": "?[a;b;c];\nletters=%0",
+        "input": "?[a;b;c];letters=%0",
         "expected_output": "{\n    \"letters\": \"a\"\n}",
         "tested_features": [
             "object_ref"
@@ -1157,7 +1157,7 @@
     },
     {
         "id": "123",
-        "input": "_test[a;b;c];\nalex=%test",
+        "input": "_test[a;b;c];alex=%test",
         "expected_output": "{\n    \"alex\": [\n        \"a\",\n        \"b\",\n        \"c\"\n    ]\n}",
         "tested_features": [
             "object_ref"
@@ -1166,7 +1166,7 @@
     },
     {
         "id": "124",
-        "input": "_test[a;b;c];\nalex=%test.0",
+        "input": "_test[a;b;c];alex=%test.0",
         "expected_output": "{\n    \"alex\": \"a\"\n}",
         "tested_features": [
             "object_ref"
@@ -1175,7 +1175,7 @@
     },
     {
         "id": "125",
-        "input": "?[a;b;c];\nalex=%0",
+        "input": "?[a;b;c];alex=%0",
         "expected_output": "{\n    \"alex\": \"a\"\n}",
         "tested_features": [
             "object_ref"
@@ -1541,21 +1541,21 @@
     },
     {
         "id": "163",
-        "input": "*method(\n ## The method can be called by it's ID or name;\n *id=cn;\n *name=company_name;\n ## The value of the object that the method is called on is transformed using the following methods:\n *transform=replace<-, >.trim<.>.initcap\n);\n\n_domain = smiths-limited.com;\nfriendly_name = %domain.cn ## The value \"Smiths Limited\" is assigned to the key \"friendly_name\"",
+        "input": "*method(\n *id=cn;\n *name=company_name;\n *transform=replace<-, >.trim<.>.initcap\n);\n\n_domain = smiths-limited.com;\nfriendly_name = %domain.cn",
         "expected_output": "{\n    \"friendly_name\": \"Smiths Limited\"\n}",
         "tested_features": [
             "method"
         ],
-        "minimised_modl": "*m(*i=cn;*n=company_name;*transform=replace<-, >.trim<.>.initcap);_domain=smiths-limited.com;friendly_name=%domain.cn"
+        "minimised_modl": "*method( *id=cn;*name=company_name;*transform=replace<-, >.trim<.>.initcap);_domain = smiths-limited.com;friendly_name = %domain.cn"
     },
     {
         "id": "164",
-        "input": "*method(\n *id=rt;\n *name=remove_two;\n *transform=replace\n);\n\n_numbers = one two three;\nname = %numbers.rt",
+        "input": "*method(\n *id=rt;\n *name=remove_two;\n *transform=replace<two,>\n);\n\n_numbers = one two three;\nname = %numbers.rt",
         "expected_output": "{\n    \"name\": \"one  three\"\n}",
         "tested_features": [
             "method"
         ],
-        "minimised_modl": "*m(*i=rt;*n=remove_two;*transform=replace);_numbers=one two three;name=%numbers.rt"
+        "minimised_modl": "*m(*i=rt;*n=remove_two;*transform=replace<two,>);_numbers=one two three;name=%numbers.rt"
     },
     {
         "id": "165",
@@ -1688,7 +1688,7 @@
     },
     {
         "id": "178",
-        "input": "*l=grammar_tests/1;\n*L=grammar_tests/1;\na=1",
+        "input": "*l=grammar_tests/1;*L=grammar_tests/1;a=1",
         "expected_output": "{\n    \"a\": 1\n}",
         "tested_features": [
             "load"
@@ -1697,7 +1697,7 @@
     },
     {
         "id": "179",
-        "input": "*l=grammar_tests/1;\n*l=grammar_tests/1;\na=1",
+        "input": "*l=grammar_tests/1;*l=grammar_tests/1;a=1",
         "expected_output": "{\n    \"a\": 1\n}",
         "tested_features": [
             "load"
@@ -2111,7 +2111,7 @@
     },
     {
         "id": "221",
-        "input": "_test=(\n  first=(\"v1\"=one);\n  second=(\"v2\"=two:three)\n);\n \ntesting = %test.second.v2.1",
+        "input": "_test=(\n  first=(\"v1\"=one);\n  second=(\"v2\"=two:three)\n);\n \ntesting = \"%test.second.v2.1\"",
         "expected_output": "{\n    \"testing\": \"three\"\n}",
         "tested_features": [
             "object_ref",
@@ -2121,7 +2121,7 @@
     },
     {
         "id": "222",
-        "input": "_test=(\n  first=(\"v1\"=[one]);\n  second=(\"v2\"=two:three)\n);\n \ntesting = %test.first.v1.0%%test.second.v2.0%%test.second.v2.1",
+        "input": "_test=(\n  first=(\"v1\"=[one]);\n  second=(\"v2\"=two:three)\n);\n \ntesting = \"%test.first.v1.0%%test.second.v2.0%%test.second.v2.1\"",
         "expected_output": "{\n    \"testing\": \"onetwothree\"\n}",
         "tested_features": [
             "object_ref"
@@ -2130,7 +2130,7 @@
     },
     {
         "id": "223",
-        "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.two",
+        "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = \"%test.first.v1.one.two\"",
         "expected_output": "{\n    \"testing\": \"three\"\n}",
         "tested_features": [
             "object_ref"
@@ -2139,7 +2139,7 @@
     },
     {
         "id": "224",
-        "input": "b=2;\nc=2;\nd=2;\ne=2;\na={\n  {\n    b=c & d=e\n  }?\n  v1:v2:v3\n  /?\n  v4:v5:v6\n}",
+        "input": "b=2;c=2;d=2;e=2;a={{b=c & d=e}?v1:v2:v3/?v4:v5:v6}",
         "expected_output": "[\n    {\n        \"b\": 2\n    },\n    {\n        \"c\": 2\n    },\n    {\n        \"d\": 2\n    },\n    {\n        \"e\": 2\n    },\n    {\n        \"a\": [\n            \"v1\",\n            \"v2\",\n            \"v3\"\n        ]\n    }\n]",
         "tested_features": [
             "conditional"
@@ -2261,7 +2261,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(numbers=(\"one\"=1));testing = this is a string that includes a reference with a letter s after it %test.numbers.one%s"
+        "minimised_modl": "_test=(numbers=(\"one\"=1));testing = this is a string that includes a reference with a letter s after it %%test.numbers.one%s"
     },
     {
         "id": "238",
@@ -2613,18 +2613,18 @@
     },
     {
         "id": "274",
-        "input": "{\n  !one?\n     _one=c\n};\n{\n  !two?\n     _two=d\n};\n\n_file = `%one`-`%two`;\n{\n  file=a-b/c-d/e-f?\n    *LOAD=\"grammar_tests/files/%file%.txt!\"\n  /?\n    *LOAD=\"grammar_tests/files/a-b.txt!\"\n};\n\no=%ref.o.name",
+        "input": "{\n  !one?\n     _one=c\n};\n{\n  !two?\n     _two=d\n};\n\n_file = %one%-%two;\n{\n  file=a-b/c-d/e-f?\n    *LOAD=\"grammar_tests/files/%file%.txt!\"\n  /?\n    *LOAD=\"grammar_tests/files/a-b.txt!\"\n};\n\no=%ref.o.name",
         "expected_output": "{\n    \"o\": \"otter\"\n}",
         "tested_features": [
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "{!one?_one=c};{!two?_two=d};_file = `%one`-`%two`;{file=a-b/c-d/e-f?*LOAD=\"grammar_tests/files/%file%.txt!\"/?*LOAD=\"grammar_tests/files/a-b.txt!\"};o=%ref.o.name"
+        "minimised_modl": "{!one?_one=c};{!two?_two=d};_file = %one%-%two;{file=a-b/c-d/e-f?*LOAD=\"grammar_tests/files/%file%.txt!\"/?*LOAD=\"grammar_tests/files/a-b.txt!\"};o=%ref.o.name"
     },
     {
         "id": "275",
         "input": "vat=20;\ns=VAT at %vat% added",
-        "expected_output": "{\n    \"vat\": 20,\n    \"s\": \"VAT at 20 added\"\n}",
+        "expected_output": "[{\"vat\":20},{\"s\":\"VAT at 20 added\"}]",
         "tested_features": [
             "object_ref"
         ],
@@ -2633,7 +2633,7 @@
     {
         "id": "276",
         "input": "vat=20;\ns=VAT at %vat%% added",
-        "expected_output": "{\n    \"vat\": 20,\n    \"s\": \"VAT at 20% added\"\n}",
+        "expected_output": "[{\"vat\":20},{\"s\":\"VAT at 20% added\"}]",
         "tested_features": [
             "object_ref"
         ],
@@ -2642,7 +2642,7 @@
     {
         "id": "277",
         "input": "vat=20;\ns=VAT at %vat`%` added",
-        "expected_output": "{\n    \"vat\": 20,\n    \"s\": \"VAT at 20% added\"\n}",
+        "expected_output": "[{\"vat\":20},{\"s\":\"VAT at 20% added\"}]",
         "tested_features": [
             "object_ref"
         ],
