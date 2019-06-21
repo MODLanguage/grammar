@@ -821,7 +821,7 @@
             "graves",
             "string_method"
         ],
-        "minimised_modl": "?=one:two;test=Blah %0.r %1.t"
+        "minimised_modl": "?=one:two;test=Blah %0.r<o,huzzah> %1.t<w>"
     },
     {
         "id": "88",
