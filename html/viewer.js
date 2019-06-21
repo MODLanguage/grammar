@@ -129,9 +129,9 @@ function getSaveData() {
     let items = $('.testDataRow');
     $.each(items, function (i, v) {
         let id = v.children[0].innerText;
-        let input = v.children[1].innerText;
-        let minimised_modl = v.children[2].innerText;
-        let expected = v.children[3].innerText;
+        let input = htmlUnescape(v.children[1].innerText);
+        let minimised_modl = htmlUnescape(v.children[2].innerText);
+        let expected = htmlUnescape(v.children[3].innerText);
         let testedFeatures = v.children[4].innerText;
 
         let f = [];
@@ -186,29 +186,29 @@ function createRow(rowNumber, input, minified, result, features) {
     txt += '<div id="dataRow' + rowNumber + '" class="testDataRow row table-bordered table-condensed">';
     txt += '<div id="testID' + rowNumber + '" class="col-xs-1 border border-dark">' + rowNumber + '</div>';
     // input editor
-    txt += '<div class="col-xs-3 border border-dark">';
+    txt += '<div class="col-xs-3 border border-dark"><pre>';
     txt += '<a href="#" id="testInput' + rowNumber + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
-    txt += input;
+    txt += htmlEscape(input);
     txt += '</a>';
-    txt += '</div>';
+    txt += '</pre></div>';
 
-    txt += '<div class="col-xs-3 border border-dark">';
+    txt += '<div class="col-xs-3 border border-dark"><pre>';
     txt += '<a href="#" id="minimisedModl' + rowNumber + '" data-type="textarea" data-pk="1" data-placeholder="Test input..." data-title="Enter minimised test input" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
-    txt += minified;
+    txt += htmlEscape(minified);
     txt += '</a>';
-    txt += '</div>';
+    txt += '</pre></div>';
 
 
     txt += '<div class="col-xs-3 border border-dark"><pre>';
     txt += '<a href="#" id="expected' + rowNumber + '" data-type="textarea" data-pk="1" data-placeholder="Expected output..." data-title="Enter expected output" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
-    txt += result;
+    txt += htmlEscape(result);
     txt += '</a>';
     txt += '</pre></div>';
-    txt += '<div class="col-xs-1 border border-dark">';
+    txt += '<div class="col-xs-1 border border-dark"><pre>';
     txt += '<a href="#" id="testedFeatures' + rowNumber + '" data-type="textarea" data-pk="1" data-placeholder="Features..." data-title="Enter tested features" class="editable editable-pre-wrapped editable-click" data-original-title="" title="" style="background-color: rgba(0, 0, 0, 0);">';
     txt += features;
     txt += '</a>';
-    txt += '</div>';
+    txt += '</pre></div>';
 
     txt += '<div class="col-xs-1">';
     txt += '<div id="delete' + rowNumber + '" class=\'btn btn-sm btn-danger\' onclick="deleteRow(' + rowNumber + ')"><span class="glyphicon glyphicon-trash"></span></div>';
@@ -295,4 +295,13 @@ function done() {
     setTimeout(function () {
         x.className = x.className.replace("show", "");
     }, 3000);
+}
+
+function htmlEscape(str) {
+    return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// I needed the opposite function today, so adding here too:
+function htmlUnescape(str) {
+    return str.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 }

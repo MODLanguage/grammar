@@ -2624,7 +2624,7 @@
     {
         "id": "275",
         "input": "vat=20;\ns=VAT at %vat% added",
-        "expected_output": "[{\"vat\":20},{\"s\":\"VAT at 20 added\"}]",
+        "expected_output": "[\n    {\n        \"vat\": 20\n    },\n    {\n        \"s\": \"VAT at 20 added\"\n    }\n]",
         "tested_features": [
             "object_ref"
         ],
@@ -2633,7 +2633,7 @@
     {
         "id": "276",
         "input": "vat=20;\ns=VAT at %vat%% added",
-        "expected_output": "[{\"vat\":20},{\"s\":\"VAT at 20% added\"}]",
+        "expected_output": "[\n    {\n        \"vat\": 20\n    },\n    {\n        \"s\": \"VAT at 20% added\"\n    }\n]",
         "tested_features": [
             "object_ref"
         ],
@@ -2642,7 +2642,7 @@
     {
         "id": "277",
         "input": "vat=20;\ns=VAT at %vat`%` added",
-        "expected_output": "[{\"vat\":20},{\"s\":\"VAT at 20% added\"}]",
+        "expected_output": "[\n    {\n        \"vat\": 20\n    },\n    {\n        \"s\": \"VAT at 20% added\"\n    }\n]",
         "tested_features": [
             "object_ref"
         ],
