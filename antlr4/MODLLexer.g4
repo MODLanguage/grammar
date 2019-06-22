@@ -40,6 +40,21 @@ lexer grammar MODLLexer;
       : ~[\n\r] *
     ;
 
+  QUOTED
+    // Literal string inside double quotes – any character is allowed inside quotes except for the double quote itself
+    : '"' ( INSIDE_QUOTES ) '"'
+    ;
+    fragment INSIDE_QUOTES
+      : ~["]*
+      ;
+  GRAVED
+    // String inside graves – any character is allowed inside graves except for the grave itself. It is handled by parser
+    : '`' ( INSIDE_GRAVES ) '`'
+    ;
+    fragment INSIDE_GRAVES
+      : ~[`]*
+      ;
+
   STRING : '# '? ( ESCAPED | UNRESERVED | HASH_PREFIX | QUOTED | GRAVED )+ ( ('#'? ' '+ '#'?) ( ESCAPED | UNRESERVED | QUOTED | GRAVED )+ )* ;
     // These two should be identical except for regex inversion on first
     fragment UNRESERVED
@@ -67,20 +82,6 @@ lexer grammar MODLLexer;
     : '#' STRING
     ;
 
-  QUOTED
-    // Literal string inside double quotes – any character is allowed inside quotes except for the double quote itself
-    : '"' (STRING | INSIDE_QUOTES) '"'
-    ;
-    fragment INSIDE_QUOTES
-      : ~["]*
-      ;
-  GRAVED
-    // String inside graves – any character is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' ( INSIDE_GRAVES ) '`'
-    ;
-    fragment INSIDE_GRAVES
-      : ~[`]*
-      ;
   // This token changes the mode to 'conditional' mode, see below
   LCBRAC  : '{' -> pushMode(CONDITIONAL);
 mode CONDITIONAL;
