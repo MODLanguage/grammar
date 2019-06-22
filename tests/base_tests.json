@@ -2111,7 +2111,7 @@
     },
     {
         "id": "221",
-        "input": "_test=(\n  first=(\"v1\"=one);\n  second=(\"v2\"=two:three)\n);\n \ntesting = \"%test.second.v2.1\"",
+        "input": "_test=(\n  first=(\"v1\"=one);\n  second=(\"v2\"=two:three)\n);\n \ntesting = %test.second.v2.1",
         "expected_output": "{\n    \"testing\": \"three\"\n}",
         "tested_features": [
             "object_ref",
@@ -2121,7 +2121,7 @@
     },
     {
         "id": "222",
-        "input": "_test=(\n  first=(\"v1\"=[one]);\n  second=(\"v2\"=two:three)\n);\n \ntesting = \"%test.first.v1.0%%test.second.v2.0%%test.second.v2.1\"",
+        "input": "_test=(\n  first=(\"v1\"=[one]);\n  second=(\"v2\"=two:three)\n);\n \ntesting = %test.first.v1.0%%test.second.v2.0%%test.second.v2.1",
         "expected_output": "{\n    \"testing\": \"onetwothree\"\n}",
         "tested_features": [
             "object_ref"
@@ -2130,7 +2130,7 @@
     },
     {
         "id": "223",
-        "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = \"%test.first.v1.one.two\"",
+        "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.two",
         "expected_output": "{\n    \"testing\": \"three\"\n}",
         "tested_features": [
             "object_ref"
@@ -2660,7 +2660,7 @@
     {
         "id": "279",
         "input": "_x=TEST;\ntext=%x.d`literal`",
-        "expected_output": "{\n    \"text\": \"TESTliteral\"\n}",
+        "expected_output": "{\n    \"text\": \"testliteral\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2686,12 +2686,12 @@
     },
     {
         "id": "282",
-        "input": "quote=`Churchill once said, \"We'll fight them on the beaches.\"`",
+        "input": "quote=`Churchill once said, ~\"We'll fight them on the beaches.~\"`",
         "expected_output": "{\n    \"quote\": \"Churchill once said, \\\"We'll fight them on the beaches.\\\"\"\n}",
         "tested_features": [
             "literal"
         ],
-        "minimised_modl": "quote=`Churchill once said, \"We'll fight them on the beaches.\"`"
+        "minimised_modl": "quote=`Churchill once said, ~\"We'll fight them on the beaches.~\"`"
     },
     {
         "id": "283",
@@ -2713,11 +2713,11 @@
     },
     {
         "id": "285",
-        "input": "_replace_me=new value;\n\none=%replace_me.u;\n\ntwo=`replace_me`.u;\n\nthree=`replace_me.u`;\n\nfour=`%replace_me.u`;\n\nfive=`%replace_me`.u;\n\nsix=%replace_me.u%_added;\n\nseven=replace_me.u;",
-        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"replace_me.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"%replace_me.u\"\n    },\n    {\n        \"five\": \"%replace_me.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    }\n]",
+        "input": "_replace_me=new value;\n\none=%replace_me.u;\n\ntwo=`replace_me`.u;\n\nthree=`replace_me.u`;\n\nfour=`%replace_me.u`;\n\nfive=`%replace_me`.u;\n\nsix=%replace_me.u%_added;\n\nseven=replace_me.u;\n\neight=%`replace_me`.u;\n\nnine=%`replace_me`.u%;",
+        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"replace_me.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"%replace_me.u\"\n    },\n    {\n        \"five\": \"%replace_me.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    },\n    {\n        \"eight\": \"NEW VALUE\"\n    },\n    {\n        \"nine\": \"NEW VALUE\"\n    }\n]",
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_replace_me=new value;one=%replace_me.u;two=`replace_me`.u;three=`replace_me.u`;four=`%replace_me.u`;five=`%replace_me`.u;six=%replace_me.u%_added;seven=replace_me.u;"
+        "minimised_modl": "_replace_me=new value;one=%replace_me.u;two=`replace_me`.u;three=`replace_me.u`;four=`%replace_me.u`;five=`%replace_me`.u;six=%replace_me.u%_added;seven=replace_me.u;eight=%`replace_me`.u;nine=%`replace_me`.u%;"
     }
 ]
