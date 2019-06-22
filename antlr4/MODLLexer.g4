@@ -40,13 +40,13 @@ lexer grammar MODLLexer;
       : ~[\n\r] *
     ;
 
-  STRING : '# '? ( ESCAPED | UNRESERVED | GRAVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'?) ( ESCAPED | UNRESERVED | GRAVED )+ )* ;
+  STRING : '# '? ( ESCAPED | UNRESERVED | HASH_PREFIX | QUOTED | GRAVED )+ ( ('#'? ' '+ '#'?) ( ESCAPED | UNRESERVED | QUOTED | GRAVED )+ )* ;
     // These two should be identical except for regex inversion on first
     fragment UNRESERVED
-      : ~ ( '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '\\' | '~' | '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '\\' | '~' | '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
@@ -110,7 +110,7 @@ mode CONDITIONAL;
   CLCBRAC  : '{' -> pushMode(CONDITIONAL), type(LCBRAC);
   // A different version of string is defined to protect the reserved characters
   CSTRING
-    : (CESCAPED | CUNRESERVED | CGRAVED)+ (' '+ (CESCAPED | CUNRESERVED | CGRAVED)+)* -> type(STRING)
+    : (CESCAPED | CUNRESERVED | CGRAVED | CQUOTED )+ (' '+ (CESCAPED | CUNRESERVED | CGRAVED | CQUOTED)+)* -> type(STRING)
     ;
     fragment CUNRESERVED
     : ~ ('#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )

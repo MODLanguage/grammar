@@ -170,8 +170,9 @@ modl_array_value_item
 
 modl_primitive
   : QUOTED
-  | NUMBER
+  | GRAVED
   | STRING
+  | NUMBER
   | TRUE
   | FALSE
   | NULL
