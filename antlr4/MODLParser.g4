@@ -110,7 +110,7 @@ modl_array_conditional
   // e.g. { country=gb? this /country=us? that }
   : LCBRAC
         modl_condition_test QMARK  modl_array_conditional_return
-        (FSLASH  modl_condition_test? QMARK
+        (FSLASH modl_condition_test? QMARK
         modl_array_conditional_return )*
     RCBRAC
   ;
