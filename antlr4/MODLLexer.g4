@@ -43,10 +43,10 @@ lexer grammar MODLLexer;
   STRING : '# '? ( ESCAPED | UNRESERVED | GRAVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'?) ( ESCAPED | UNRESERVED | GRAVED )+ )* ;
     // These two should be identical except for regex inversion on first
     fragment UNRESERVED
-      : ~ ( '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '\\' | '~' | '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '\\' | '~' | '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
@@ -69,7 +69,7 @@ lexer grammar MODLLexer;
 
   QUOTED
     // Literal string inside double quotes – any character is allowed inside quotes except for the double quote itself
-    : '"' (STRING | INSIDE_QUOTES) '"'
+    : '"' (INSIDE_QUOTES) '"'
     ;
     fragment INSIDE_QUOTES
       : ~["]*
@@ -132,11 +132,11 @@ mode CONDITIONAL;
     ;
   CQUOTED
     // Literal string inside double quotes – any char is allowed inside quotes except for the double quote itself
-    : '"' (STRING | INSIDE_QUOTES) '"' -> type(QUOTED)
+    : '"' (INSIDE_QUOTES) '"' -> type(QUOTED)
     ;
   CGRAVED
     // String inside graves – any char is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' (STRING | INSIDE_GRAVES) '`' -> type(GRAVED)
+    : '`' ( INSIDE_GRAVES) '`' -> type(GRAVED)
     ;
-  // The right curly bracket takes us out of conditional mode 
+  // The right curly bracket takes us out of conditional mode
   RCBRAC  : '}' -> popMode;
