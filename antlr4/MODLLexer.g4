@@ -132,7 +132,7 @@ mode CONDITIONAL;
     ;
   CQUOTED
     // Literal string inside double quotes – any char is allowed inside quotes except for the double quote itself
-    : '"' ( INSIDE_QUOTES ) '"' -> type(QUOTED)
+    : '"' ( STRING | INSIDE_QUOTES ) '"' -> type(QUOTED)
     ;
   CGRAVED
     // String inside graves – any char is allowed inside graves except for the grave itself. It is handled by parser
