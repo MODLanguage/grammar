@@ -47,6 +47,7 @@ lexer grammar MODLLexer;
     fragment INSIDE_QUOTES
       : ~["]*
       ;
+
   GRAVED
     // String inside graves – any character is allowed inside graves except for the grave itself. It is handled by parser
     : '`' ( INSIDE_GRAVES ) '`'
@@ -133,11 +134,11 @@ mode CONDITIONAL;
     ;
   CQUOTED
     // Literal string inside double quotes – any char is allowed inside quotes except for the double quote itself
-    : '"' (STRING | INSIDE_QUOTES) '"' -> type(QUOTED)
+    : '"' (INSIDE_QUOTES) '"' -> type(QUOTED)
     ;
   CGRAVED
     // String inside graves – any char is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' (STRING | INSIDE_GRAVES) '`' -> type(GRAVED)
+    : '`' (INSIDE_GRAVES) '`' -> type(GRAVED)
     ;
   // The right curly bracket takes us out of conditional mode 
   RCBRAC  : '}' -> popMode;
