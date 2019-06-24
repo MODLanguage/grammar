@@ -76,7 +76,7 @@ lexer grammar MODLLexer;
       ;
   GRAVED
     // String inside graves – any character is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' ( STRING | INSIDE_GRAVES ) '`'
+    : '`' ( INSIDE_GRAVES ) '`'
     ;
     fragment INSIDE_GRAVES
       : ~[`]*
@@ -139,4 +139,4 @@ mode CONDITIONAL;
     : '`' ( INSIDE_GRAVES ) '`' -> type(GRAVED)
     ;
   // The right curly bracket takes us out of conditional mode
-  RCBRAC  : '}' -> popMode;
+  RCBRAC : '}' -> popMode;
