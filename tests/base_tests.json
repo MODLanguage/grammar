@@ -210,7 +210,7 @@
     },
     {
         "id": "23",
-        "input": "%`80aafnhi4ae`.p.u=%`lsa12dvaxki`.p.u",
+        "input": "\"%`80aafnhi4ae`.p.u\"=%`lsa12dvaxki`.p.u",
         "expected_output": "{\n    \"НАЗВАНИЕ\": \"БОРИ́С\"\n}",
         "tested_features": [
             "puny",
@@ -2379,12 +2379,12 @@
     },
     {
         "id": "250",
-        "input": "test=This is a \\`test~`",
-        "expected_output": "{\n    \"test\": \"This is a `test`\"\n}",
+        "input": "DELETED",
+        "expected_output": "DELETED",
         "tested_features": [
-            "strings"
+            "DELETED"
         ],
-        "minimised_modl": "test=This is a \\`test~`"
+        "minimised_modl": "DELETED"
     },
     {
         "id": "251",
@@ -2641,12 +2641,12 @@
     },
     {
         "id": "277",
-        "input": "vat=20;\ns=VAT at %vat`%` added",
-        "expected_output": "[\n    {\n        \"vat\": 20\n    },\n    {\n        \"s\": \"VAT at 20% added\"\n    }\n]",
+        "input": "DELETED",
+        "expected_output": "DELETED",
         "tested_features": [
-            "object_ref"
+            "DELETED"
         ],
-        "minimised_modl": "vat=20;s=VAT at %vat`%` added"
+        "minimised_modl": "DELETED"
     },
     {
         "id": "278",
@@ -2659,12 +2659,12 @@
     },
     {
         "id": "279",
-        "input": "_x=TEST;\ntext=%x.d`literal`",
-        "expected_output": "{\n    \"text\": \"testliteral\"\n}",
+        "input": "DELETED",
+        "expected_output": "DELETED",
         "tested_features": [
-            "object_ref"
+            "DELETED"
         ],
-        "minimised_modl": "_x=TEST;text=%x.d`literal`"
+        "minimised_modl": "DELETED"
     },
     {
         "id": "280",
@@ -2686,19 +2686,19 @@
     },
     {
         "id": "282",
-        "input": "quote=`Churchill once said, ~\"We'll fight them on the beaches.~\"`",
-        "expected_output": "{\n    \"quote\": \"Churchill once said, \\\"We'll fight them on the beaches.\\\"\"\n}",
+        "input": "DELETED",
+        "expected_output": "DELETED",
         "tested_features": [
-            "literal"
+            "DELETED"
         ],
-        "minimised_modl": "quote=`Churchill once said, ~\"We'll fight them on the beaches.~\"`"
+        "minimised_modl": "DELETED"
     },
     {
         "id": "283",
         "input": "_x=abc;\ny=`%x`",
-        "expected_output": "{\n    \"y\": \"%x\"\n}",
+        "expected_output": "{\n    \"y\": \"abc\"\n}",
         "tested_features": [
-            "literal"
+            "graves"
         ],
         "minimised_modl": "_x=abc;y=`%x`"
     },
@@ -2707,17 +2707,281 @@
         "input": "_x=abc;\ny=\"%x\"",
         "expected_output": "{\n    \"y\": \"%x\"\n}",
         "tested_features": [
-            "literal"
+            "quotes"
         ],
-        "minimised_modl": "_x=abc;y=\"%x\""
+        "minimised_modl": "_x=abc;y=\"abc\""
     },
     {
         "id": "285",
         "input": "_replace_me=new value;\n\none=%replace_me.u;\n\ntwo=`replace_me`.u;\n\nthree=`replace_me.u`;\n\nfour=`%replace_me.u`;\n\nfive=`%replace_me`.u;\n\nsix=%replace_me.u%_added;\n\nseven=replace_me.u;\n\neight=%`replace_me`.u;\n\nnine=%`replace_me`.u%;",
-        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"replace_me.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"%replace_me.u\"\n    },\n    {\n        \"five\": \"%replace_me.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    },\n    {\n        \"eight\": \"NEW VALUE\"\n    },\n    {\n        \"nine\": \"NEW VALUE\"\n    }\n]",
+        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"`replace_me`.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"NEW VALUE\"\n    },\n    {\n        \"five\": \"`new value`.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    },\n    {\n        \"eight\": \"REPLACE_ME\n    },\n    {\n        \"nine\": \"REPLACE_ME\"\n    }\n]",
         "tested_features": [
             "object_ref"
         ],
         "minimised_modl": "_replace_me=new value;one=%replace_me.u;two=`replace_me`.u;three=`replace_me.u`;four=`%replace_me.u`;five=`%replace_me`.u;six=%replace_me.u%_added;seven=replace_me.u;eight=%`replace_me`.u;nine=%`replace_me`.u%;"
+    },
+    {
+        "id": "286",
+        "input": "key=value",
+        "expected_output": "{\n    \"key\": \"value\"\n}",
+        "tested_features": [
+            "pair"
+        ],
+        "minimised_modl": "key=value"
+    },
+    {
+        "id": "287",
+        "input": "key=\"value\"",
+        "expected_output": "{\n    \"key\": \"value\"\n}",
+        "tested_features": [
+            "quotes"
+        ],
+        "minimised_modl": "key=\"value\""
+    },
+    {
+        "id": "288",
+        "input": "key=`value`",
+        "expected_output": "{\n    \"key\": \"value\"\n}",
+        "tested_features": [
+            "graves"
+        ],
+        "minimised_modl": "key=`value`"
+    },
+    {
+        "id": "289",
+        "input": "_test=abc;\nkey=%test",
+        "expected_output": "{\n    \"key\": \"abc\"\n}",
+        "tested_features": [
+            "object_ref"
+        ],
+        "minimised_modl": "_test=abc;key=%test"
+    },
+    {
+        "id": "290",
+        "input": "_test=abc;\nkey=\"%test\"",
+        "expected_output": "{\n    \"key\": \"abc\"\n}",
+        "tested_features": [
+            "object_ref",
+            "quotes"
+        ],
+        "minimised_modl": "_test=abc;key=\"%test\""
+    },
+    {
+        "id": "291",
+        "input": "_test=abc;\nkey=`%test`",
+        "expected_output": "{\n    \"key\": \"abc\"\n}",
+        "tested_features": [
+            "object_ref",
+            "graves"
+        ],
+        "minimised_modl": "_test=abc;key=`%test`"
+    },
+    {
+        "id": "292",
+        "input": "key=\"this is a `%test`\"",
+        "expected_output": "{\n    \"key\": \"this is a %test\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=\"this is a `%test`\""
+    },
+    {
+        "id": "293",
+        "input": "key=\"string including ` a single grave\"",
+        "expected_output": "{\n  \"key\": \"string including ` a single grave\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=\"string including ` a single grave\""
+    },
+    {
+        "id": "294",
+        "input": "key=\"string including some `graved text` here\"",
+        "expected_output": "{\n  \"key\": \"string including some `graved text` here\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=\"string including some `graved text` here\""
+    },
+    {
+        "id": "295",
+        "input": "key=`string including \" a quote`",
+        "expected_output": "{\n  \"key\": \"string including \\\" a quote\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=`string including \" a quote`"
+    },
+    {
+        "id": "296",
+        "input": "key=`a string including a quote from Winston: \"We'll fight them on the beaches\"`",
+        "expected_output": "{\n  \"key\": \"a string including a quote from Winston: \\\"We'll fight them on the beaches\\\"\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=`a string including a quote from Winston: \"We'll fight them on the beaches\"`"
+    },
+    {
+        "id": "297",
+        "input": "key=lots of `graved` text is in `this` value",
+        "expected_output": "{\n  \"key\": \"lots of `graved` text is in `this` value\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=lots of `graved` text is in `this` value"
+    },
+    {
+        "id": "298",
+        "input": "key=`this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way``",
+        "expected_output": "{\n  \"key\": \"this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way`\"\n}",
+        "tested_features": [
+            "quotes",
+            "graves"
+        ],
+        "minimised_modl": "key=`this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way``"
+    },
+    {
+        "id": "299",
+        "input": "_test=abc;\nkey=%test.u",
+        "expected_output": "{\n  \"key\": \"ABC\"\n}",
+        "tested_features": [
+            "object_ref"
+        ],
+        "minimised_modl": "_test=abc;key=%test.u"
+    },
+    {
+        "id": "300",
+        "input": "_test=replace the word this in this string;\ntesting=%test.replace<`this`,`that`>",
+        "expected_output": "{\n  \"testing\": \"replace the word that in that string\"\n}",
+        "tested_features": [
+            "methods",
+            "object_ref",
+            "graves"
+        ],
+        "minimised_modl": "_test=replace the word this in this string;testing=%test.replace<`this`,`that`>"
+    },
+    {
+        "id": "301",
+        "input": "_test=replace the word this in this string;\ntesting=%test.replace<this,``>",
+        "expected_output": "{\n  \"testing\": \"replace the word in string\"\n}",
+        "tested_features": [
+            "methods",
+            "object_ref",
+            "graves"
+        ],
+        "minimised_modl": "_test=replace the word this in this string;testing=%test.replace<this,``>"
+    },
+    {
+        "id": "302",
+        "input": "key=%`this`.replace<is,at>",
+        "expected_output": "{\n  \"key\" : \"that\"\n}",
+        "tested_features": [
+            "methods",
+            "object_ref",
+            "graves"
+        ],
+        "minimised_modl": "key=%`this`.replace<is,at>"
+    },
+    {
+        "id": "303",
+        "input": "key=`this \"is\" a \"string\" with \"lots\" of \"quoted\" strings`",
+        "expected_output": "{\n  \"key\": \"this \\\"is\\\" a \\\"string\\\" with \\\"lots\\\" of \\\"quoted\\\" strings\"\n}",
+        "tested_features": [
+            "graves",
+            "quotes"
+        ],
+        "minimised_modl": "key=`this \"is\" a \"string\" with \"lots\" of \"quoted\" strings`"
+    },
+    {
+        "id": "304",
+        "input": "_vat=20;\nkey=vat rate is %vat%%",
+        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "tested_features": [
+            "object_ref"
+        ],
+        "minimised_modl": "_vat=20;key=vat rate is %vat%%"
+    },
+    {
+        "id": "305",
+        "input": "_vat=20;\nkey=vat rate is %vat%",
+        "expected_output": "{\n  \"key\": \"vat rate is 20\"\n}",
+        "tested_features": [
+            "object_ref"
+        ],
+        "minimised_modl": "_vat=20;key=vat rate is %vat%"
+    },
+    {
+        "id": "306",
+        "input": "_vat=20;\nkey=vat rate is %vat~%",
+        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "tested_features": [
+            "object_ref",
+            "escapes"
+        ],
+        "minimised_modl": "_vat=20;key=vat rate is %vat~%"
+    },
+    {
+        "id": "307",
+        "input": "DELETED",
+        "expected_output": "DELETED",
+        "tested_features": [
+            "DELETED"
+        ],
+        "minimised_modl": "DELETED"
+    },
+    {
+        "id": "308",
+        "input": "_vat=20;\nkey=vat rate is %vat %",
+        "expected_output": "{\n  \"key\": \"vat rate is 20 %\"\n}",
+        "tested_features": [
+            "object_ref"
+        ],
+        "minimised_modl": "_vat=20;key=vat rate is %vat %"
+    },
+    {
+        "id": "309",
+        "input": "_vat=20;\nkey=`vat rate is %vat%%`",
+        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "tested_features": [
+            "object_ref",
+            "graves"
+        ],
+        "minimised_modl": "_vat=20;key=`vat rate is %vat%%`"
+    },
+    {
+        "id": "310",
+        "input": "_vat=20;\nkey=\"vat rate is %vat%%\"",
+        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "tested_features": [
+            "object_ref",
+            "quotes"
+        ],
+        "minimised_modl": "_vat=20;key=\"vat rate is %vat%%\""
+    },
+    {
+        "id": "311",
+        "input": "_vat=20;\nkey=\"vat rate is %vat%`%`\"",
+        "expected_output": "{\n  \"key\": \"vat rate is 20`%`\"\n}",
+        "tested_features": [
+            "objetct_ref",
+            "graves"
+        ],
+        "minimised_modl": "_vat=20;key=\"vat rate is %vat%`%`\""
+    },
+    {
+        "id": "312",
+        "input": "_vat=20;\nkey=\"vat rate is %vat`%`\"",
+        "expected_output": "{\n  \"key\": \"vat is 20`%`\"\n}",
+        "tested_features": [
+            "object_ref",
+            "graves"
+        ],
+        "minimised_modl": "_vat=20;key=\"vat rate is %vat`%`\""
     }
 ]

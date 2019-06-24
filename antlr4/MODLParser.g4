@@ -57,13 +57,13 @@ modl_pair
   // For efficiency, it's also possible to assign a map to a pair without an equals sign,
   // since the left bracket separates the key from the value  – this is called a map pair.
   // e.g. person(name=John) – this is equivalent to person=(name=John)
-  //a
+  //
   // It's also possible to do the same with an array pair
   // e.g. numbers[1;2;3] – equivalent to numbers=[1;2;3]
 
-  : ( STRING | QUOTED | NUMBER | NULL | TRUE | FALSE) EQUALS  modl_value_item                // key = value        (standard pair)
-  | STRING modl_map                                                            // key( key = value ) (map pair)
-  | STRING modl_array                                                          // key[ item; item ]  (array pair)
+  : ( STRING | QUOTED ) EQUALS modl_value_item  // key = value (standard pair)
+  | STRING modl_map                             // key( key = value ) (map pair)
+  | STRING modl_array                           // key[ item; item ]  (array pair)
   ;
 
 modl_value_item
@@ -110,7 +110,7 @@ modl_array_conditional
   // e.g. { country=gb? this /country=us? that }
   : LCBRAC
         modl_condition_test QMARK  modl_array_conditional_return
-        (FSLASH  modl_condition_test? QMARK
+        (FSLASH modl_condition_test? QMARK
         modl_array_conditional_return )*
     RCBRAC
   ;
