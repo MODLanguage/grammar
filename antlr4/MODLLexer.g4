@@ -7,6 +7,7 @@ the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
 to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of
 the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
 OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
@@ -15,19 +16,19 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 
 lexer grammar MODLLexer;
   // These tokens are for default mode (outside of conditionals)
-  WS        : [ \t\r\n] + -> skip ;
-  NULL      : '000' | 'null' | 'NULL' ;
-  TRUE      : '01' | 'true' | 'TRUE' ;
-  FALSE     : '00' | 'false' | 'FALSE' ;
-  COLON     : ':' ;
-  EQUALS    : '=' ;
+  WS         : [ \t\r\n] + -> skip ;
+  NULL       : '000' | 'null' | 'NULL' ;
+  TRUE       : '01' | 'true' | 'TRUE' ;
+  FALSE      : '00' | 'false' | 'FALSE' ;
+  COLON      : ':' ;
+  EQUALS     : '=' ;
   STRUCT_SEP : ';' ;
-  ARR_SEP   : ',' ;
-  LBRAC     : '(' ;
-  RBRAC     : ')' ;
-  LSBRAC    : '[' ;
-  RSBRAC    : ']' ;
-  NUMBER    : '-'? INT ('.' [0-9] +)? EXP? ;
+  ARR_SEP    : ',' ;
+  LBRAC      : '(' ;
+  RBRAC      : ')' ;
+  LSBRAC     : '[' ;
+  RSBRAC     : ']' ;
+  NUMBER     : '-'? INT ('.' [0-9] +)? EXP? ;
     fragment INT : '0' | [1-9] [0-9]* ;
     fragment EXP : [Ee] [+\-]? INT ;
 
@@ -40,17 +41,30 @@ lexer grammar MODLLexer;
       : ~[\n\r] *
     ;
 
-  STRING : '# '? ( ESCAPED | UNRESERVED | GRAVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'?) ( ESCAPED | UNRESERVED | GRAVED )+ )* ;
-    // These two should be identical except for regex inversion on first
+  QUOTED
+    // String inside double quotes – any character is allowed inside quotes except for the double quote itself
+    // OR
+    // String inside graves – any character is allowed inside graves except for the grave
+    : ( ('"' ( STRING | INSIDE_QUOTES ) '"') | ('`' ( STRING  | INSIDE_GRAVES ) '`') )
+    ;
+    fragment INSIDE_QUOTES
+      : ~["]*
+      ;
+    fragment INSIDE_GRAVES
+      : ~[`]*
+      ;
+
+  STRING : '# '? ( ESCAPED | UNRESERVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'? ) ( ESCAPED | UNRESERVED )+ )*;
+    // These two should be identical except for regex inversion on first:
     fragment UNRESERVED
-      : ~ ( '\\' | '~' | '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | '=' | ':' | '"' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '\\' | '~' | '#' | '`' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | ' ' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | '=' | ':' | '"' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
-      : '\\' ([\\/bfnrt] | UNICODE)
+      : '\\' ( [\\/bfnrt] | UNICODE )
       // Standard back slash can be used to escape reserved characters
       | '\\' RESERVED_CHARS
       // Additionally, MODL allows tilde ( ~ ) escapes because backslash is problematic in DNS
@@ -67,36 +81,23 @@ lexer grammar MODLLexer;
     : '#' STRING
     ;
 
-  QUOTED
-    // Literal string inside double quotes – any character is allowed inside quotes except for the double quote itself
-    : '"' (STRING | INSIDE_QUOTES) '"'
-    ;
-    fragment INSIDE_QUOTES
-      : ~["]*
-      ;
-  GRAVED
-    // String inside graves – any character is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' ( INSIDE_GRAVES ) '`'
-    ;
-    fragment INSIDE_GRAVES
-      : ~[`]*
-      ;
-  // This token changes the mode to 'conditional' mode, see below
   LCBRAC  : '{' -> pushMode(CONDITIONAL);
+
 mode CONDITIONAL;
   // These tokens must be redefined for this mode
-  CWS       : [ \t\r\n] + -> skip;
-  CNULL     : ('000' | 'null' | 'NULL') -> type(NULL);
-  CTRUE     : ('01' | 'true' | 'TRUE') -> type(TRUE);
-  CFALSE    : ('00' | 'false' | 'FALSE') -> type(FALSE);
-  CCOLON    : ':' -> type(COLON);
-  CEQUALS   : '=' -> type(EQUALS);
-  CSTRUCT_SEP       : ';' -> type(STRUCT_SEP);
-  CLBRAC    : '(' -> type(LBRAC);
-  CRBRAC    : ')' -> type(RBRAC);
-  CLSBRAC   : '[' -> type(LSBRAC);
-  CRSBRAC   : ']' -> type(RSBRAC);
-  CNUMBER   : '-'? INT ('.' [0-9] +)? EXP? -> type(NUMBER);
+  CWS          : [ \t\r\n] + -> skip;
+  CNULL        : ( '000' | 'null' | 'NULL' ) -> type(NULL);
+  CTRUE        : ( '01' | 'true' | 'TRUE' ) -> type(TRUE);
+  CFALSE       : ( '00' | 'false' | 'FALSE' ) -> type(FALSE);
+  CCOLON       : ':' -> type(COLON);
+  CEQUALS      : '=' -> type(EQUALS);
+  CSTRUCT_SEP  : ';' -> type(STRUCT_SEP);
+  CLBRAC       : '(' -> type(LBRAC);
+  CRBRAC       : ')' -> type(RBRAC);
+  CLSBRAC      : '[' -> type(LSBRAC);
+  CRSBRAC      : ']' -> type(RSBRAC);
+  CNUMBER      : '-'? INT ('.' [0-9] +)? EXP? -> type(NUMBER);
+
   // These tokens are only defined in this mode
   QMARK     : '?';
   FSLASH    : '/';
@@ -106,11 +107,20 @@ mode CONDITIONAL;
   AMP       : '&';
   PIPE      : '|';
   EXCLAM    : '!';
+
   // This is for nested conditionals
   CLCBRAC  : '{' -> pushMode(CONDITIONAL), type(LCBRAC);
+
+  CQUOTED
+    // String inside double quotes – any char is allowed inside quotes except for the double quote itself
+    // OR
+    // String inside graves – any character is allowed inside graves except for the grave
+    : ( '"' ( STRING | INSIDE_QUOTES ) '"' | '`' ( STRING | INSIDE_GRAVES ) '`' )  -> type(QUOTED)
+    ;
+
   // A different version of string is defined to protect the reserved characters
   CSTRING
-    : (CESCAPED | CUNRESERVED | CGRAVED)+ (' '+ (CESCAPED | CUNRESERVED | CGRAVED)+)* -> type(STRING)
+    : ( CESCAPED | CUNRESERVED )+ (' '+ ( CESCAPED | CUNRESERVED )+)* -> type(STRING)
     ;
     fragment CUNRESERVED
     : ~ ('#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
@@ -120,23 +130,16 @@ mode CONDITIONAL;
     ;
     fragment CESCAPED
       // Standard JSON escaping, e.g. \t for tab
-      : '\\' ([\\/bfnrt] | UNICODE)
+      : '\\' ( [\\/bfnrt] | UNICODE )
       // Back slash escaping can also be used
       | '\\' CRESERVED_CHARS
       // MODL escaping with tilde ~ (backslash problematic in DNS)
       | '~' CRESERVED_CHARS
       ;
+
   CCOMMENT
     // Comments are made using ## anywhere, they are ignored by parser
     : '##' ( INSIDE_COMMENT ) -> skip
     ;
-  CQUOTED
-    // Literal string inside double quotes – any char is allowed inside quotes except for the double quote itself
-    : '"' ( STRING | INSIDE_QUOTES ) '"' -> type(QUOTED)
-    ;
-  CGRAVED
-    // String inside graves – any char is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' ( INSIDE_GRAVES ) '`' -> type(GRAVED)
-    ;
-  // The right curly bracket takes us out of conditional mode
+
   RCBRAC : '}' -> popMode;
