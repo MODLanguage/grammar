@@ -76,7 +76,7 @@ lexer grammar MODLLexer;
       ;
   GRAVED
     // String inside graves – any character is allowed inside graves except for the grave itself. It is handled by parser
-    : '`' ( INSIDE_GRAVES ) '`'
+    : '`' ( STRING | INSIDE_GRAVES ) '`'
     ;
     fragment INSIDE_GRAVES
       : ~[`]*
