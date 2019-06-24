@@ -210,7 +210,7 @@
     },
     {
         "id": "23",
-        "input": "%`80aafnhi4ae`.p.u=%`lsa12dvaxki`.p.u",
+        "input": "\"%`80aafnhi4ae`.p.u\"=%`lsa12dvaxki`.p.u",
         "expected_output": "{\n    \"НАЗВАНИЕ\": \"БОРИ́С\"\n}",
         "tested_features": [
             "puny",
@@ -2928,13 +2928,12 @@
     },
     {
         "id": "307",
-        "input": "_vat=20;\nkey=vat rate is %vat\\%",
-        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "input": "DELETED",
+        "expected_output": "DELETED",
         "tested_features": [
-            "object_ref",
-            "escapes"
+            "DELETED"
         ],
-        "minimised_modl": "_vat=20;key=vat rate is %vat\\%"
+        "minimised_modl": "DELETED"
     },
     {
         "id": "308",
