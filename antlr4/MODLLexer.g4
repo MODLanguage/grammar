@@ -45,10 +45,10 @@ lexer grammar MODLLexer;
     // String inside double quotes – any character is allowed inside quotes except for the double quote itself
     // OR
     // String inside graves – any character is allowed inside graves except for the grave
-    : ( ('"' ( STRING | INSIDE_QUOTES ) '"') | ('`' ( STRING  | INSIDE_GRAVES ) '`') )
+    : ( ( '"' ( INSIDE_QUOTES | '~"' | '\\"' )* '"') | ('`' ( INSIDE_GRAVES ) '`' ) )
     ;
     fragment INSIDE_QUOTES
-      : ~["]*
+      : ~["]
       ;
     fragment INSIDE_GRAVES
       : ~[`]*
@@ -57,10 +57,10 @@ lexer grammar MODLLexer;
   STRING : '# '? ( ESCAPED | UNRESERVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'? ) ( ESCAPED | UNRESERVED )+ )*;
     // These two should be identical except for regex inversion on first:
     fragment UNRESERVED
-      : ~ ( '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | '=' | ':' | '"' | '\n' | '\r' | '\t' )
+      : ~ ( '"' | '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | '=' | ':' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | '=' | ':' | '"' | '\n' | '\r' | '\t' )
+      :   ( '"' | '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ';' | '=' | ':' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
@@ -115,18 +115,19 @@ mode CONDITIONAL;
     // String inside double quotes – any char is allowed inside quotes except for the double quote itself
     // OR
     // String inside graves – any character is allowed inside graves except for the grave
-    : ( '"' ( STRING | INSIDE_QUOTES ) '"' | '`' ( STRING | INSIDE_GRAVES ) '`' )  -> type(QUOTED)
+    : ( ( '"' ( INSIDE_QUOTES | '~"' | '\\"' )* '"') | ('`' ( INSIDE_GRAVES ) '`' ) ) -> type(QUOTED)
     ;
 
   // A different version of string is defined to protect the reserved characters
   CSTRING
     : ( CESCAPED | CUNRESERVED )+ (' '+ ( CESCAPED | CUNRESERVED )+)* -> type(STRING)
     ;
+
     fragment CUNRESERVED
-    : ~ ('#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
+    : ~ ( '"' | '\\' | '~' | '#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
     ;
     fragment CRESERVED_CHARS
-    :   ('#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '"' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
+    :   ( '"' | '\\' | '~' | '#' | '{' | '`' | '}' | '(' | ')' | ';' | ' ' | '=' | ':' | '?' | '/' | '>' | '<' | '!' | '|' | '&' | '\b' | '\f' | '\n' | '\r' | '\t' | '[' | ']' )
     ;
     fragment CESCAPED
       // Standard JSON escaping, e.g. \t for tab
