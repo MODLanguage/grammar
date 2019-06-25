@@ -2651,7 +2651,7 @@
     {
         "id": "278",
         "input": "x=`ignored method`.p",
-        "expected_output": "{\n    \"x\": \"ignored method.p\"\n}",
+        "expected_output": "{\n    \"x\": \"`ignored method`.p\"\n}",
         "tested_features": [
             "methods"
         ],
@@ -2705,7 +2705,7 @@
     {
         "id": "284",
         "input": "_x=abc;\ny=\"%x\"",
-        "expected_output": "{\n    \"y\": \"%x\"\n}",
+        "expected_output": "{\n    \"y\": \"abc\"\n}",
         "tested_features": [
             "quotes"
         ],
@@ -2714,7 +2714,7 @@
     {
         "id": "285",
         "input": "_replace_me=new value;\n\none=%replace_me.u;\n\ntwo=`replace_me`.u;\n\nthree=`replace_me.u`;\n\nfour=`%replace_me.u`;\n\nfive=`%replace_me`.u;\n\nsix=%replace_me.u%_added;\n\nseven=replace_me.u;\n\neight=%`replace_me`.u;\n\nnine=%`replace_me`.u%;",
-        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"`replace_me`.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"NEW VALUE\"\n    },\n    {\n        \"five\": \"`new value`.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    },\n    {\n        \"eight\": \"REPLACE_ME\n    },\n    {\n        \"nine\": \"REPLACE_ME\"\n    }\n]",
+        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"`replace_me`.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"NEW VALUE\"\n    },\n    {\n        \"five\": \"`new value`.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    },\n    {\n        \"eight\": \"REPLACE_ME\"\n    },\n    {\n        \"nine\": \"REPLACE_ME\"\n    }\n]",
         "tested_features": [
             "object_ref"
         ],
@@ -2779,7 +2779,7 @@
     {
         "id": "292",
         "input": "key=\"this is a `%test`\"",
-        "expected_output": "{\n    \"key\": \"this is a %test\"\n}",
+        "expected_output": "{\n    \"key\": \"this is a `%test`\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2869,7 +2869,7 @@
     {
         "id": "301",
         "input": "_test=replace the word this in this string;\ntesting=%test.replace<this,``>",
-        "expected_output": "{\n  \"testing\": \"replace the word in string\"\n}",
+        "expected_output": "{\n  \"testing\": \"replace the word  in  string\"\n}",
         "tested_features": [
             "methods",
             "object_ref",
@@ -2918,13 +2918,13 @@
     },
     {
         "id": "306",
-        "input": "_vat=20;\nkey=vat rate is %vat~%",
+        "input": "_vat=20;\nkey=vat rate is %vat%%",
         "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
         "tested_features": [
             "object_ref",
             "escapes"
         ],
-        "minimised_modl": "_vat=20;key=vat rate is %vat~%"
+        "minimised_modl": "_vat=20;key=vat rate is %vat%%"
     },
     {
         "id": "307",
@@ -2977,7 +2977,7 @@
     {
         "id": "312",
         "input": "_vat=20;\nkey=\"vat rate is %vat`%`\"",
-        "expected_output": "{\n  \"key\": \"vat is 20`%`\"\n}",
+        "expected_output": "{\n  \"key\": \"vat rate is 20`%`\"\n}",
         "tested_features": [
             "object_ref",
             "graves"
