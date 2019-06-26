@@ -2789,7 +2789,7 @@
     {
         "id": "293",
         "input": "key=\"string including ` a single grave\"",
-        "expected_output": "{\n  \"key\": \"string including ` a single grave\"\n}",
+        "expected_output": "{\n    \"key\": \"string including ` a single grave\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2799,7 +2799,7 @@
     {
         "id": "294",
         "input": "key=\"string including some `graved text` here\"",
-        "expected_output": "{\n  \"key\": \"string including some `graved text` here\"\n}",
+        "expected_output": "{\n    \"key\": \"string including some `graved text` here\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2809,7 +2809,7 @@
     {
         "id": "295",
         "input": "key=`string including \" a quote`",
-        "expected_output": "{\n  \"key\": \"string including \\\" a quote\"\n}",
+        "expected_output": "{\n    \"key\": \"string including \\\" a quote\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2819,7 +2819,7 @@
     {
         "id": "296",
         "input": "key=`a string including a quote from Winston: \"We'll fight them on the beaches\"`",
-        "expected_output": "{\n  \"key\": \"a string including a quote from Winston: \\\"We'll fight them on the beaches\\\"\"\n}",
+        "expected_output": "{\n    \"key\": \"a string including a quote from Winston: \\\"We'll fight them on the beaches\\\"\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2829,7 +2829,7 @@
     {
         "id": "297",
         "input": "key=lots of `graved` text is in `this` value",
-        "expected_output": "{\n  \"key\": \"lots of `graved` text is in `this` value\"\n}",
+        "expected_output": "{\n    \"key\": \"lots of `graved` text is in `this` value\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2839,7 +2839,7 @@
     {
         "id": "298",
         "input": "key=`this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way``",
-        "expected_output": "{\n  \"key\": \"this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way`\"\n}",
+        "expected_output": "{\n    \"key\": \"this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way`\"\n}",
         "tested_features": [
             "quotes",
             "graves"
@@ -2849,7 +2849,7 @@
     {
         "id": "299",
         "input": "_test=abc;\nkey=%test.u",
-        "expected_output": "{\n  \"key\": \"ABC\"\n}",
+        "expected_output": "{\n    \"key\": \"ABC\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2858,7 +2858,7 @@
     {
         "id": "300",
         "input": "_test=replace the word this in this string;\ntesting=%test.replace<`this`,`that`>",
-        "expected_output": "{\n  \"testing\": \"replace the word that in that string\"\n}",
+        "expected_output": "{\n    \"testing\": \"replace the word that in that string\"\n}",
         "tested_features": [
             "methods",
             "object_ref",
@@ -2869,7 +2869,7 @@
     {
         "id": "301",
         "input": "_test=replace the word this in this string;\ntesting=%test.replace<this,``>",
-        "expected_output": "{\n  \"testing\": \"replace the word  in  string\"\n}",
+        "expected_output": "{\n    \"testing\": \"replace the word  in  string\"\n}",
         "tested_features": [
             "methods",
             "object_ref",
@@ -2880,7 +2880,7 @@
     {
         "id": "302",
         "input": "key=%`this`.replace<is,at>",
-        "expected_output": "{\n  \"key\" : \"that\"\n}",
+        "expected_output": "{\n    \"key\": \"that\"\n}",
         "tested_features": [
             "methods",
             "object_ref",
@@ -2891,7 +2891,7 @@
     {
         "id": "303",
         "input": "key=`this \"is\" a \"string\" with \"lots\" of \"quoted\" strings`",
-        "expected_output": "{\n  \"key\": \"this \\\"is\\\" a \\\"string\\\" with \\\"lots\\\" of \\\"quoted\\\" strings\"\n}",
+        "expected_output": "{\n    \"key\": \"this \\\"is\\\" a \\\"string\\\" with \\\"lots\\\" of \\\"quoted\\\" strings\"\n}",
         "tested_features": [
             "graves",
             "quotes"
@@ -2901,7 +2901,7 @@
     {
         "id": "304",
         "input": "_vat=20;\nkey=vat rate is %vat%%",
-        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20%\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2910,7 +2910,7 @@
     {
         "id": "305",
         "input": "_vat=20;\nkey=vat rate is %vat%",
-        "expected_output": "{\n  \"key\": \"vat rate is 20\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2919,7 +2919,7 @@
     {
         "id": "306",
         "input": "_vat=20;\nkey=vat rate is %vat%%",
-        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20%\"\n}",
         "tested_features": [
             "object_ref",
             "escapes"
@@ -2938,7 +2938,7 @@
     {
         "id": "308",
         "input": "_vat=20;\nkey=vat rate is %vat %",
-        "expected_output": "{\n  \"key\": \"vat rate is 20 %\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20 %\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2947,7 +2947,7 @@
     {
         "id": "309",
         "input": "_vat=20;\nkey=`vat rate is %vat%%`",
-        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20%\"\n}",
         "tested_features": [
             "object_ref",
             "graves"
@@ -2957,7 +2957,7 @@
     {
         "id": "310",
         "input": "_vat=20;\nkey=\"vat rate is %vat%%\"",
-        "expected_output": "{\n  \"key\": \"vat rate is 20%\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20%\"\n}",
         "tested_features": [
             "object_ref",
             "quotes"
@@ -2967,7 +2967,7 @@
     {
         "id": "311",
         "input": "_vat=20;\nkey=\"vat rate is %vat%`%`\"",
-        "expected_output": "{\n  \"key\": \"vat rate is 20`%`\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20`%`\"\n}",
         "tested_features": [
             "objetct_ref",
             "graves"
@@ -2977,11 +2977,21 @@
     {
         "id": "312",
         "input": "_vat=20;\nkey=\"vat rate is %vat`%`\"",
-        "expected_output": "{\n  \"key\": \"vat rate is 20`%`\"\n}",
+        "expected_output": "{\n    \"key\": \"vat rate is 20`%`\"\n}",
         "tested_features": [
             "object_ref",
             "graves"
         ],
         "minimised_modl": "_vat=20;key=\"vat rate is %vat`%`\""
+    },
+    {
+        "id": "313",
+        "input": "_test1=e1afmkfd;\nrussian1=%test1.p;\n\n_test2=\"e1afmkfd\";\nrussian2=%test2.p;\n\n_test3=`e1afmkfd`;\nrussian3=%test3.p;",
+        "expected_output": "[\n  {\n    \"russian1\": \"пример\"\n  },\n  {\n    \"russian2\": \"пример\"\n  },\n  {\n    \"russian3\": \"пример\"\n  }\n]",
+        "tested_features": [
+            "punycode",
+            "methods"
+        ],
+        "minimised_modl": "_test1=e1afmkfd;russian1=%test1.p;_test2=\"e1afmkfd\";russian2=%test2.p;_test3=`e1afmkfd`;russian3=%test3.p;"
     }
 ]
