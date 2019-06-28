@@ -393,7 +393,7 @@
     {
         "id": "42",
         "input": "*class(*id=object;*superclass=arr);sales(name=John Smith;telephone=44800 555 555);service(name=Jim Brown;telephone=44800 666 666)",
-        "expected_output": "[\n    {\n        \"sales\": {\n            \"name\": \"John Smith\",\n            \"telephone\": \"44800 555 555\"\n        }\n    },\n    {\n        \"service\": {\n            \"name\": \"Jim Brown\",\n            \"telephone\": \"44800 666 666\"\n        }\n    }\n]",
+        "expected_output": "{\n    \"sales\": {\n        \"name\": \"John Smith\",\n        \"telephone\": \"44800 555 555\"\n    },\n    \"service\": {\n        \"name\": \"Jim Brown\",\n        \"telephone\": \"44800 666 666\"\n    }\n}",
         "tested_features": [
             "class"
         ],
@@ -474,7 +474,7 @@
     {
         "id": "51",
         "input": "?=one:two:three;test1=%0;test2=%1;test3=%2;test4=%3;test5=%4;test6=%5;test7=%6;test8=%7;test9=%8",
-        "expected_output": "[\n    {\n        \"test1\": \"one\"\n    },\n    {\n        \"test2\": \"two\"\n    },\n    {\n        \"test3\": \"three\"\n    },\n    {\n        \"test4\": \"%3\"\n    },\n    {\n        \"test5\": \"%4\"\n    },\n    {\n        \"test6\": \"%5\"\n    },\n    {\n        \"test7\": \"%6\"\n    },\n    {\n        \"test8\": \"%7\"\n    },\n    {\n        \"test9\": \"%8\"\n    }\n]",
+        "expected_output": "{\n    \"test1\": \"one\",\n    \"test2\": \"two\",\n    \"test3\": \"three\",\n    \"test4\": \"%3\",\n    \"test5\": \"%4\",\n    \"test6\": \"%5\",\n    \"test7\": \"%6\",\n    \"test8\": \"%7\",\n    \"test9\": \"%8\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -483,7 +483,7 @@
     {
         "id": "52",
         "input": "a=1:2:3;b=4:5:6",
-        "expected_output": "[\n    {\n        \"a\": [\n            1,\n            2,\n            3\n        ]\n    },\n    {\n        \"b\": [\n            4,\n            5,\n            6\n        ]\n    }\n]",
+        "expected_output": "{\n    \"a\": [\n        1,\n        2,\n        3\n    ],\n    \"b\": [\n        4,\n        5,\n        6\n    ]\n}",
         "tested_features": [
             "nbArray"
         ],
@@ -510,7 +510,7 @@
     {
         "id": "55",
         "input": "a=1:2:3;\nb=4:5:6",
-        "expected_output": "[\n    {\n        \"a\": [\n            1,\n            2,\n            3\n        ]\n    },\n    {\n        \"b\": [\n            4,\n            5,\n            6\n        ]\n    }\n]",
+        "expected_output": "{\n    \"a\": [\n        1,\n        2,\n        3\n    ],\n    \"b\": [\n        4,\n        5,\n        6\n    ]\n}",
         "tested_features": [
             "nbArray"
         ],
@@ -528,7 +528,7 @@
     {
         "id": "57",
         "input": "a=1:2:3\n;\nb=4:5:6",
-        "expected_output": "[\n    {\n        \"a\": [\n            1,\n            2,\n            3\n        ]\n    },\n    {\n        \"b\": [\n            4,\n            5,\n            6\n        ]\n    }\n]",
+        "expected_output": "{\n    \"a\": [\n        1,\n        2,\n        3\n    ],\n    \"b\": [\n        4,\n        5,\n        6\n    ]\n}",
         "tested_features": [
             "nbArray"
         ],
@@ -546,7 +546,7 @@
     {
         "id": "59",
         "input": "a(b(c(d(e(f=1)))));\ntesting=%a.b.c.d.e.f",
-        "expected_output": "[\n    {\n        \"a\": {\n            \"b\": {\n                \"c\": {\n                    \"d\": {\n                        \"e\": {\n                            \"f\": 1\n                        }\n                    }\n                }\n            }\n        }\n    },\n    {\n        \"testing\": 1\n    }\n]",
+        "expected_output": "{\n    \"a\": {\n        \"b\": {\n            \"c\": {\n                \"d\": {\n                    \"e\": {\n                        \"f\": 1\n                    }\n                }\n            }\n        }\n    },\n    \"testing\": 1\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -564,7 +564,7 @@
     {
         "id": "61",
         "input": "a=\nb\n=c;\nd=e",
-        "expected_output": "[\n    {\n        \"a\": {\n            \"b\": \"c\"\n        }\n    },\n    {\n        \"d\": \"e\"\n    }\n]",
+        "expected_output": "{\n    \"a\": {\n        \"b\": \"c\"\n    },\n    \"d\": \"e\"\n}",
         "tested_features": [
             "map"
         ],
@@ -573,7 +573,7 @@
     {
         "id": "62",
         "input": "test=this is a #hashtag test;test2=#testing 123",
-        "expected_output": "[\n    {\n        \"test\": \"this is a #hashtag test\"\n    },\n    {\n        \"test2\": \"#testing 123\"\n    }\n]",
+        "expected_output": "{\n    \"test\": \"this is a #hashtag test\",\n    \"test2\": \"#testing 123\"\n}",
         "tested_features": [
             "pair"
         ],
@@ -609,7 +609,7 @@
     {
         "id": "66",
         "input": "country=gb;\nx=[{ country=gb ? this /country=us? that }]",
-        "expected_output": "[\n    {\n        \"country\": \"gb\"\n    },\n    {\n        \"x\": [\n            \"this\"\n        ]\n    }\n]",
+        "expected_output": "{\n    \"country\": \"gb\",\n    \"x\": [\n        \"this\"\n    ]\n}",
         "tested_features": [
             "object_ref",
             "conditional"
@@ -628,12 +628,12 @@
     },
     {
         "id": "68",
-        "input": "a=1;b=2;b={{a=1}|{b=2}?true/?false}",
-        "expected_output": "[\n    {\n        \"a\": 1\n    },\n    {\n        \"b\": 2\n    },\n    {\n        \"b\": true\n    }\n]",
+        "input": "a=1;b=2;c={{a=1}|{b=2}?true/?false}",
+        "expected_output": "{\n    \"a\": 1,\n    \"b\": 2,\n    \"c\": true\n}",
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "a=1;b=2;b={{a=1}|{b=2}?true/?false}"
+        "minimised_modl": "a=1;b=2;c={{a=1}|{b=2}?true/?false}"
     },
     {
         "id": "69",
@@ -658,7 +658,7 @@
     {
         "id": "71",
         "input": "_testing = quick-test of John's variable_methods;\nupcase_example = %testing.u;\ndowncase_example = %testing.d;\ninitcap_example = %testing.i;\nsentence_example = %testing.s;\nurl_encode_example = %testing.u.e",
-        "expected_output": "[\n    {\n        \"upcase_example\": \"QUICK-TEST OF JOHN'S VARIABLE_METHODS\"\n    },\n    {\n        \"downcase_example\": \"quick-test of john's variable_methods\"\n    },\n    {\n        \"initcap_example\": \"Quick-test Of John's Variable_methods\"\n    },\n    {\n        \"sentence_example\": \"Quick-test of John's variable_methods\"\n    },\n    {\n        \"url_encode_example\": \"QUICK-TEST+OF+JOHN%27S+VARIABLE_METHODS\"\n    }\n]",
+        "expected_output": "{\n    \"upcase_example\": \"QUICK-TEST OF JOHN'S VARIABLE_METHODS\",\n    \"downcase_example\": \"quick-test of john's variable_methods\",\n    \"initcap_example\": \"Quick-test Of John's Variable_methods\",\n    \"sentence_example\": \"Quick-test of John's variable_methods\",\n    \"url_encode_example\": \"QUICK-TEST+OF+JOHN%27S+VARIABLE_METHODS\"\n}",
         "tested_features": [
             "string_method"
         ],
@@ -746,7 +746,7 @@
     {
         "id": "80",
         "input": "_root=tesco.com;\n_branch=direct.;\nnamespace1=%branch%numrecord.%root;\nnamespace2=%branch%_%root%.numq.net",
-        "expected_output": "[\n    {\n        \"namespace1\": \"direct.numrecord.tesco.com\"\n    },\n    {\n        \"namespace2\": \"direct._tesco.com.numq.net\"\n    }\n]",
+        "expected_output": "{\n    \"namespace1\": \"direct.numrecord.tesco.com\",\n    \"namespace2\": \"direct._tesco.com.numq.net\"\n}",
         "tested_features": [
             "object_ref",
             "graves"
@@ -882,7 +882,7 @@
     {
         "id": "94",
         "input": "_co=at;\n_l=de;\n{\n co=at?\n   country=Austria\n   language={\n     l=fr?\n       French\n     /l=de?\n       German\n     /?\n       Other\n   }\n /?\n   country=Other\n}",
-        "expected_output": "[\n    {\n        \"country\": \"Austria\"\n    },\n    {\n        \"language\": \"German\"\n    }\n]",
+        "expected_output": "{\n    \"country\": \"Austria\",\n    \"language\": \"German\"\n}",
         "tested_features": [
             "conditional"
         ],
@@ -891,7 +891,7 @@
     {
         "id": "95",
         "input": "true2 = 01;\ntrue1 = true;\nfalse2 = 00;\nfalse1 = false;\nnull2 = 000;\nnull1 = null",
-        "expected_output": "[\n    {\n        \"true2\": true\n    },\n    {\n        \"true1\": true\n    },\n    {\n        \"false2\": false\n    },\n    {\n        \"false1\": false\n    },\n    {\n        \"null2\": null\n    },\n    {\n        \"null1\": null\n    }\n]",
+        "expected_output": "{\n    \"true2\": true,\n    \"true1\": true,\n    \"false2\": false,\n    \"false1\": false,\n    \"null2\": null,\n    \"null1\": null\n}",
         "tested_features": [
             "bool",
             "map",
@@ -1075,7 +1075,7 @@
     {
         "id": "114",
         "input": "?[[a;b;c];[one;two;three]];letters=%0;numbers=%1",
-        "expected_output": "[\n    {\n        \"letters\": [\n            \"a\",\n            \"b\",\n            \"c\"\n        ]\n    },\n    {\n        \"numbers\": [\n            \"one\",\n            \"two\",\n            \"three\"\n        ]\n    }\n]",
+        "expected_output": "{\n    \"letters\": [\n        \"a\",\n        \"b\",\n        \"c\"\n    ],\n    \"numbers\": [\n        \"one\",\n        \"two\",\n        \"three\"\n    ]\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -1084,7 +1084,7 @@
     {
         "id": "115",
         "input": "?=[a;b;c]:[one;two;three];letters=%0;numbers=%1",
-        "expected_output": "[\n    {\n        \"letters\": [\n            \"a\",\n            \"b\",\n            \"c\"\n        ]\n    },\n    {\n        \"numbers\": [\n            \"one\",\n            \"two\",\n            \"three\"\n        ]\n    }\n]",
+        "expected_output": "{\n    \"letters\": [\n        \"a\",\n        \"b\",\n        \"c\"\n    ],\n    \"numbers\": [\n        \"one\",\n        \"two\",\n        \"three\"\n    ]\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -1130,7 +1130,7 @@
     {
         "id": "120",
         "input": "?[zero;one;two];\nfirst_var=%0;\nsecond_var=%1;\nthird_var=%2",
-        "expected_output": "[\n    {\n        \"first_var\": \"zero\"\n    },\n    {\n        \"second_var\": \"one\"\n    },\n    {\n        \"third_var\": \"two\"\n    }\n]",
+        "expected_output": "{\n    \"first_var\": \"zero\",\n    \"second_var\": \"one\",\n    \"third_var\": \"two\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -1321,7 +1321,7 @@
     {
         "id": "140",
         "input": "?=0:1:2;\nzero=%0;\none=%1;\ntwo=%2",
-        "expected_output": "[\n    {\n        \"zero\": 0\n    },\n    {\n        \"one\": 1\n    },\n    {\n        \"two\": 2\n    }\n]",
+        "expected_output": "{\n    \"zero\": 0,\n    \"one\": 1,\n    \"two\": 2\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -1330,7 +1330,7 @@
     {
         "id": "141",
         "input": "?=a:b:c;\nzero=%0;\none=%1;\ntwo=%2\n",
-        "expected_output": "[\n    {\n        \"zero\": \"a\"\n    },\n    {\n        \"one\": \"b\"\n    },\n    {\n        \"two\": \"c\"\n    }\n]",
+        "expected_output": "{\n    \"zero\": \"a\",\n    \"one\": \"b\",\n    \"two\": \"c\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -1505,7 +1505,7 @@
     {
         "id": "159",
         "input": "COUNTRY=gb;\ncountry=The country is %COUNTRY",
-        "expected_output": "[\n    {\n        \"COUNTRY\": \"gb\"\n    },\n    {\n        \"country\": \"The country is gb\"\n    }\n]",
+        "expected_output": "{\n    \"COUNTRY\": \"gb\",\n    \"country\": \"The country is gb\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -1658,12 +1658,12 @@
     },
     {
         "id": "175",
-        "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\";\n\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!",
+        "input": "*L=\"https://www.modl.uk/tests/message-thread.txt\";\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
         "expected_output": "[\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Hello, how are you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi, good thanks\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"How about you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Yes, fine thanks. What are you up to?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Just testing out MODL\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Cool!\",\n            \"method\": \"sms\"\n        }\n    }\n]",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!"
+        "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";[m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!]"
     },
     {
         "id": "176",
@@ -1746,18 +1746,18 @@
     },
     {
         "id": "184",
-        "input": "*L=grammar_tests/demo_config;\n\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!",
+        "input": "*L=grammar_tests/demo_config;\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
         "expected_output": "[\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Hello, how are you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi, good thanks\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"How about you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Yes, fine thanks. What are you up to?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Just testing out MODL\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Cool!\",\n            \"method\": \"sms\"\n        }\n    }\n]",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*L=grammar_tests/demo_config;m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!"
+        "minimised_modl": "*L=grammar_tests/demo_config;m=out:2018-03-22 15~:25:Hi;[m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!]"
     },
     {
         "id": "185",
         "input": "## country\n_c = us;\n## language\n_l = en;\n\n*L=grammar_tests/import_config.modl;\n\ncountry = %c;\nlanguage = %l;\ntime_zone = %tz",
-        "expected_output": "[\n    {\n        \"country\": \"us\"\n    },\n    {\n        \"language\": \"en\"\n    },\n    {\n        \"time_zone\": \"EST\"\n    }\n]",
+        "expected_output": "{\n    \"country\": \"us\",\n    \"language\": \"en\",\n    \"time_zone\": \"EST\"\n}",
         "tested_features": [
             "object_ref",
             "load",
@@ -1767,13 +1767,13 @@
     },
     {
         "id": "186",
-        "input": "*L=grammar_tests/test_import_dir/test_import.txt;\n\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!",
+        "input": "*L=grammar_tests/test_import_dir/test_import.txt;\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
         "expected_output": "[\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Hello, how are you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi, good thanks\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"How about you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Yes, fine thanks. What are you up to?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Just testing out MODL\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Cool!\",\n            \"method\": \"sms\"\n        }\n    }\n]",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*L=grammar_tests/test_import_dir/test_import.txt;m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!"
+        "minimised_modl": "*L=grammar_tests/test_import_dir/test_import.txt;[m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!]"
     },
     {
         "id": "187",
@@ -1817,7 +1817,7 @@
     {
         "id": "191",
         "input": "one=1;two=2;three=3",
-        "expected_output": "[\n    {\n        \"one\": 1\n    },\n    {\n        \"two\": 2\n    },\n    {\n        \"three\": 3\n    }\n]",
+        "expected_output": "{\n    \"one\": 1,\n    \"two\": 2,\n    \"three\": 3\n}",
         "tested_features": [
             "map",
             "pair"
@@ -1836,14 +1836,14 @@
     },
     {
         "id": "193",
-        "input": "R=0;\nnumber=1;number=2;number=3",
-        "expected_output": "[\n    {\n        \"R\": 0\n    },\n    {\n        \"number\": 1\n    },\n    {\n        \"number\": 2\n    },\n    {\n        \"number\": 3\n    }\n]",
+        "input": "R=0;\nnumber1=1;number2=2;number3=3",
+        "expected_output": "{\n    \"R\": 0,\n    \"number1\": 1,\n    \"number2\": 2,\n    \"number3\": 3\n}",
         "tested_features": [
             "map",
             "array",
             "pair"
         ],
-        "minimised_modl": "R=0;number=1;number=2;number=3"
+        "minimised_modl": "R=0;number1=1;number2=2;number3=3"
     },
     {
         "id": "194",
@@ -1935,23 +1935,23 @@
     },
     {
         "id": "203",
-        "input": "o(n=test);\no(n=test2)",
-        "expected_output": "[\n    {\n        \"o\": {\n            \"n\": \"test\"\n        }\n    },\n    {\n        \"o\": {\n            \"n\": \"test2\"\n        }\n    }\n]",
+        "input": "o1(n=test);\no2(n=test2)",
+        "expected_output": "{\n    \"o1\": {\n        \"n\": \"test\"\n    },\n    \"o2\": {\n        \"n\": \"test2\"\n    }\n}",
         "tested_features": [
             "map",
             "array"
         ],
-        "minimised_modl": "o(n=test);o(n=test2)"
+        "minimised_modl": "o1(n=test);o2(n=test2)"
     },
     {
         "id": "204",
-        "input": "o(n=test);o(n=test2)",
-        "expected_output": "[\n    {\n        \"o\": {\n            \"n\": \"test\"\n        }\n    },\n    {\n        \"o\": {\n            \"n\": \"test2\"\n        }\n    }\n]",
+        "input": "o1(n=test);o2(n=test2)",
+        "expected_output": "{\n    \"o1\": {\n        \"n\": \"test\"\n    },\n    \"o2\": {\n        \"n\": \"test2\"\n    }\n}",
         "tested_features": [
             "map",
             "array"
         ],
-        "minimised_modl": "o(n=test);o(n=test2)"
+        "minimised_modl": "o1(n=test);o2(n=test2)"
     },
     {
         "id": "205",
@@ -2139,8 +2139,8 @@
     },
     {
         "id": "224",
-        "input": "b=2;c=2;d=2;e=2;a={{b=c & d=e}?v1:v2:v3/?v4:v5:v6}",
-        "expected_output": "[\n    {\n        \"b\": 2\n    },\n    {\n        \"c\": 2\n    },\n    {\n        \"d\": 2\n    },\n    {\n        \"e\": 2\n    },\n    {\n        \"a\": [\n            \"v1\",\n            \"v2\",\n            \"v3\"\n        ]\n    }\n]",
+        "input": "b=2;\nc=2;\nd=2;\ne=2;\na={\n  {b=c & d=e}?\n    v1:v2:v3\n  /?\n    v4:v5:v6\n  }",
+        "expected_output": "{\n    \"b\": 2,\n    \"c\": 2,\n    \"d\": 2,\n    \"e\": 2,\n    \"a\": [\n        \"v1\",\n        \"v2\",\n        \"v3\"\n    ]\n}",
         "tested_features": [
             "conditional"
         ],
@@ -2310,13 +2310,13 @@
     },
     {
         "id": "243",
-        "input": "tony=hungry;\nneeds_food_1={tony=hungry?true/?false};\nneeds_food_2={!tony=hungry?false/?true};\nneeds_food_3={tony!=hungry?false/?true};\nneeds_food_3={!tony!=hungry?true/?false}",
-        "expected_output": "[\n    {\n        \"tony\": \"hungry\"\n    },\n    {\n        \"needs_food_1\": true\n    },\n    {\n        \"needs_food_2\": true\n    },\n    {\n        \"needs_food_3\": true\n    },\n    {\n        \"needs_food_3\": true\n    }\n]",
+        "input": "tony=hungry;\nneeds_food_1={tony=hungry?true/?false};\nneeds_food_2={!tony=hungry?false/?true};\nneeds_food_3={tony!=hungry?false/?true};\nneeds_food_4={!tony!=hungry?true/?false}",
+        "expected_output": "{\n    \"tony\": \"hungry\",\n    \"needs_food_1\": true,\n    \"needs_food_2\": true,\n    \"needs_food_3\": true,\n    \"needs_food_4\": true\n}",
         "tested_features": [
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "tony=hungry\nneeds_food_1={tony=hungry?true/?false}\nneeds_food_2={!tony=hungry?false/?true}\nneeds_food_3={tony!=hungry?false/?true}\nneeds_food_3={!tony!=hungry?true/?false}"
+        "minimised_modl": "tony=hungry;needs_food_1={tony=hungry?true/?false};needs_food_2={!tony=hungry?false/?true};needs_food_3={tony!=hungry?false/?true};needs_food_4={!tony!=hungry?true/?false}"
     },
     {
         "id": "244",
@@ -2370,12 +2370,12 @@
     },
     {
         "id": "249",
-        "input": "*class(\n  *id=p;\n  *name=person;\n  *superclass=map;\n  actions=[call;email]\n);\n*class(\n  *id=c;\n  *name=customer;\n  *superclass=person;\n  *assign=[\n    [title;name;email]\n  ]\n);\n*class(\n  *id=e;\n  *name=employee;\n  *superclass=person;\n  *assign=[\n    [title;name;job_title;email]\n  ]\n);\n\n## An employee:\ne=Mr:John Smith:Sales Director:john.smith@example.com;\n## A customer:\nc=Mr:Joe Bloggs:joe.bloggs@example.com;\n## Another customer:\nc=Mrs:Jane Wilson:jane.wilson@example.com",
+        "input": "*class(\n  *id=p;\n  *name=person;\n  *superclass=map;\n  actions=[call;email]\n);\n*class(\n  *id=c;\n  *name=customer;\n  *superclass=person;\n  *assign=[\n    [title;name;email]\n  ]\n);\n*class(\n  *id=e;\n  *name=employee;\n  *superclass=person;\n  *assign=[\n    [title;name;job_title;email]\n  ]\n);\n[\n## An employee:\ne=Mr:John Smith:Sales Director:john.smith@example.com;\n## A customer:\nc=Mr:Joe Bloggs:joe.bloggs@example.com;\n## Another customer:\nc=Mrs:Jane Wilson:jane.wilson@example.com\n]",
         "expected_output": "[\n    {\n        \"employee\": {\n            \"title\": \"Mr\",\n            \"name\": \"John Smith\",\n            \"job_title\": \"Sales Director\",\n            \"email\": \"john.smith@example.com\",\n            \"actions\": [\n                \"call\",\n                \"email\"\n            ]\n        }\n    },\n    {\n        \"customer\": {\n            \"title\": \"Mr\",\n            \"name\": \"Joe Bloggs\",\n            \"email\": \"joe.bloggs@example.com\",\n            \"actions\": [\n                \"call\",\n                \"email\"\n            ]\n        }\n    },\n    {\n        \"customer\": {\n            \"title\": \"Mrs\",\n            \"name\": \"Jane Wilson\",\n            \"email\": \"jane.wilson@example.com\",\n            \"actions\": [\n                \"call\",\n                \"email\"\n            ]\n        }\n    }\n]",
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=p;*name=person;*superclass=map;actions=[call;email]);*class(*id=c;*name=customer;*superclass=person;*assign=[[title;name;email]]);*class(*id=e;*name=employee;*superclass=person;*assign=[[title;name;job_title;email]]);## An employee:;e=Mr:John Smith:Sales Director:john.smith@example.com;## A customer:;c=Mr:Joe Bloggs:joe.bloggs@example.com;## Another customer:;c=Mrs:Jane Wilson:jane.wilson@example.com"
+        "minimised_modl": "*class(*id=p;*name=person;*superclass=map;actions=[call;email]);*class(*id=c;*name=customer;*superclass=person;*assign=[[title;name;email]]);*class(*id=e;*name=employee;*superclass=person;*assign=[[title;name;job_title;email]]);[## An employee:;e=Mr:John Smith:Sales Director:john.smith@example.com;## A customer:;c=Mr:Joe Bloggs:joe.bloggs@example.com;## Another customer:;c=Mrs:Jane Wilson:jane.wilson@example.com]"
     },
     {
         "id": "250",
@@ -2429,7 +2429,7 @@
     {
         "id": "255",
         "input": "*class(*id=a;*name=alpha);a=[1;2;3];b=4:5:6",
-        "expected_output": "[\n    {\n        \"alpha\": [\n            1,\n            2,\n            3\n        ]\n    },\n    {\n        \"b\": [\n            4,\n            5,\n            6\n        ]\n    }\n]",
+        "expected_output": "{\n    \"alpha\": [\n        1,\n        2,\n        3\n    ],\n    \"b\": [\n        4,\n        5,\n        6\n    ]\n}",
         "tested_features": [
             "class",
             "superclass_inference"
@@ -2596,7 +2596,7 @@
     {
         "id": "272",
         "input": "ref=123;\nkey=%ref%%",
-        "expected_output": "[\n    {\n        \"ref\": 123\n    },\n    {\n        \"key\": \"123%\"\n    }\n]",
+        "expected_output": "{\n    \"ref\": 123,\n    \"key\": \"123%\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2624,7 +2624,7 @@
     {
         "id": "275",
         "input": "vat=20;\ns=VAT at %vat% added",
-        "expected_output": "[\n    {\n        \"vat\": 20\n    },\n    {\n        \"s\": \"VAT at 20 added\"\n    }\n]",
+        "expected_output": "{\n    \"vat\": 20,\n    \"s\": \"VAT at 20 added\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2633,7 +2633,7 @@
     {
         "id": "276",
         "input": "vat=20;\ns=VAT at %vat%% added",
-        "expected_output": "[\n    {\n        \"vat\": 20\n    },\n    {\n        \"s\": \"VAT at 20% added\"\n    }\n]",
+        "expected_output": "{\n    \"vat\": 20,\n    \"s\": \"VAT at 20% added\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2669,7 +2669,7 @@
     {
         "id": "280",
         "input": "_a=one;\n_b=two;\n_c=three;\n\nd=%a:%b:%c;\ne=[%a;%b;%c]",
-        "expected_output": "[\n    {\n        \"d\": [\n            \"one\",\n            \"two\",\n            \"three\"\n        ]\n    },\n    {\n        \"e\": [\n            \"one\",\n            \"two\",\n            \"three\"\n        ]\n    }\n]",
+        "expected_output": "{\n    \"d\": [\n        \"one\",\n        \"two\",\n        \"three\"\n    ],\n    \"e\": [\n        \"one\",\n        \"two\",\n        \"three\"\n    ]\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2714,7 +2714,7 @@
     {
         "id": "285",
         "input": "_replace_me=new value;\n\none=%replace_me.u;\n\ntwo=`replace_me`.u;\n\nthree=`replace_me.u`;\n\nfour=`%replace_me.u`;\n\nfive=`%replace_me`.u;\n\nsix=%replace_me.u%_added;\n\nseven=replace_me.u;\n\neight=%`replace_me`.u;\n\nnine=%`replace_me`.u%;",
-        "expected_output": "[\n    {\n        \"one\": \"NEW VALUE\"\n    },\n    {\n        \"two\": \"`replace_me`.u\"\n    },\n    {\n        \"three\": \"replace_me.u\"\n    },\n    {\n        \"four\": \"NEW VALUE\"\n    },\n    {\n        \"five\": \"`new value`.u\"\n    },\n    {\n        \"six\": \"NEW VALUE_added\"\n    },\n    {\n        \"seven\": \"replace_me.u\"\n    },\n    {\n        \"eight\": \"REPLACE_ME\"\n    },\n    {\n        \"nine\": \"REPLACE_ME\"\n    }\n]",
+        "expected_output": "{\n    \"one\": \"NEW VALUE\",\n    \"two\": \"`replace_me`.u\",\n    \"three\": \"replace_me.u\",\n    \"four\": \"NEW VALUE\",\n    \"five\": \"`new value`.u\",\n    \"six\": \"NEW VALUE_added\",\n    \"seven\": \"replace_me.u\",\n    \"eight\": \"REPLACE_ME\",\n    \"nine\": \"REPLACE_ME\"\n}",
         "tested_features": [
             "object_ref"
         ],
@@ -2987,7 +2987,7 @@
     {
         "id": "313",
         "input": "_test1=e1afmkfd;\nrussian1=%test1.p;\n\n_test2=\"e1afmkfd\";\nrussian2=%test2.p;\n\n_test3=`e1afmkfd`;\nrussian3=%test3.p;",
-        "expected_output": "[\n  {\n    \"russian1\": \"пример\"\n  },\n  {\n    \"russian2\": \"пример\"\n  },\n  {\n    \"russian3\": \"пример\"\n  }\n]",
+        "expected_output": "{\n    \"russian1\": \"пример\",\n    \"russian2\": \"пример\",\n    \"russian3\": \"пример\"\n}",
         "tested_features": [
             "punycode",
             "methods"
