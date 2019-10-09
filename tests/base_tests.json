@@ -3014,11 +3014,11 @@
     },
     {
         "id": "316",
-        "input": "*array(\n      *id=p;\n      *name=people;\n      *of=person\n  );\n\n  *class(\n    *id=n;\n    *name=name\n  );\n\n  *class(\n    *id=a;\n    *name=age\n  );\n\n  *class(\n    *id=person;\n    *assign=[\n      [n;a]\n    ]\n  );\n\n  data(\n    p[[John;18];[Jane;20]];\n    person=[Fred;21]\n  );\n  p[[Mary;18];[Mungo;19];[Midge;20]];\n  person=[Rod;23]\n",
-        "expected_output": "{\n  \"data\": {\n    \"people\": [\n      {\n        \"name\": \"John\",\n        \"age\": 18\n      },\n      {\n        \"name\": \"Jane\",\n        \"age\": 20\n      }\n    ],\n    \"person\": {\n      \"name\": \"Fred\",\n      \"age\": 21\n    }\n  },\n  \"people\": [\n    {\n      \"name\": \"Mary\",\n      \"age\": 18\n    },\n    {\n      \"name\": \"Mungo\",\n      \"age\": 19\n    },\n    {\n      \"name\": \"Midge\",\n      \"age\": 20\n    }\n  ],\n  \"person\": {\n    \"name\": \"Rod\",\n    \"age\": 23\n  }\n}",
+        "input": "We\\\\u2019re=We\\\\u2019re",
+        "expected_output": "{\n  \"We’re\": \"We’re\"\n}",
         "tested_features": [
-            "*arrays"
+            "unicode"
         ],
-        "minimised_modl": "*array(*id=p;*name=people;*of=person);*class(*id=n;*name=name);*class(*id=a;*name=age);*class(*id=person;*assign=[[n;a]]);data(p[[John;18];[Jane;20]];person=[Fred;21]);p[[Mary;18];[Mungo;19];[Midge;20]];person=[Rod;23]"
+        "minimised_modl": "We\\\\u2019re=We\\\\u2019re"
     }
 ]
