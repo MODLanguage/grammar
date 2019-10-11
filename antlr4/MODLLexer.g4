@@ -68,7 +68,7 @@ lexer grammar MODLLexer;
       // Standard back slash can be used to escape reserved characters
       | '\\' RESERVED_CHARS
       // Additionally, MODL allows tilde ( ~ ) escapes because backslash is problematic in DNS
-      | '~' RESERVED_CHARS
+      | '~' ( RESERVED_CHARS | UNICODE )
       ;
       fragment UNICODE
         : 'u' HEX HEX HEX HEX
