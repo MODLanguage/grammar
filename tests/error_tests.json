@@ -85,17 +85,17 @@
   },
   {
     "id": 13,
-    "input": "*L=grammar_tests/1;*l=grammar_tests/1;a=1",
+    "input": "*L=../grammar/tests/1;*l=../grammar/tests/1;a=1",
     "expected_output": "Interpreter Error: Cannot load multiple files after *LOAD instruction",
     "tested_features": ["errors"],
-    "minimised_modl": "*L=grammar_tests/1;*l=grammar_tests/1;a=1"
+    "minimised_modl": "*L=../grammar/tests/1;*l=../grammar/tests/1;a=1"
   },
   {
     "id": 14,
-    "input": "*L=grammar_tests/1;*L=grammar_tests/1",
+    "input": "*L=../grammar/tests/1;*L=../grammar/tests/1",
     "expected_output": "Interpreter Error: Cannot load multiple files after *LOAD instruction",
     "tested_features": ["errors"],
-    "minimised_modl": "*L=grammar_tests/1;*L=grammar_tests/1"
+    "minimised_modl": "*L=../grammar/tests/1;*L=../grammar/tests/1"
   },
   {
     "id": 15,
@@ -519,9 +519,9 @@
   },
   {
     "id": 75,
-    "input": "*L=grammar_tests/test_import_dir/nested_import1.txt;files=%*load",
+    "input": "*L=../grammar/tests/test_import_dir/nested_import1.txt;files=%*load",
     "expected_output": "Interpreter Error: Cannot load multiple files after *LOAD instruction",
     "tested_features": ["errors"],
-    "minimised_modl": "*L=grammar_tests/test_import_dir/nested_import1.txt;files=%*load"
+    "minimised_modl": "*L=../grammar/tests/test_import_dir/nested_import1.txt;files=%*load"
   }
 ]

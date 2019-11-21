@@ -88,7 +88,7 @@ modl_top_level_conditional
     RCBRAC
   ;
   modl_top_level_conditional_return
-    : ( modl_structure )*
+    : modl_structure ( STRUCT_SEP modl_structure )*
     ;
 
 modl_map_conditional

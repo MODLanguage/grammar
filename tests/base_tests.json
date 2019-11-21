@@ -1,21 +1,21 @@
 [
     {
         "id": "1",
-        "input": "*l=grammar_tests/test_import_dir/nested_import1.txt;\nfiles=%*load",
-        "expected_output": "{\n    \"files\": [\n        \"grammar_tests/test_import_dir/nested_import1.txt\",\n        \"grammar_tests/test_import_dir/nested_import2.txt\",\n        \"grammar_tests/test_import_dir/nested_import3.txt\",\n        \"grammar_tests/test_import_dir/test_import.txt\"\n    ]\n}",
+        "input": "*l=../grammar/tests/test_import_dir/nested_import1.txt;\nfiles=%*load",
+        "expected_output": "{\n    \"files\": [\n        \"../grammar/tests/test_import_dir/nested_import1.txt\",\n        \"../grammar/tests/test_import_dir/nested_import2.txt\",\n        \"../grammar/tests/test_import_dir/nested_import3.txt\",\n        \"../grammar/tests/test_import_dir/test_import.txt\"\n    ]\n}",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/test_import_dir/nested_import1.txt;files=%*load"
+        "minimised_modl": "*l=../grammar/tests/test_import_dir/nested_import1.txt;files=%*load"
     },
     {
         "id": "2",
-        "input": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;\nfiles=%*load",
-        "expected_output": "{\n    \"files\": [\n        \"grammar_tests/1.modl\",\n        \"grammar_tests/2.modl\",\n        \"grammar_tests/3.modl\",\n        \"grammar_tests/1.modl\"\n    ]\n}",
+        "input": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3:../grammar/tests/1;\nfiles=%*load",
+        "expected_output": "{\n    \"files\": [\n        \"../grammar/tests/1.modl\",\n        \"../grammar/tests/2.modl\",\n        \"../grammar/tests/3.modl\",\n        \"../grammar/tests/1.modl\"\n    ]\n}",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;files=%*load"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3:../grammar/tests/1;files=%*load"
     },
     {
         "id": "3",
@@ -24,7 +24,7 @@
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";classes=*class"
+        "minimised_modl": "*L=https~://www.modl.uk/tests/message-thread.txt;classes=*class"
     },
     {
         "id": "4",
@@ -43,7 +43,7 @@
             "load",
             "class"
         ],
-        "minimised_modl": "*L=\"https://www.modl.uk/tests/message-thread.txt\";*class(*id=a;*name=alpha;*superclass=map;v=victor)*class(*id=b;*name=bravo;*superclass=alpha;w=whisky);*class(*id=c;*name=charlie;*superclass=bravo;x=xray)*class(*id=d;*name=delta;*superclass=charlie;y=yankee)classes=%*class"
+        "minimised_modl": "*L=https~://www.modl.uk/tests/message-thread.txt;*c(*i=a;*n=alpha;*s=map;v=victor);*c(*i=b;*n=bravo;*s=alpha;w=whisky);*c(*i=c;*n=charlie;*s=bravo;x=xray);*c(*i=d;*n=delta;*s=charlie;y=yankee);classes=%*class"
     },
     {
         "id": "6",
@@ -52,7 +52,7 @@
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "_test1=one;_one=two{test1=`one`?result=match/?result=nomatch}"
+        "minimised_modl": "_test1=one;_one=two;{test1=one?result=match/?result=nomatch}"
     },
     {
         "id": "7",
@@ -61,7 +61,7 @@
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "_test1=one;_one=two{test1=`two`?result=match/?result=nomatch}"
+        "minimised_modl": "_test1=one;_one=two;{test1=two?result=match/?result=nomatch}"
     },
     {
         "id": "8",
@@ -70,7 +70,7 @@
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "_test1=one;_one=two{test1=\"one\"?result=match/?result=nomatch}"
+        "minimised_modl": "_test1=one;_one=two;{test1=one?result=match/?result=nomatch}"
     },
     {
         "id": "9",
@@ -79,7 +79,7 @@
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "_test1=one;_one=two{test1=\"two\"?result=match/?result=nomatch}"
+        "minimised_modl": "_test1=one;_one=two;{test1=two?result=match/?result=nomatch}"
     },
     {
         "id": "10",
@@ -98,7 +98,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=b | %y.2=1?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;z={%x.1=b|%y.2=1?}"
     },
     {
         "id": "12",
@@ -108,7 +108,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=b & %y.2=1?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;z={%x.1=b&%y.2=1?}"
     },
     {
         "id": "13",
@@ -118,7 +118,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=b&%y.2=3?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;z={%x.1=b&%y.2=3?}"
     },
     {
         "id": "14",
@@ -128,7 +128,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=b|%y.2=3?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;z={%x.1=b|%y.2=3?}"
     },
     {
         "id": "15",
@@ -138,7 +138,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=b|%y.2=x?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;z={%x.1=b|%y.2=x?}"
     },
     {
         "id": "16",
@@ -148,7 +148,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];z={%x.1=a|%y.2=3?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;z={%x.1=a|%y.2=3?}"
     },
     {
         "id": "17",
@@ -158,7 +158,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=a:b:c:d;_y=[1;2;3;4];x={%x.1=%y.2?}"
+        "minimised_modl": "_x=a:b:c:d;_y=1:2:3:4;x={%x.1=%y.2?}"
     },
     {
         "id": "18",
@@ -168,7 +168,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_x=[1;2;3;4];_y=[1;2;3;4];x={%x.2=%y.2?}"
+        "minimised_modl": "_x=1:2:3:4;_y=1:2:3:4;x={%x.2=%y.2?}"
     },
     {
         "id": "19",
@@ -178,7 +178,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_country=gb{country = gb | country = us?support_number=+441270123456/?support_number=+14161234567}"
+        "minimised_modl": "_country=gb;{country=gb|country=us?support_number=+441270123456/?support_number=+14161234567}"
     },
     {
         "id": "20",
@@ -188,7 +188,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_country=gb{country = us | country = gb?support_number=+441270123456/?support_number=+14161234567}"
+        "minimised_modl": "_country=gb;{country=us|country=gb?support_number=+441270123456/?support_number=+14161234567}"
     },
     {
         "id": "21",
@@ -216,7 +216,7 @@
             "puny",
             "string_method"
         ],
-        "minimised_modl": "%`80aafnhi4ae`.p=%`lsa12dvaxki`.p"
+        "minimised_modl": "%`80aafnhi4ae`.p.u=%`lsa12dvaxki`.p.u"
     },
     {
         "id": "24",
@@ -225,7 +225,7 @@
         "tested_features": [
             "string_method"
         ],
-        "minimised_modl": "(_name = John;%name.u = \"Developer\";foo = %name.u)"
+        "minimised_modl": "(_name=John;%name.u=Developer;foo=%name.u)"
     },
     {
         "id": "25",
@@ -235,7 +235,7 @@
             "string_method",
             "object_ref"
         ],
-        "minimised_modl": "(_name=John;%name.u=\"Developer\";foo = %JOHN)"
+        "minimised_modl": "(_name=John;%name.u=Developer;foo=%JOHN)"
     },
     {
         "id": "26",
@@ -244,7 +244,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "(_name=John;%name=\"Developer\";foo = %John)"
+        "minimised_modl": "(_name=John;%name=Developer;foo=%John)"
     },
     {
         "id": "27",
@@ -254,7 +254,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_array[1;2];_array_item=%array.0;test={array_item=%array.0?yes/?no}"
+        "minimised_modl": "_array=1:2;_array_item=%array.0;test={array_item=%array.0?yes/?no}"
     },
     {
         "id": "28",
@@ -264,7 +264,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_array[1;2];test={%array.0=1?yes/?no}"
+        "minimised_modl": "_array=1:2;test={%array.0=1?yes/?no}"
     },
     {
         "id": "29",
@@ -274,7 +274,7 @@
             "conditional",
             "object_ref"
         ],
-        "minimised_modl": "_array[1;2];_array_item=%array.0;test={array_item=1?yes/?no}"
+        "minimised_modl": "_array=1:2;_array_item=%array.0;test={array_item=1?yes/?no}"
     },
     {
         "id": "30",
@@ -284,7 +284,7 @@
             "string_method",
             "object_ref"
         ],
-        "minimised_modl": "_person(name(speak=say;first=John;last=Smith));just %person.name.speak.u%_this=Hello %person.name.first.d!"
+        "minimised_modl": "_person(name(speak=say;first=John;last=Smith));just %person.name.speak.u%_this=`Hello %person.name.first.d!`"
     },
     {
         "id": "31",
@@ -294,7 +294,7 @@
             "class",
             "assign"
         ],
-        "minimised_modl": "*class(\n  *i=test\n  *a=[\n    [one;two;three]\n  ]\n)\ntest=1:2:3"
+        "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=1:2:3"
     },
     {
         "id": "32",
@@ -304,7 +304,7 @@
             "class",
             "assign"
         ],
-        "minimised_modl": "*class(\n  *i=test\n  *a=[\n    [one;two;three]\n  ]\n)\n\ntest=1:2:(a=Alpha;b=Bravo;c=Charlie)"
+        "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=1:2:(a=Alpha;b=Bravo;c=Charlie)"
     },
     {
         "id": "33",
@@ -314,7 +314,7 @@
             "class",
             "assign"
         ],
-        "minimised_modl": "*class(\n  *i=test\n  *a=[\n    [one;two;three]\n  ]\n)\n\ntest=1:2:[a;b;c]"
+        "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=1:2:[a;b;c]"
     },
     {
         "id": "34",
@@ -323,7 +323,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_name = John;%name = \"123\""
+        "minimised_modl": "_name=John;%name=`123`"
     },
     {
         "id": "35",
@@ -332,7 +332,7 @@
         "tested_features": [
             "array"
         ],
-        "minimised_modl": "[one;two;three;]"
+        "minimised_modl": "[one;two;three]"
     },
     {
         "id": "36",
@@ -360,7 +360,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map;v=victor)*class(*id=b;*name=bravo;*superclass=alpha;w=whisky)*class(*id=c;*name=charlie;*superclass=bravo;x=xray);*class(*id=d;*name=delta;*superclass=charlie;y=yankee)d(test1=test2)"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=map;v=victor);*c(*i=b;*n=bravo;*s=alpha;w=whisky);*c(*i=c;*n=charlie;*s=bravo;x=xray);*c(*i=d;*n=delta;*s=charlie;y=yankee);d(test1=test2)"
     },
     {
         "id": "39",
@@ -369,7 +369,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map;v=victor)*class(*id=b;*name=bravo;*superclass=a;w=whisky)*class(*id=c;*name=charlie;*superclass=b;x=xray)*class(*id=d;*name=delta;*superclass=c;y=yankee)d(test1=test2)"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=map;v=victor);*c(*i=b;*n=bravo;*s=a;w=whisky);*c(*i=c;*n=charlie;*s=b;x=xray);*c(*i=d;*n=delta;*s=c;y=yankee);d(test1=test2)"
     },
     {
         "id": "40",
@@ -378,7 +378,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=[[a;b]];letters2=%test.0.0"
+        "minimised_modl": "_test[[a;b]];letters2=%test.0.0"
     },
     {
         "id": "41",
@@ -388,7 +388,7 @@
             "object_ref",
             "puny"
         ],
-        "minimised_modl": "?=`e1afmkfd`:` -7sbcecqbdsccxfizhcp6b8ah`;(name=%0.p;department=%1.p)"
+        "minimised_modl": "?=e1afmkfd:` -7sbcecqbdsccxfizhcp6b8ah`;(name=%0.p;department=%1.p)"
     },
     {
         "id": "42",
@@ -397,7 +397,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*c(*id=object;*superclass=arr);sales(name=John Smith;telephone=44800 555 555);service(name=Jim Brown;telephone=44800 666 666)"
+        "minimised_modl": "*c(*i=object;*s=arr);sales(name=John Smith;telephone=44800 555 555);service(name=Jim Brown;telephone=44800 666 666)"
     },
     {
         "id": "43",
@@ -406,7 +406,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*c(*i=p;*N=person);p(name=John Smith;dob=01/01/2001)"
+        "minimised_modl": "*c(*i=p;*n=person);p(name=John Smith;dob=01/01/2001)"
     },
     {
         "id": "44",
@@ -415,7 +415,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=a;*name=age);a=10"
+        "minimised_modl": "*c(*i=a;*n=age);a=10"
     },
     {
         "id": "45",
@@ -424,7 +424,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=a;*name=age;*superclass=num);a=10"
+        "minimised_modl": "*c(*i=a;*n=age;*s=num);a=10"
     },
     {
         "id": "46",
@@ -433,7 +433,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=a;*name=age;*superclass=str);a=10"
+        "minimised_modl": "*c(*i=a;*n=age;*s=str);a=10"
     },
     {
         "id": "47",
@@ -442,7 +442,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=newstr;*superclass=str);*class(*id=a;*name=age;*superclass=newstr);a=10"
+        "minimised_modl": "*c(*i=newstr;*s=str);*c(*i=a;*n=age;*s=newstr);a=10"
     },
     {
         "id": "48",
@@ -532,7 +532,7 @@
         "tested_features": [
             "nbArray"
         ],
-        "minimised_modl": "a=1:2:3\n;\nb=4:5:6"
+        "minimised_modl": "a=1:2:3;b=4:5:6"
     },
     {
         "id": "58",
@@ -541,7 +541,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(a=b=c=d=f)\nx=%test.a.b.c.d"
+        "minimised_modl": "_test(a=b=c=d=f);x=%test.a.b.c.d"
     },
     {
         "id": "59",
@@ -550,7 +550,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "a(b(c(d(e(f=1)))))\ntesting=%a.b.c.d.e.f"
+        "minimised_modl": "a(b(c(d(e(f=1)))));testing=%a.b.c.d.e.f"
     },
     {
         "id": "60",
@@ -559,7 +559,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(a=b=c=d=f)\ntesting=%test.a.b.c.d"
+        "minimised_modl": "_test(a=b=c=d=f);testing=%test.a.b.c.d"
     },
     {
         "id": "61",
@@ -568,7 +568,7 @@
         "tested_features": [
             "map"
         ],
-        "minimised_modl": "a=\nb\n=c\nd=e"
+        "minimised_modl": "a=b=c;d=e"
     },
     {
         "id": "62",
@@ -586,7 +586,7 @@
         "tested_features": [
             "map"
         ],
-        "minimised_modl": "a=(b=c=d=e=f)"
+        "minimised_modl": "a(b=c=d=e=f)"
     },
     {
         "id": "64",
@@ -604,7 +604,7 @@
         "tested_features": [
             "map"
         ],
-        "minimised_modl": "a=(b=(c=(d=(e=f))))"
+        "minimised_modl": "a(b(c(d(e=f))))"
     },
     {
         "id": "66",
@@ -614,7 +614,7 @@
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "country=gb;x=[{ country=gb? this /country=us? that }]"
+        "minimised_modl": "country=gb;x[{country=gb?this/country=us?that}]"
     },
     {
         "id": "67",
@@ -624,7 +624,7 @@
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "_a=3;_b=3;c={a=b?true/?false}"
+        "minimised_modl": "_a=3;_b=3;c={a=b?01/?00}"
     },
     {
         "id": "68",
@@ -633,7 +633,7 @@
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "a=1;b=2;c={{a=1}|{b=2}?true/?false}"
+        "minimised_modl": "a=1;b=2;c={{a=1}|{b=2}?01/?00}"
     },
     {
         "id": "69",
@@ -691,7 +691,7 @@
             "object_ref",
             "string_method"
         ],
-        "minimised_modl": "*c(*i=g;*n=glossary;*s=map);*c(*i=t;*n=title;*s=str);*c(*i=d;*n=GlossDiv;*s=map);*c(*i=l;*n=GlossList;*s=map);*c(*i=e;*n=GlossEntry;*s=map;*a[[i;s;gt;a;ab;gd;gs]]);*c(*i=i;*n=ID;*s=str);*c(*i=s;*n=SortAs;*s=str);*c(*i=gt;*n=GlossTerm;*s=str);*c(*i=a;*n=Acronym;*s=str);*c(*i=ab;*n=Abbrev;*s=str);*c(*i=gd;*n=GlossDef;*a=[p]:[p;sa]);*c(*i=p;*n=para;*s=str);*c(*i=sa;*n=SeeAlso;*s=arr);*c(*i=gs;*n=GlossSee;*s=str);g(?=SGML:markup:language;t=example glossary;d(t=S;l(e(i=%0;s=%0;gt=Standard Generalized %1.s %2.s;a=%0;ab=ISO 8879~:1986;gd=A meta-%1 %2, used to create %1 %2%s such as DocBook.:[GML;XML];gs=%1))))"
+        "minimised_modl": "*c(*i=g;*n=glossary;*s=map);*c(*i=t;*n=title;*s=str);*c(*i=d;*n=GlossDiv;*s=map);*c(*i=l;*n=GlossList;*s=map);*c(*i=e;*n=GlossEntry;*s=map;*a[[i;s;gt;a;ab;gd;gs]]);*c(*i=i;*n=ID;*s=str);*c(*i=s;*n=SortAs;*s=str);*c(*i=gt;*n=GlossTerm;*s=str);*c(*i=a;*n=Acronym;*s=str);*c(*i=ab;*n=Abbrev;*s=str);*c(*i=gd;*n=GlossDef;*a=[p]:[p;sa]);*c(*i=p;*n=para;*s=str);*c(*i=sa;*n=SeeAlso;*s=arr);*c(*i=gs;*n=GlossSee;*s=str);g(?=SGML:markup:language;t=example glossary;d(t=S;l(e(i=%0;s=%0;gt=Standard Generalized %1.s %2.s;a=%0;ab=ISO 8879\\:1986;gd=A meta-%1 %2, used to create %1 %2%s such as DocBook.:[GML;XML];gs=%1))))"
     },
     {
         "id": "75",
@@ -713,7 +713,7 @@
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "_test=http~://www.tesco.com;result={test=\"http://www.tesco.com\"?yes/?no}"
+        "minimised_modl": "_test=http~://www.tesco.com;result={test=`http://www.tesco.com`?yes/?no}"
     },
     {
         "id": "77",
@@ -731,7 +731,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_branch=\"alex.\";_root=d;namespace=%branch%blah.%root"
+        "minimised_modl": "_branch=alex.;_root=d;namespace=%branch%blah.%root"
     },
     {
         "id": "79",
@@ -761,7 +761,7 @@
             "object_ref",
             "graves"
         ],
-        "minimised_modl": "_branch=\"\";_root=\"\";namespace=%branch%numrecord.%root"
+        "minimised_modl": "_branch=``;_root=``;namespace=%branch%numrecord.%root"
     },
     {
         "id": "82",
@@ -771,7 +771,7 @@
             "class",
             "assign"
         ],
-        "minimised_modl": "*class(*id=desc;*name=description;*superclass=str);*class(*id=val;*name=value;*superclass=str);*class(*id=media1;*name=media1;*assign=[[desc;val]]);*class(*id=media2;*name=media2;*assign=[[desc;val]]);*class(*id=list;*name=list;*assign[[media1;media2]]);list=[tel;fb]:[yt;tw]"
+        "minimised_modl": "*c(*i=desc;*n=description;*s=str);*c(*i=val;*n=value;*s=str);*c(*i=media1;*n=media1;*a[[desc;val]]);*c(*i=media2;*n=media2;*a[[desc;val]]);*c(*i=list;*n=list;*a[[media1;media2]]);list=[tel;fb]:[yt;tw]"
     },
     {
         "id": "83",
@@ -780,7 +780,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*C(*i=p;*n=person;*S=map);p(name=John Smith;dob=01/01/2000)"
+        "minimised_modl": "*c(*i=p;*n=person;*s=map);p(name=John Smith;dob=01/01/2000)"
     },
     {
         "id": "84",
@@ -830,7 +830,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=\"123\";object(print_test=%test%.test)"
+        "minimised_modl": "_test=`123`;object(print_test=%test%.test)"
     },
     {
         "id": "89",
@@ -881,7 +881,7 @@
     },
     {
         "id": "94",
-        "input": "_co=at;\n_l=de;\n{\n co=at?\n   country=Austria\n   language={\n     l=fr?\n       French\n     /l=de?\n       German\n     /?\n       Other\n   }\n /?\n   country=Other\n}",
+        "input": "_co=at;\n_l=de;\n{\n co=at?\n   country=Austria;\n   language={\n     l=fr?\n       French\n     /l=de?\n       German\n     /?\n       Other\n   }\n /?\n   country=Other\n}",
         "expected_output": "{\n    \"country\": \"Austria\",\n    \"language\": \"German\"\n}",
         "tested_features": [
             "conditional"
@@ -1372,7 +1372,7 @@
             "pair",
             "graves"
         ],
-        "minimised_modl": "test=`test`"
+        "minimised_modl": "test=test"
     },
     {
         "id": "146",
@@ -1381,7 +1381,7 @@
         "tested_features": [
             "pair"
         ],
-        "minimised_modl": "test=!"
+        "minimised_modl": "test=`!`"
     },
     {
         "id": "147",
@@ -1405,7 +1405,7 @@
     },
     {
         "id": "149",
-        "input": "_C=ca;\n_L=en;\n{\n C=ca?\n  n=Tesco Canada\n  {L=fr?\n    s=Chaque Petite Contribution\n  }\n}",
+        "input": "_C=ca;\n_L=en;\n{\n C=ca?\n  n=Tesco Canada;\n  {L=fr?\n    s=Chaque Petite Contribution\n  }\n}",
         "expected_output": "{\n    \"n\": \"Tesco Canada\"\n}",
         "tested_features": [
             "object_ref",
@@ -1546,7 +1546,7 @@
         "tested_features": [
             "method"
         ],
-        "minimised_modl": "*method( *id=cn;*name=company_name;*transform=replace<-, >.trim<.>.initcap);_domain = smiths-limited.com;friendly_name = %domain.cn"
+        "minimised_modl": "*m(*i=cn;*n=company_name;*transform=replace<-, >.trim<.>.initcap);_domain=smiths-limited.com;friendly_name=%domain.cn"
     },
     {
         "id": "164",
@@ -1663,7 +1663,7 @@
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*L=\"https://www.modl.uk/demo/message-thread.txt\";[m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!]"
+        "minimised_modl": "*L=https~://www.modl.uk/tests/message-thread.txt;[m=out:2018-03-22 15\\:25:Hi;m=in:2018-03-22 15\\:26:Hello, how are you?;m=out:2018-03-22 15\\:25:Hi, good thanks;m=out:2018-03-22 15\\:26:How about you?;m=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15\\:25:Just testing out MODL;m=in:2018-03-22 15\\:26:`Cool!`]"
     },
     {
         "id": "176",
@@ -1673,107 +1673,107 @@
             "object_ref",
             "load"
         ],
-        "minimised_modl": "_var=2;*L=http~://s3-eu-west-1.amazonaws.com/modltestfiles/testing.txt!;print=%update_date"
+        "minimised_modl": "_var=2;*L=`http://modl.uk/tests/testing.txt!`;print=%update_date"
     },
     {
         "id": "177",
-        "input": "_T=grammar_tests/demo;\n*L=%T%_config",
+        "input": "_T=../grammar/tests/demo;\n*L=%T%_config",
         "expected_output": "null",
         "tested_features": [
             "object_ref",
             "load",
             "null"
         ],
-        "minimised_modl": "_T=grammar_tests/demo;*L=%T%_config"
+        "minimised_modl": "_T=../grammar/tests/demo;*L=%T%_config"
     },
     {
         "id": "178",
-        "input": "*l=grammar_tests/1;*L=grammar_tests/1;a=1",
+        "input": "*l=../grammar/tests/1;*L=../grammar/tests/1;a=1",
         "expected_output": "{\n    \"a\": 1\n}",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/1;*L=grammar_tests/1;a=1"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/1;a=1"
     },
     {
         "id": "179",
-        "input": "*l=grammar_tests/1;*l=grammar_tests/1;a=1",
+        "input": "*l=../grammar/tests/1;*l=../grammar/tests/1;a=1",
         "expected_output": "{\n    \"a\": 1\n}",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/1;*l=grammar_tests/1;a=1"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/1;a=1"
     },
     {
         "id": "180",
-        "input": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3;\nthe_number=%number",
+        "input": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3;\nthe_number=%number",
         "expected_output": "{\n    \"the_number\": 3\n}",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3;the_number=%number"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3;the_number=%number"
     },
     {
         "id": "181",
-        "input": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;\nthe_number=%number",
+        "input": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3:../grammar/tests/1;\nthe_number=%number",
         "expected_output": "{\n    \"the_number\": 1\n}",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;the_number=%number"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3:../grammar/tests/1;the_number=%number"
     },
     {
         "id": "182",
-        "input": "*l[grammar_tests/1;grammar_tests/2;grammar_tests/3;grammar_tests/1];\nthe_number=%number",
+        "input": "*l[../grammar/tests/1;../grammar/tests/2;../grammar/tests/3;../grammar/tests/1];\nthe_number=%number",
         "expected_output": "{\n    \"the_number\": 1\n}",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/1:grammar_tests/2:grammar_tests/3:grammar_tests/1;the_number=%number"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/2:../grammar/tests/3:../grammar/tests/1;the_number=%number"
     },
     {
         "id": "183",
-        "input": "*l=grammar_tests/a:grammar_tests/b:grammar_tests/c;\nvar=%var",
+        "input": "*l=../grammar/tests/a:../grammar/tests/b:../grammar/tests/c;\nvar=%var",
         "expected_output": "{\n    \"var\": \"abc\"\n}",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*l=grammar_tests/a:grammar_tests/b:grammar_tests/c;var=%var"
+        "minimised_modl": "*l=../grammar/tests/a:../grammar/tests/b:../grammar/tests/c;var=%var"
     },
     {
         "id": "184",
-        "input": "*L=grammar_tests/demo_config;\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
+        "input": "*L=../grammar/tests/demo_config;\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
         "expected_output": "[\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Hello, how are you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi, good thanks\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"How about you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Yes, fine thanks. What are you up to?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Just testing out MODL\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Cool!\",\n            \"method\": \"sms\"\n        }\n    }\n]",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*L=grammar_tests/demo_config;m=out:2018-03-22 15~:25:Hi;[m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!]"
+        "minimised_modl": "*L=../grammar/tests/demo_config;[m=out:2018-03-22 15\\:25:Hi;m=in:2018-03-22 15\\:26:Hello, how are you?;m=out:2018-03-22 15\\:25:Hi, good thanks;m=out:2018-03-22 15\\:26:How about you?;m=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15\\:25:Just testing out MODL;m=in:2018-03-22 15\\:26:`Cool!`]"
     },
     {
         "id": "185",
-        "input": "## country\n_c = us;\n## language\n_l = en;\n\n*L=grammar_tests/import_config.modl;\n\ncountry = %c;\nlanguage = %l;\ntime_zone = %tz",
+        "input": "## country\n_c = us;\n## language\n_l = en;\n\n*L=../grammar/tests/import_config.modl;\n\ncountry = %c;\nlanguage = %l;\ntime_zone = %tz",
         "expected_output": "{\n    \"country\": \"us\",\n    \"language\": \"en\",\n    \"time_zone\": \"EST\"\n}",
         "tested_features": [
             "object_ref",
             "load",
             "comments"
         ],
-        "minimised_modl": "_c=us;_l=en;*L=grammar_tests/import_config.modl;country=%c;language=%l;time_zone=%tz"
+        "minimised_modl": "_c=us;_l=en;*L=../grammar/tests/import_config.modl;country=%c;language=%l;time_zone=%tz"
     },
     {
         "id": "186",
-        "input": "*L=grammar_tests/test_import_dir/test_import.txt;\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
+        "input": "*L=../grammar/tests/test_import_dir/test_import.txt;\n[\nm=out:2018-03-22 15\\:25:Hi;\nm=in:2018-03-22 15\\:26:Hello, how are you?;\nm=out:2018-03-22 15\\:25:Hi, good thanks;\nm=out:2018-03-22 15\\:26:How about you?;\nm=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;\nm=out:2018-03-22 15\\:25:Just testing out MODL;\nm=in:2018-03-22 15\\:26:Cool!\n]",
         "expected_output": "[\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Hello, how are you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Hi, good thanks\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"How about you?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Yes, fine thanks. What are you up to?\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"out\",\n            \"date_time\": \"2018-03-22 15:25\",\n            \"message\": \"Just testing out MODL\",\n            \"method\": \"sms\"\n        }\n    },\n    {\n        \"message\": {\n            \"direction\": \"in\",\n            \"date_time\": \"2018-03-22 15:26\",\n            \"message\": \"Cool!\",\n            \"method\": \"sms\"\n        }\n    }\n]",
         "tested_features": [
             "object_ref",
             "load"
         ],
-        "minimised_modl": "*L=grammar_tests/test_import_dir/test_import.txt;[m=out:2018-03-22 15~:25:Hi;m=in:2018-03-22 15~:26:Hello, how are you?;m=out:2018-03-22 15~:25:Hi, good thanks;m=out:2018-03-22 15~:26:How about you?;m=in:2018-03-22 15~:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15~:25:Just testing out MODL;m=in:2018-03-22 15~:26:Cool!]"
+        "minimised_modl": "*L=../grammar/tests/test_import_dir/test_import.txt;[m=out:2018-03-22 15\\:25:Hi;m=in:2018-03-22 15\\:26:Hello, how are you?;m=out:2018-03-22 15\\:25:Hi, good thanks;m=out:2018-03-22 15\\:26:How about you?;m=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15\\:25:Just testing out MODL;m=in:2018-03-22 15\\:26:`Cool!`]"
     },
     {
         "id": "187",
@@ -2019,7 +2019,7 @@
             "nbArray",
             "null"
         ],
-        "minimised_modl": "5"
+        "minimised_modl": "o=1:2::4:5"
     },
     {
         "id": "212",
@@ -2049,7 +2049,7 @@
         "tested_features": [
             "pair"
         ],
-        "minimised_modl": "o=1 2 3 4 5"
+        "minimised_modl": "o[1 2 3 4 5]"
     },
     {
         "id": "215",
@@ -2059,7 +2059,7 @@
             "pair",
             "graves"
         ],
-        "minimised_modl": "o=`ok`"
+        "minimised_modl": "o=ok"
     },
     {
         "id": "216",
@@ -2078,7 +2078,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(numbers=[[1;2;3;4;5];[6;7;8;9;10]]);testing=%test.numbers.0.0"
+        "minimised_modl": "_test(numbers=[1;2;3;4;5]:[6;7;8;9;10]);testing=%test.numbers.0.0"
     },
     {
         "id": "218",
@@ -2087,7 +2087,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(numbers=(one=1));testing=this is a string that includes a reference with a letter s after it %test.numbers.one%s"
+        "minimised_modl": "_test(numbers(one=1));testing=this is a string that includes a reference with a letter s after it %test.numbers.one%s"
     },
     {
         "id": "219",
@@ -2097,7 +2097,7 @@
             "object_ref",
             "string_method"
         ],
-        "minimised_modl": "_test=(numbers=(v=TEST));testing=this is a string that includes extra transforms for the value %test.numbers.v.d%_value"
+        "minimised_modl": "_test(numbers(v=TEST));testing=this is a string that includes extra transforms for the value %test.numbers.v.d%_value"
     },
     {
         "id": "220",
@@ -2107,7 +2107,7 @@
             "object_ref",
             "string_method"
         ],
-        "minimised_modl": "_test=(first=(v=TEST);second=(v=TEST2));testing=this is a string that includes extra transforms for the value %test.second.v.d%_value"
+        "minimised_modl": "_test(first(v=TEST);second(v=TEST2));testing=this is a string that includes extra transforms for the value %test.second.v.d%_value"
     },
     {
         "id": "221",
@@ -2117,7 +2117,7 @@
             "object_ref",
             "graves"
         ],
-        "minimised_modl": "_test=(first=(v1=one);second=(v2=two:three));testing=%test.second.v2.1"
+        "minimised_modl": "_test(first(v1=one);second(v2=two:three));testing=%test.second.v2.1"
     },
     {
         "id": "222",
@@ -2126,7 +2126,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(first=(v1=[one]);second=(v2=two:three));testing=%test.first.v1.0%%test.second.v2.0%%test.second.v2.1"
+        "minimised_modl": "_test(first(v1[one]);second(v2=two:three));testing=%test.first.v1.0%%test.second.v2.0%%test.second.v2.1"
     },
     {
         "id": "223",
@@ -2135,7 +2135,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(first=(v1=(one=(two=three))));testing=%test.first.v1.one.two"
+        "minimised_modl": "_test(first(v1(one(two=three))));testing=%test.first.v1.one.two"
     },
     {
         "id": "224",
@@ -2144,7 +2144,7 @@
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "b=2;c=2;d=2;e=2;a={{b=c & d=e}?v1:v2:v3/?v4:v5:v6}"
+        "minimised_modl": "b=2;c=2;d=2;e=2;a={{b=c&d=e}?[v1;v2;v3]/?[v4;v5;v6]}"
     },
     {
         "id": "225",
@@ -2171,7 +2171,7 @@
         "tested_features": [
             "array"
         ],
-        "minimised_modl": "o=[1;2;3;4;5]"
+        "minimised_modl": "o=1:2:3:4:5"
     },
     {
         "id": "228",
@@ -2189,7 +2189,7 @@
         "tested_features": [
             "undefined"
         ],
-        "minimised_modl": "o=[1\n2\n3\n4\n5]"
+        "minimised_modl": "o=1:2:3:4:5"
     },
     {
         "id": "230",
@@ -2243,7 +2243,7 @@
         "tested_features": [
             "pair"
         ],
-        "minimised_modl": "o=\"\""
+        "minimised_modl": "o=``"
     },
     {
         "id": "236",
@@ -2252,7 +2252,7 @@
         "tested_features": [
             "undefined"
         ],
-        "minimised_modl": "_test=(numbers=[[1;2;3;4;5];[6;7;8;9;10]]);testing=%test.numbers.0.0"
+        "minimised_modl": "_test(numbers=[1;2;3;4;5]:[6;7;8;9;10]);testing=%test.numbers.0.0"
     },
     {
         "id": "237",
@@ -2261,7 +2261,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_test=(numbers=(\"one\"=1));testing = this is a string that includes a reference with a letter s after it %%test.numbers.one%s"
+        "minimised_modl": "_test(numbers(one=1));testing=this is a string that includes a reference with a letter s after it %test.numbers.one%s"
     },
     {
         "id": "238",
@@ -2316,7 +2316,7 @@
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "tony=hungry;needs_food_1={tony=hungry?true/?false};needs_food_2={!tony=hungry?false/?true};needs_food_3={tony!=hungry?false/?true};needs_food_4={!tony!=hungry?true/?false}"
+        "minimised_modl": "tony=hungry;needs_food_1={tony=hungry?01/?00};needs_food_2={!tony=hungry?00/?01};needs_food_3={tony!=hungry?00/?01};needs_food_4={!tony!=hungry?01/?00}"
     },
     {
         "id": "244",
@@ -2326,7 +2326,7 @@
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "_c=de\nresult={c!=de/at?German or Austrian/?Other}"
+        "minimised_modl": "_c=de;result={c!=de/at?German or Austrian/?Other}"
     },
     {
         "id": "245",
@@ -2336,7 +2336,7 @@
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "_test = 1\nresult={!test!=1?one/?Other}"
+        "minimised_modl": "_test=1;result={!test!=1?one/?Other}"
     },
     {
         "id": "246",
@@ -2346,7 +2346,7 @@
             "array",
             "pair"
         ],
-        "minimised_modl": "x=[1;2:3:4]"
+        "minimised_modl": "x=1:[2;3;4]"
     },
     {
         "id": "247",
@@ -2355,7 +2355,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_x=[1;2:3:4]\na=%x.1.1"
+        "minimised_modl": "_x=1:[2;3;4];a=%x.1.1"
     },
     {
         "id": "248",
@@ -2366,7 +2366,7 @@
             "map",
             "null"
         ],
-        "minimised_modl": "x=[1;;;;;;;2:::::::::3;;;;;;;;;;4:::::::::5]"
+        "minimised_modl": "x=1:::::::[2;;;;;;;;;3]::::::::::[4;;;;;;;;;5]"
     },
     {
         "id": "249",
@@ -2375,7 +2375,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=p;*name=person;*superclass=map;actions=[call;email]);*class(*id=c;*name=customer;*superclass=person;*assign=[[title;name;email]]);*class(*id=e;*name=employee;*superclass=person;*assign=[[title;name;job_title;email]]);[## An employee:;e=Mr:John Smith:Sales Director:john.smith@example.com;## A customer:;c=Mr:Joe Bloggs:joe.bloggs@example.com;## Another customer:;c=Mrs:Jane Wilson:jane.wilson@example.com]"
+        "minimised_modl": "*c(*i=p;*n=person;*s=map;actions=call:email);*c(*i=c;*n=customer;*s=person;*a[[title;name;email]]);*c(*i=e;*n=employee;*s=person;*a[[title;name;job_title;email]]);[e=Mr:John Smith:Sales Director:john.smith@example.com;c=Mr:Joe Bloggs:joe.bloggs@example.com;c=Mrs:Jane Wilson:jane.wilson@example.com]"
     },
     {
         "id": "250",
@@ -2394,7 +2394,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=b"
+        "minimised_modl": "*c(*i=a;*n=alpha);a=b"
     },
     {
         "id": "252",
@@ -2404,7 +2404,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=1"
+        "minimised_modl": "*c(*i=a;*n=alpha);a=1"
     },
     {
         "id": "253",
@@ -2414,7 +2414,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=true"
+        "minimised_modl": "*c(*i=a;*n=alpha);a=01"
     },
     {
         "id": "254",
@@ -2424,7 +2424,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=null"
+        "minimised_modl": "*c(*i=a;*n=alpha);a=000"
     },
     {
         "id": "255",
@@ -2434,7 +2434,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=[1;2;3];b=4:5:6"
+        "minimised_modl": "*c(*i=a;*n=alpha);a=1:2:3;b=4:5:6"
     },
     {
         "id": "256",
@@ -2444,7 +2444,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=(b=c)"
+        "minimised_modl": "*c(*i=a;*n=alpha);a(b=c)"
     },
     {
         "id": "257",
@@ -2454,7 +2454,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;x=\"test\");a=1"
+        "minimised_modl": "*c(*i=a;*n=alpha;x=test);a=1"
     },
     {
         "id": "258",
@@ -2464,7 +2464,7 @@
             "class",
             "superclass_inference"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*assign[[x]]);a=1\n"
+        "minimised_modl": "*c(*i=a;*n=alpha;*a[[x]]);a=1"
     },
     {
         "id": "259",
@@ -2474,7 +2474,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=str);a=1"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=str);a=1"
     },
     {
         "id": "260",
@@ -2484,7 +2484,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=str);a=true"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=str);a=01"
     },
     {
         "id": "261",
@@ -2494,7 +2494,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=1\n"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=num);a=1"
     },
     {
         "id": "262",
@@ -2504,7 +2504,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=true"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=num);a=01"
     },
     {
         "id": "263",
@@ -2514,7 +2514,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=false"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=num);a=00"
     },
     {
         "id": "264",
@@ -2524,7 +2524,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha);a=false"
+        "minimised_modl": "*c(*i=a;*n=alpha);a=00"
     },
     {
         "id": "265",
@@ -2543,7 +2543,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=b"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=arr);a=b"
     },
     {
         "id": "267",
@@ -2553,7 +2553,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map);a=b"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=map);a=b"
     },
     {
         "id": "268",
@@ -2563,7 +2563,7 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map);a=(c=d)"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=map);a(c=d)"
     },
     {
         "id": "269",
@@ -2573,25 +2573,25 @@
             "class",
             "superclass"
         ],
-        "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=[1;2;3]"
+        "minimised_modl": "*c(*i=a;*n=alpha;*s=arr);a=1:2:3"
     },
     {
         "id": "270",
-        "input": "*L=[grammar_tests/1;grammar_tests/1];a=1",
+        "input": "*L=[../grammar/tests/1;../grammar/tests/1];a=1",
         "expected_output": "{\n    \"a\": 1\n}",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*L=[grammar_tests/1;grammar_tests/1];a=1"
+        "minimised_modl": "*L=../grammar/tests/1:../grammar/tests/1;a=1"
     },
     {
         "id": "271",
-        "input": "*L=grammar_tests/1:grammar_tests/1;a=1",
+        "input": "*L=../grammar/tests/1:../grammar/tests/1;a=1",
         "expected_output": "{\n    \"a\": 1\n}",
         "tested_features": [
             "load"
         ],
-        "minimised_modl": "*L=grammar_tests/1:grammar_tests/1;a=1"
+        "minimised_modl": "*l=../grammar/tests/1:../grammar/tests/1;a=1"
     },
     {
         "id": "272",
@@ -2613,13 +2613,13 @@
     },
     {
         "id": "274",
-        "input": "{\n  !one?\n     _one=c\n};\n{\n  !two?\n     _two=d\n};\n\n_file = %one%-%two;\n{\n  file=a-b/c-d/e-f?\n    *LOAD=\"grammar_tests/files/%file%.txt!\"\n  /?\n    *LOAD=\"grammar_tests/files/a-b.txt!\"\n};\n\no=%ref.o.name",
+        "input": "{\n  !one?\n     _one=c\n};\n{\n  !two?\n     _two=d\n};\n\n_file = %one%-%two;\n{\n  file=a-b/c-d/e-f?\n    *LOAD=\"../grammar/tests/files/%file%.txt!\"\n  /?\n    *LOAD=\"../grammar/tests/files/a-b.txt!\"\n};\n\no=%ref.o.name",
         "expected_output": "{\n    \"o\": \"otter\"\n}",
         "tested_features": [
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "{!one?_one=c};{!two?_two=d};_file = %one%-%two;{file=a-b/c-d/e-f?*LOAD=\"grammar_tests/files/%file%.txt!\"/?*LOAD=\"grammar_tests/files/a-b.txt!\"};o=%ref.o.name"
+        "minimised_modl": "{!one?_one=c};{!two?_two=d};_file=%one%-%two;{file=a-b/c-d/e-f?*LOAD=`../grammar/tests/files/%file%.txt!`/?*LOAD=`../grammar/tests/files/a-b.txt!`};o=%ref.o.name"
     },
     {
         "id": "275",
@@ -2673,7 +2673,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_a=one;_b=two;_c=three;d=%a:%b:%c;e=[%a;%b;%c]"
+        "minimised_modl": "_a=one;_b=two;_c=three;d=%a:%b:%c;e=%a:%b:%c"
     },
     {
         "id": "281",
@@ -2700,7 +2700,7 @@
         "tested_features": [
             "graves"
         ],
-        "minimised_modl": "_x=abc;y=`%x`"
+        "minimised_modl": "_x=abc;y=%x"
     },
     {
         "id": "284",
@@ -2709,7 +2709,7 @@
         "tested_features": [
             "quotes"
         ],
-        "minimised_modl": "_x=abc;y=\"abc\""
+        "minimised_modl": "_x=abc;y=%x"
     },
     {
         "id": "285",
@@ -2718,7 +2718,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_replace_me=new value;one=%replace_me.u;two=`replace_me`.u;three=`replace_me.u`;four=`%replace_me.u`;five=`%replace_me`.u;six=%replace_me.u%_added;seven=replace_me.u;eight=%`replace_me`.u;nine=%`replace_me`.u%;"
+        "minimised_modl": "_replace_me=new value;one=%replace_me.u;two=`replace_me`.u;three=replace_me.u;four=%replace_me.u;five=`%replace_me`.u;six=%replace_me.u%_added;seven=replace_me.u;eight=%`replace_me`.u;nine=%`replace_me`.u%"
     },
     {
         "id": "286",
@@ -2736,7 +2736,7 @@
         "tested_features": [
             "quotes"
         ],
-        "minimised_modl": "key=\"value\""
+        "minimised_modl": "key=value"
     },
     {
         "id": "288",
@@ -2745,7 +2745,7 @@
         "tested_features": [
             "graves"
         ],
-        "minimised_modl": "key=`value`"
+        "minimised_modl": "key=value"
     },
     {
         "id": "289",
@@ -2764,7 +2764,7 @@
             "object_ref",
             "quotes"
         ],
-        "minimised_modl": "_test=abc;key=\"%test\""
+        "minimised_modl": "_test=abc;key=%test"
     },
     {
         "id": "291",
@@ -2774,7 +2774,7 @@
             "object_ref",
             "graves"
         ],
-        "minimised_modl": "_test=abc;key=`%test`"
+        "minimised_modl": "_test=abc;key=%test"
     },
     {
         "id": "292",
@@ -2784,7 +2784,7 @@
             "quotes",
             "graves"
         ],
-        "minimised_modl": "key=\"this is a `%test`\""
+        "minimised_modl": "key=this is a `%test`"
     },
     {
         "id": "293",
@@ -2794,7 +2794,7 @@
             "quotes",
             "graves"
         ],
-        "minimised_modl": "key=\"string including ` a single grave\""
+        "minimised_modl": "key=string including ` a single grave"
     },
     {
         "id": "294",
@@ -2804,7 +2804,7 @@
             "quotes",
             "graves"
         ],
-        "minimised_modl": "key=\"string including some `graved text` here\""
+        "minimised_modl": "key=string including some `graved text` here"
     },
     {
         "id": "295",
@@ -2814,7 +2814,7 @@
             "quotes",
             "graves"
         ],
-        "minimised_modl": "key=`string including \" a quote`"
+        "minimised_modl": "key=string including ~\" a quote"
     },
     {
         "id": "296",
@@ -2952,7 +2952,7 @@
             "object_ref",
             "graves"
         ],
-        "minimised_modl": "_vat=20;key=`vat rate is %vat%%`"
+        "minimised_modl": "_vat=20;key=vat rate is %vat%%"
     },
     {
         "id": "310",
@@ -2962,7 +2962,7 @@
             "object_ref",
             "quotes"
         ],
-        "minimised_modl": "_vat=20;key=\"vat rate is %vat%%\""
+        "minimised_modl": "_vat=20;key=vat rate is %vat%%"
     },
     {
         "id": "311",
@@ -2972,7 +2972,7 @@
             "objetct_ref",
             "graves"
         ],
-        "minimised_modl": "_vat=20;key=\"vat rate is %vat%`%`\""
+        "minimised_modl": "_vat=20;key=vat rate is %vat%`%`"
     },
     {
         "id": "312",
@@ -2982,7 +2982,7 @@
             "object_ref",
             "graves"
         ],
-        "minimised_modl": "_vat=20;key=\"vat rate is %vat`%`\""
+        "minimised_modl": "_vat=20;key=vat rate is %vat`%`"
     },
     {
         "id": "313",
@@ -2992,7 +2992,7 @@
             "punycode",
             "methods"
         ],
-        "minimised_modl": "_test1=e1afmkfd;russian1=%test1.p;_test2=\"e1afmkfd\";russian2=%test2.p;_test3=`e1afmkfd`;russian3=%test3.p;"
+        "minimised_modl": "_test1=e1afmkfd;russian1=%test1.p;_test2=e1afmkfd;russian2=%test2.p;_test3=e1afmkfd;russian3=%test3.p"
     },
     {
         "id": "314",
@@ -3001,7 +3001,7 @@
         "tested_features": [
             "escape"
         ],
-        "minimised_modl": "_letters=abc;key=\"~%letters\""
+        "minimised_modl": "_letters=abc;key=`~%letters`"
     },
     {
         "id": "315",
@@ -3010,7 +3010,7 @@
         "tested_features": [
             "escape"
         ],
-        "minimised_modl": "_letters=abc;key=\"\\%letters\""
+        "minimised_modl": "_letters=abc;key=`\\%letters`"
     },
     {
         "id": "316",
@@ -3028,7 +3028,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=numbers;*assign=[[one;two;three]]);*class(*id=letters;*assign=[[a;b;c]]);*class(*id=myArray;*assign=[[letters;numbers]]);myArray=[[a;b;c];[1;2;3]]"
+        "minimised_modl": "*c(*i=numbers;*a[[one;two;three]]);*c(*i=letters;*a[[a;b;c]]);*c(*i=myArray;*a[[letters;numbers]]);myArray=[a;b;c]:[1;2;3]"
     },
     {
         "id": "318",
@@ -3037,7 +3037,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=root;*assign=[[myArray]]);*class(*id=numbers;*assign=[[one;two;three]]);*class(*id=letters;*assign=[[a;b;c]]);*class(*id=myArray;*assign=[[letters;numbers]]);[[a;b;c];[1;2;3]]"
+        "minimised_modl": "*c(*i=root;*a[[myArray]]);*c(*i=numbers;*a[[one;two;three]]);*c(*i=letters;*a[[alpha;bravo;charlie]]);*c(*i=myArray;*a[[letters;numbers]]);[[a;b;c];[1;2;3]]"
     },
     {
         "id": "319",
@@ -3046,7 +3046,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=root;*assign=[[people]]);*class(*id=people;*assign=[[person*]]);*class(*id=person;*assign=[[first;last;age]]);[[John;Smith;20];[Jane;Jones;21]]"
+        "minimised_modl": "*c(*i=root;*a[[people]]);*c(*i=people;*a[[person*]]);*c(*i=person;*a[[first;last;age]]);[[John;Smith;20];[Jane;Jones;21]]"
     },
     {
         "id": "320",
@@ -3055,7 +3055,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=m;*name=message;*superclass=map;*assign=[[direction;date_time;message]];method=sms);[m=out:2018-03-22 15\\:25:Hi;m=in:2018-03-22 15\\:26:Hello, how are you?;m=out:2018-03-22 15\\:25:Hi, good thanks;m=out:2018-03-22 15\\:26:How about you?;m=in:2018-03-22 1\\:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15\\:25:Just testing out MODL;m=in:2018-03-22 15\\:26:Cool!]"
+        "minimised_modl": "*c(*i=m;*n=message;*s=map;*a[[direction;date_time;message]];method=sms);[m=out:2018-03-22 15\\:25:Hi;m=in:2018-03-22 15\\:26:Hello, how are you?;m=out:2018-03-22 15\\:25:Hi, good thanks;m=out:2018-03-22 15\\:26:How about you?;m=in:2018-03-22 15\\:26:Yes, fine thanks. What are you up to?;m=out:2018-03-22 15\\:25:Just testing out MODL;m=in:2018-03-22 15\\:26:`Cool!`]"
     },
     {
         "id": "321",
@@ -3114,7 +3114,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=v;*name=variants;*assign=[[variant*]]);*class(*id=variant;*assign=[[key1;key2;key3]]);v[[one;two;three];[four;five;six]]"
+        "minimised_modl": "*c(*i=v;*n=variants;*a[[variant*]]);*c(*i=variant;*a[[key1;key2;key3]]);v=[one;two;three]:[four;five;six]"
     },
     {
         "id": "327",
@@ -3123,7 +3123,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=v;*name=variants;*assign=[[variant*]]);*class(*id=variant;*assign=[[key1;key2;key3]]);v[one:two:three]"
+        "minimised_modl": "*c(*i=v;*n=variants;*a[[variant*]]);*c(*i=variant;*a[[key1;key2;key3]]);v[[one;two;three]]"
     },
     {
         "id": "328",
@@ -3132,7 +3132,7 @@
         "tested_features": [
             "class"
         ],
-        "minimised_modl": "*class(*id=i;*name=images);*class(*id=n;*name=name);*class(*id=t;*name=type);*class(*id=u;*name=url);*class(*id=m;*name=mime);*class(*id=w;*name=width);*class(*id=h;*name=height);*class(*id=v;*name=variants;*assign=[[variant*]]);*class(*id=variant;*assign=[[u;m;w;h]]\n);\n\n_U(\n  ## Logo hosting URLs\n  l=\"https://www.logos.uk/num/\"\n);\n\n_M(\n  ## MIME types\n  p=\"image/png\"\n);i[(t=logo;v[(u=`http://www.bupa.com/~/media/images/site-specific-images/corporate-images/content%20block%20images/dad-kissing-daughter.jpg`;m=image/jpeg;w=541;h=281)]);(t=logo;v[(u=`https://www.bupa.com/favicon.ico`;m=image/jpeg;w=16;h=16)])]"
+        "minimised_modl": "*c(*i=i;*n=images);*c(*i=n;*n=name);*c(*i=t;*n=type);*c(*i=u;*n=url);*c(*i=m;*n=mime);*c(*i=w;*n=width);*c(*i=h;*n=height);*c(*i=v;*n=variants;*a[[variant*]]);*c(*i=variant;*a[[u;m;w;h]]);_U(l=https~://www.logos.uk/num/);_M(p=image/png);i=(t=logo;v[(u=`http://www.bupa.com/~/media/images/site-specific-images/corporate-images/content%20block%20images/dad-kissing-daughter.jpg`;m=image/jpeg;w=541;h=281)]):(t=logo;v[(u=https~://www.bupa.com/favicon.ico;m=image/jpeg;w=16;h=16)])"
     },
     {
         "id": "329",
@@ -3141,7 +3141,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "*load=\"http://modules.num.uk/3/rcf.txt!\";_n=1;?=tesco.com;i(t=icon;v[%U.l%%0%.png:%M.p%:300:300])"
+        "minimised_modl": "*l=`http://modules.num.uk/3/rcf.txt!`;_n=1;?=tesco.com;i(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])"
     },
     {
         "id": "330",
@@ -3150,7 +3150,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_u=[\"https://www.logos.uk/\"];l=%u.0%logo.png"
+        "minimised_modl": "_u[https~://www.logos.uk/];l=%u.0%logo.png"
     },
     {
         "id": "331",
@@ -3159,7 +3159,7 @@
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "_C=gb;_L=en;*load=\"http://modules.num.uk/1/rcf.txt!\";o(c[fb=abc;tw=abc])"
+        "minimised_modl": "_C=gb;_L=en;*l=`http://modules.num.uk/1/rcf.txt!`;o(c[fb=abc;tw=abc])"
     },
     {
         "id": "332",
@@ -3169,6 +3169,15 @@
             "unicode",
             "escapes"
         ],
-        "minimised_modl": "test=\\~u1f60000"
+        "minimised_modl": "test=~u1f60000"
+    },
+    {
+        "id": "333",
+        "input": "*L=https~://www.modl.uk/tests/message-thread.txt;\n\nclasses=*class",
+        "expected_output": "{\n    \"classes\": \"*class\"\n}",
+        "tested_features": [
+            "load"
+        ],
+        "minimised_modl": "*L=https~://www.modl.uk/tests/message-thread.txt;classes=*class"
     }
 ]
