@@ -619,7 +619,7 @@
     {
         "id": "67",
         "input": "_a=3;_b=3;c={a=b?true/?false}",
-        "expected_output": "{\n    \"c\": true\n}",
+        "expected_output": "{\n    \"c\": false\n}",
         "tested_features": [
             "object_ref",
             "conditional"
@@ -648,7 +648,7 @@
     {
         "id": "70",
         "input": "_a=1;\n_b=1;\nx={a=b?}",
-        "expected_output": "{\n    \"x\": true\n}",
+        "expected_output": "{\n    \"x\": false\n}",
         "tested_features": [
             "object_ref",
             "conditional"
@@ -1310,13 +1310,13 @@
     },
     {
         "id": "139",
-        "input": "_num1 = 2;\n_num2 = 1000;\n\nresult={\n num1>num2?\n   num1 is bigger\n /?\n   num1 is not bigger\n}\n",
+        "input": "_num1 = 2;\n_num2 = 1000;\n\nresult={\n num1>%num2?\n   num1 is bigger\n /?\n   num1 is not bigger\n}\n",
         "expected_output": "{\n    \"result\": \"num1 is not bigger\"\n}",
         "tested_features": [
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "_num1=2;_num2=1000;result={num1>num2?num1 is bigger/?num1 is not bigger}"
+        "minimised_modl": "_num1=2;_num2=1000;result={num1>%num2?num1 is bigger/?num1 is not bigger}"
     },
     {
         "id": "140",
@@ -1338,13 +1338,13 @@
     },
     {
         "id": "142",
-        "input": "_num1 = 5;\n_num2 = 2;\n\nresult={\n num1>num2?\n   num1 is bigger\n /?\n   num1 is not bigger\n}",
+        "input": "_num1 = 5;\n_num2 = 2;\n\nresult={\n num1>%num2?\n   num1 is bigger\n /?\n   num1 is not bigger\n}",
         "expected_output": "{\n    \"result\": \"num1 is bigger\"\n}",
         "tested_features": [
             "object_ref",
             "conditional"
         ],
-        "minimised_modl": "_num1=5;_num2=2;result={num1>num2?num1 is bigger/?num1 is not bigger}"
+        "minimised_modl": "_num1=5;_num2=2;result={num1>%num2?num1 is bigger/?num1 is not bigger}"
     },
     {
         "id": "143",
@@ -2139,12 +2139,12 @@
     },
     {
         "id": "224",
-        "input": "b=2;\nc=2;\nd=2;\ne=2;\na={\n  {b=c & d=e}?\n    v1:v2:v3\n  /?\n    v4:v5:v6\n  }",
+        "input": "b=2;\nc=2;\nd=2;\ne=2;\na={\n  {b=%c & d=%e}?\n    v1:v2:v3\n  /?\n    v4:v5:v6\n  }",
         "expected_output": "{\n    \"b\": 2,\n    \"c\": 2,\n    \"d\": 2,\n    \"e\": 2,\n    \"a\": [\n        \"v1\",\n        \"v2\",\n        \"v3\"\n    ]\n}",
         "tested_features": [
             "conditional"
         ],
-        "minimised_modl": "b=2;c=2;d=2;e=2;a={{b=c&d=e}?[v1;v2;v3]/?[v4;v5;v6]}"
+        "minimised_modl": "b=2;c=2;d=2;e=2;a={{b=%c&d=%e}?[v1;v2;v3]/?[v4;v5;v6]}"
     },
     {
         "id": "225",
