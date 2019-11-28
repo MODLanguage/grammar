@@ -2814,7 +2814,7 @@
             "quotes",
             "graves"
         ],
-        "minimised_modl": "key=string including ~\" a quote"
+        "minimised_modl": "key=`string including \" a quote`"
     },
     {
         "id": "296",
@@ -2844,7 +2844,7 @@
             "quotes",
             "graves"
         ],
-        "minimised_modl": "key=`this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way``"
+        "minimised_modl": "key=this `could` be `a` controversial `test` because `the` grammar `splits` this `string` in `a` different `way`"
     },
     {
         "id": "299",
