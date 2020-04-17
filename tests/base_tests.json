@@ -3136,12 +3136,12 @@
     },
     {
         "id": "329",
-        "input": "*load=\"http://modules.num.uk/3/rcf.txt!\";_n=1;?=tesco.com;i(t=icon;v[%U.l%%0%.png:%M.p%:300:300])",
-        "expected_output": "{\n    \"images\": {\n        \"type\": \"icon\",\n        \"variants\": [\n            {\n                \"url\": \"https://www.logos.uk/num/tesco.com.png\",\n                \"mime\": \"image/png\",\n                \"width\": 300,\n                \"height\": 300\n            }\n        ]\n    }\n}",
+        "input": "*load=\"http://modules.num.uk/3/rcf.txt!\";_n=1;?=tesco.com;i[(t=icon;v[%U.l%%0%.png:%M.p%:300:300])]",
+        "expected_output": "{\"images\":[{\"type\":\"icon\",\"variants\":[{\"url\":\"https://www.logos.uk/num/tesco.com.png\",\"mime\":\"image/png\",\"width\":300,\"height\":300}]}]}",
         "tested_features": [
             "object_ref"
         ],
-        "minimised_modl": "*l=`http://modules.num.uk/3/rcf.txt!`;_n=1;?=tesco.com;i(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])"
+        "minimised_modl": "*l=`http://modules.num.uk/3/rcf.txt!`;_n=1;?=tesco.com;i[(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])]"
     },
     {
         "id": "330",
