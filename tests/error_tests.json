@@ -161,13 +161,6 @@
     "minimised_modl": "$x=y"
   },
   {
-    "id": 24,
-    "input": "@x=y",
-    "expected_output": "Interpreter Error: Invalid key - \"@\" character not allowed: @x",
-    "tested_features": ["errors"],
-    "minimised_modl": "@x=y"
-  },
-  {
     "id": 25,
     "input": "-x=y",
     "expected_output": "Interpreter Error: Invalid key - \"-\" character not allowed: -x",
@@ -271,13 +264,6 @@
     "expected_output": "Interpreter Error: Invalid key - \"!\" character not allowed: _12!3",
     "tested_features": ["errors"],
     "minimised_modl": "_12!3=1"
-  },
-  {
-    "id": 40,
-    "input": "_12@3=1",
-    "expected_output": "Interpreter Error: Invalid key - \"@\" character not allowed: _12@3",
-    "tested_features": ["errors"],
-    "minimised_modl": "_12@3=1"
   },
   {
     "id": 41,

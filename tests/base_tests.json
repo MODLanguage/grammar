@@ -3162,5 +3162,14 @@
       "load"
     ],
     "minimised_modl": "*L=https~://www.modl.uk/tests/message-thread.txt;classes=*class"
+  },
+  {
+    "id": "334",
+    "input": "@a=b",
+    "expected_output": "{\"@a\": \"b\"}",
+    "tested_features": [
+      "@keys"
+    ],
+    "minimised_modl": "@a=b"
   }
 ]
