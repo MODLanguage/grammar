@@ -107,7 +107,7 @@
   {
     "id": 16,
     "input": "*class(*id=n;*name=name;*superclass=num);n=Elliott",
-    "expected_output": "Superclass of \"n\" is num - cannot assign value \"Elliott\"",
+    "expected_output": "Interpreter Error: Superclass of \"n\" is num - cannot assign value \"Elliott\"",
     "tested_features": ["errors"],
     "minimised_modl": "*class(*id=n;*name=name;*superclass=num);n=Elliott"
   },
@@ -247,7 +247,7 @@
   {
     "id": 36,
     "input": "?=1:2:3:4;_12%3=1",
-    "expected_output": "Interpreter Error: Invalid key - \"124\" - entirely numeric keys are not allowed: _124",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: _12%3",
     "tested_features": ["errors"],
     "minimised_modl": "?=1:2:3:4;_12%3=1"
   },
@@ -345,14 +345,14 @@
   {
     "id": 50,
     "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.0",
-    "expected_output": "Interpreter Error: Found a map when expecting an array",
+    "expected_output": "Interpreter Error: Invalid object reference: \"%test.first.v1.0.0\"",
     "tested_features": ["errors"],
     "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.0"
   },
   {
     "id": 51,
     "input": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.ones",
-    "expected_output": "Interpreter Error: Invalid object reference: \"this is a string that includes a reference with a letter s after it %test.numbers.ones\"",
+    "expected_output": "Interpreter Error: Invalid object reference: \"%test.numbers.ones\"",
     "tested_features": ["errors"],
     "minimised_modl": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.ones"
   },
@@ -485,21 +485,21 @@
   {
     "id": 70,
     "input": "*class(*id=a;*name=alpha;*superclass=num);a=null",
-    "expected_output": "Superclass of \"a\" is num - cannot assign value \"\"",
+    "expected_output": "Interpreter Error: Superclass of \"a\" is num - cannot assign value \"000\"",
     "tested_features": ["errors"],
     "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=null"
   },
   {
     "id": 71,
     "input": "*class(*id=a;*name=alpha;*superclass=num);a=x",
-    "expected_output": "Superclass of \"a\" is num - cannot assign value \"x\"",
+    "expected_output": "Interpreter Error: Superclass of \"a\" is num - cannot assign value \"x\"",
     "tested_features": ["errors"],
     "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=x"
   },
   {
     "id": 72,
     "input": "*class(*id=a;*name=alpha;*superclass=num);a=null",
-    "expected_output": "Superclass of \"a\" is num - cannot assign value \"\"",
+    "expected_output": "Interpreter Error: Superclass of \"a\" is num - cannot assign value \"000\"",
     "tested_features": ["errors"],
     "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=null"
   },
@@ -513,7 +513,7 @@
   {
     "id": 74,
     "input": "*class(*id=a;*name=alpha;*superclass=arr);a=(c=d)",
-    "expected_output": "Interpreter Error: Cannot convert map to array: {\"c\"=>\"d\"}",
+    "expected_output": "Interpreter Error: Cannot convert map to array: Map(mapItems=Vector(Pair(key=c, value=d)))",
     "tested_features": ["errors"],
     "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=(c=d)"
   },
@@ -523,5 +523,71 @@
     "expected_output": "Interpreter Error: Cannot load multiple files after *LOAD instruction",
     "tested_features": ["errors"],
     "minimised_modl": "*L=../grammar/tests/test_import_dir/nested_import1.txt;files=%*load"
+  },
+  {
+    "id": 76,
+    "input": "?=a:b:c:d;12%3=1",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: 12%3",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "?=a:b:c:d;12%3=1"
+  },
+  {
+    "id": "77",
+    "input": "\"%`80aafnhi4ae`.p.u\"=%`lsa12dvaxki`.p.u",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %`80aafnhi4ae`.p.u",
+    "tested_features": [
+      "puny",
+      "string_method"
+    ],
+    "minimised_modl": "%`80aafnhi4ae`.p.u=%`lsa12dvaxki`.p.u"
+  },
+  {
+    "id": "78",
+    "input": "(\n  _name = John;\n  %name.u = \"Developer\";\n  foo = %name.u\n)",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name.u",
+    "tested_features": [
+      "string_method"
+    ],
+    "minimised_modl": "(_name=John;%name.u=Developer;foo=%name.u)"
+  },
+  {
+    "id": "79",
+    "input": "(\n  _name = John;\n  %name.u = \"Developer\";\n  foo = %JOHN\n)",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name.u",
+    "tested_features": [
+      "string_method",
+      "object_ref"
+    ],
+    "minimised_modl": "(_name=John;%name.u=Developer;foo=%JOHN)"
+  },
+  {
+    "id": "80",
+    "input": "(\n  _name = John;\n  %name = \"Developer\";\n  foo = %John\n)",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name",
+    "tested_features": [
+      "object_ref"
+    ],
+    "minimised_modl": "(_name=John;%name=Developer;foo=%John)"
+  },
+  {
+    "id": "81",
+    "input": "_person(  \n name(\n   speak=say;\n   first=John;\n   last=Smith\n )\n);\njust %person.name.speak.u%_this=Hello %person.name.first.d!",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: just %person.name.speak.u%_this",
+    "tested_features": [
+      "string_method",
+      "object_ref"
+    ],
+    "minimised_modl": "_person(name(speak=say;first=John;last=Smith));just %person.name.speak.u%_this=`Hello %person.name.first.d!`"
+  },
+  {
+    "id": "82",
+    "input": "_name = John;\n%name = \"123\"",
+    "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name",
+    "tested_features": [
+      "object_ref"
+    ],
+    "minimised_modl": "_name=John;%name=`123`"
   }
 ]
