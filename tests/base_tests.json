@@ -3225,5 +3225,14 @@
       "class"
     ],
     "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=admin;_b=bravo;_c=charlie;_n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]"
+  },
+  {
+    "id": "341",
+    "input": "[1;2;3];(b=c);[4;5;6];(d=f)",
+    "expected_output": "[[1,2,3],{\"b\":\"c\"},[4,5,6],{\"d\":\"f\"}]",
+    "tested_features": [
+      "arrays"
+    ],
+    "minimised_modl": "[1;2;3];(b=c);[4;5;6];(d=f)"
   }
 ]
