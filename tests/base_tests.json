@@ -3171,5 +3171,59 @@
       "@keys"
     ],
     "minimised_modl": "@a=b"
+  },
+  {
+    "id": "335",
+    "input": "country = gb;\nsupport_contact = {\n%_country=gb?\n  John Smith\n/%_country=us?\n  John Doe \n/?\n  None \n}",
+    "expected_output": "{\"country\":\"gb\",\"support_contact\":\"John Smith\"}",
+    "tested_features": [
+      "conditionals"
+    ],
+    "minimised_modl": "country=gb;support_contact={%_country=gb?John Smith/%_country=us?John Doe/?None}"
+  },
+  {
+    "id": "336",
+    "input": "country = gb;\nsupport_contact = {\n_country=gb?\n  John Smith\n/_country=us?\n  John Doe \n/?\n  None \n}",
+    "expected_output": "{\"country\":\"gb\",\"support_contact\":\"John Smith\"}",
+    "tested_features": [
+      "conditionals"
+    ],
+    "minimised_modl": "country=gb;support_contact={%_country=gb?John Smith/%_country=us?John Doe/?None}"
+  },
+  {
+    "id": "337",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=[thePermission];\n\n_n=1;c=[[theType;theHash;%a]]",
+    "expected_output": "{\n    \"custodians\": [\n        {\n            \"type\": \"theType\",\n            \"hash\": \"theHash\",\n            \"permissions\": [\n                \"thePermission\"\n            ]\n        }\n    ]\n}",
+    "tested_features": [
+      "class"
+    ],
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=[thePermission];_n=1;c=[[theType;theHash;%a]]"
+  },
+  {
+    "id": "338",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=thePermission;\n\n_n=1;c=[[theType;theHash;[%a]]]",
+    "expected_output": "{\n    \"custodians\": [\n        {\n            \"type\": \"theType\",\n            \"hash\": \"theHash\",\n            \"permissions\": [\n                \"thePermission\"\n            ]\n        }\n    ]\n}",
+    "tested_features": [
+      "class"
+    ],
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=thePermission;_n=1;c=[[theType;theHash;[%a]]]"
+  },
+  {
+    "id": "339",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=(x=thePermission;y=[1;2;3]);\n\n_n=1;c=[[theType;theHash;[%a]]]",
+    "expected_output": "{\"custodians\":[{\"type\":\"theType\",\"hash\":\"theHash\",\"permissions\":[{\"x\":\"thePermission\",\"y\":[1,2,3]}]}]}",
+    "tested_features": [
+      "class"
+    ],
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=(x=thePermission;y=[1;2;3]);_n=1;c=[[theType;theHash;[%a]]]"
+  },
+  {
+    "id": "340",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=admin;\n_b=bravo;\n_c=charlie;\n\n_n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]",
+    "expected_output": "{\"custodians\":[{\"type\":\"single\",\"hash\":\"cd89f92fe06f518536c86ff6e8eb85c2717bae35\",\"permissions\":[\"admin\",\"bravo\",\"charlie\"]}]}",
+    "tested_features": [
+      "class"
+    ],
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=admin;_b=bravo;_c=charlie;_n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]"
   }
 ]

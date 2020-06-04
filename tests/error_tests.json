@@ -575,5 +575,14 @@
       "object_ref"
     ],
     "minimised_modl": "_name=John;%name=`123`"
+  },
+  {
+    "id": "83",
+    "input": "x={\"a\"=b?match/?nomatch}",
+    "expected_output": "Interpreter Error: Invalid Left Hand Side for conditional: \"a\"=b",
+    "tested_features": [
+      "object_ref"
+    ],
+    "minimised_modl": "x={\"a\"=b?match/?nomatch}"
   }
 ]
