@@ -524,8 +524,7 @@
     "input": "\"%`80aafnhi4ae`.p.u\"=%`lsa12dvaxki`.p.u",
     "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %`80aafnhi4ae`.p.u",
     "tested_features": [
-      "puny",
-      "string_method"
+      "errors"
     ],
     "minimised_modl": "%`80aafnhi4ae`.p.u=%`lsa12dvaxki`.p.u"
   },
@@ -534,7 +533,7 @@
     "input": "(\n  _name = John;\n  %name.u = \"Developer\";\n  foo = %name.u\n)",
     "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name.u",
     "tested_features": [
-      "string_method"
+      "errors"
     ],
     "minimised_modl": "(_name=John;%name.u=Developer;foo=%name.u)"
   },
@@ -543,8 +542,7 @@
     "input": "(\n  _name = John;\n  %name.u = \"Developer\";\n  foo = %JOHN\n)",
     "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name.u",
     "tested_features": [
-      "string_method",
-      "object_ref"
+      "errors"
     ],
     "minimised_modl": "(_name=John;%name.u=Developer;foo=%JOHN)"
   },
@@ -553,7 +551,7 @@
     "input": "(\n  _name = John;\n  %name = \"Developer\";\n  foo = %John\n)",
     "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name",
     "tested_features": [
-      "object_ref"
+      "errors"
     ],
     "minimised_modl": "(_name=John;%name=Developer;foo=%John)"
   },
@@ -562,8 +560,7 @@
     "input": "_person(  \n name(\n   speak=say;\n   first=John;\n   last=Smith\n )\n);\njust %person.name.speak.u%_this=Hello %person.name.first.d!",
     "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: just %person.name.speak.u%_this",
     "tested_features": [
-      "string_method",
-      "object_ref"
+      "errors"
     ],
     "minimised_modl": "_person(name(speak=say;first=John;last=Smith));just %person.name.speak.u%_this=`Hello %person.name.first.d!`"
   },
@@ -572,7 +569,7 @@
     "input": "_name = John;\n%name = \"123\"",
     "expected_output": "Interpreter Error: Invalid key - spaces and % characters are not allowed: %name",
     "tested_features": [
-      "object_ref"
+      "errors"
     ],
     "minimised_modl": "_name=John;%name=`123`"
   },
@@ -581,7 +578,7 @@
     "input": "x={\"a\"=b?match/?nomatch}",
     "expected_output": "Interpreter Error: Invalid Left Hand Side for conditional: \"a\"=b",
     "tested_features": [
-      "object_ref"
+      "errors"
     ],
     "minimised_modl": "x={\"a\"=b?match/?nomatch}"
   }

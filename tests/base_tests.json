@@ -202,7 +202,7 @@
     "input": "(\n  name=%`e1afmkfd`.p;\n  department=%` -7sbcecqbdsccxfizhcp6b8ah`.p\n)",
     "expected_output": "{\n    \"name\": \"пример\",\n    \"department\": \"обслуживание клиентов\"\n}",
     "tested_features": [
-      "puny"
+      "punycode"
     ],
     "minimised_modl": "(name=%`e1afmkfd`.p;department=%` -7sbcecqbdsccxfizhcp6b8ah`.p)"
   },
@@ -369,7 +369,7 @@
     "expected_output": "{\n    \"name\": \"пример\",\n    \"department\": \"обслуживание клиентов\"\n}",
     "tested_features": [
       "object_ref",
-      "puny"
+      "punycode"
     ],
     "minimised_modl": "?=e1afmkfd:` -7sbcecqbdsccxfizhcp6b8ah`;(name=%0.p;department=%1.p)"
   },
@@ -2636,7 +2636,7 @@
     "input": "x=`ignored method`.p",
     "expected_output": "{\n    \"x\": \"`ignored method`.p\"\n}",
     "tested_features": [
-      "methods"
+      "method"
     ],
     "minimised_modl": "x=`ignored method`.p"
   },
@@ -2843,7 +2843,7 @@
     "input": "_test=replace the word this in this string;\ntesting=%test.replace<`this`,`that`>",
     "expected_output": "{\n    \"testing\": \"replace the word that in that string\"\n}",
     "tested_features": [
-      "methods",
+      "method",
       "object_ref",
       "graves"
     ],
@@ -2854,7 +2854,7 @@
     "input": "_test=replace the word this in this string;\ntesting=%test.replace<this,``>",
     "expected_output": "{\n    \"testing\": \"replace the word  in  string\"\n}",
     "tested_features": [
-      "methods",
+      "method",
       "object_ref",
       "graves"
     ],
@@ -2865,7 +2865,7 @@
     "input": "key=%`this`.replace<is,at>",
     "expected_output": "{\n    \"key\": \"that\"\n}",
     "tested_features": [
-      "methods",
+      "method",
       "object_ref",
       "graves"
     ],
@@ -2905,7 +2905,7 @@
     "expected_output": "{\n    \"key\": \"vat rate is 20%\"\n}",
     "tested_features": [
       "object_ref",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "_vat=20;key=vat rate is %vat%%"
   },
@@ -2952,7 +2952,7 @@
     "input": "_vat=20;\nkey=\"vat rate is %vat%`%`\"",
     "expected_output": "{\n    \"key\": \"vat rate is 20`%`\"\n}",
     "tested_features": [
-      "objetct_ref",
+      "object_ref",
       "graves"
     ],
     "minimised_modl": "_vat=20;key=vat rate is %vat%`%`"
@@ -2973,7 +2973,7 @@
     "expected_output": "{\n    \"russian1\": \"пример\",\n    \"russian2\": \"пример\",\n    \"russian3\": \"пример\"\n}",
     "tested_features": [
       "punycode",
-      "methods"
+      "method"
     ],
     "minimised_modl": "_test1=e1afmkfd;russian1=%test1.p;_test2=e1afmkfd;russian2=%test2.p;_test3=e1afmkfd;russian3=%test3.p"
   },
@@ -3046,7 +3046,7 @@
     "expected_output": "{\n    \"test\": \"~u2019\"\n}",
     "tested_features": [
       "unicode",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "test=\\~u2019"
   },
@@ -3056,7 +3056,7 @@
     "expected_output": "{\n    \"test\": \"\\\\u2019\"\n}",
     "tested_features": [
       "unicode",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "test=\\\\u2019"
   },
@@ -3066,7 +3066,7 @@
     "expected_output": "{\n    \"test\": \"~u2019\\\\u2019\u2019\\\\u2019\"\n}",
     "tested_features": [
       "unicode",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "test=\\\\~u2019\\\\u2019~u2019\\\\u2019"
   },
@@ -3076,7 +3076,7 @@
     "expected_output": "{\n    \"test\": \"~u2019\"\n}",
     "tested_features": [
       "unicode",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "test=~~u2019"
   },
@@ -3086,7 +3086,7 @@
     "expected_output": "{\n    \"test\": \"~u2019\"\n}",
     "tested_features": [
       "unicode",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "test=\\~u2019"
   },
@@ -3150,7 +3150,7 @@
     "expected_output": "{\n    \"test\": \"\uD83D\uDE0000\"\n}",
     "tested_features": [
       "unicode",
-      "escapes"
+      "escape"
     ],
     "minimised_modl": "test=~u1f60000"
   },
@@ -3177,7 +3177,7 @@
     "input": "country = gb;\nsupport_contact = {\n%_country=gb?\n  John Smith\n/%_country=us?\n  John Doe \n/?\n  None \n}",
     "expected_output": "{\"country\":\"gb\",\"support_contact\":\"John Smith\"}",
     "tested_features": [
-      "conditionals"
+      "conditional"
     ],
     "minimised_modl": "country=gb;support_contact={%_country=gb?John Smith/%_country=us?John Doe/?None}"
   },
@@ -3186,7 +3186,7 @@
     "input": "country = gb;\nsupport_contact = {\n_country=gb?\n  John Smith\n/_country=us?\n  John Doe \n/?\n  None \n}",
     "expected_output": "{\"country\":\"gb\",\"support_contact\":\"John Smith\"}",
     "tested_features": [
-      "conditionals"
+      "conditional"
     ],
     "minimised_modl": "country=gb;support_contact={%_country=gb?John Smith/%_country=us?John Doe/?None}"
   },
@@ -3231,8 +3231,170 @@
     "input": "[1;2;3];(b=c);[4;5;6];(d=f)",
     "expected_output": "[[1,2,3],{\"b\":\"c\"},[4,5,6],{\"d\":\"f\"}]",
     "tested_features": [
-      "arrays"
+      "array"
     ],
     "minimised_modl": "[1;2;3];(b=c);[4;5;6];(d=f)"
+  },
+  {
+    "id": "342",
+    "input": "_here = 1;test=%`%missing`;test2=%`%here`",
+    "expected_output": "{\"test\":\"%missing\",\"test2\":\"%here\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here = 1;test=%`%missing`;test2=%`%here`"
+  },
+  {
+    "id": "343",
+    "input": "test=Hello %missing",
+    "expected_output": "{\"test\":\"Hello %missing\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "test=Hello %missing"
+  },
+  {
+    "id": "344",
+    "input": "?=a:b:c:d;test=%`%0`",
+    "expected_output": "{\"test\":\"%0\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "?=a:b:c:d;test=%`%0`"
+  },
+  {
+    "id": "345",
+    "input": "?=a:b:c:d;test=%`0%`",
+    "expected_output": "{\"test\":\"0%\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "?=a:b:c:d;test=%`0%`"
+  },
+  {
+    "id": "346",
+    "input": "?=a:b:c:d;_x=xxx;test=%`%0 %x x%`",
+    "expected_output": "{\"test\":\"%0 %x x%\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "?=a:b:c:d;_x=xxx;test=%`%0 %x x%`"
+  },
+  {
+    "id": "347",
+    "input": "_locale=uk;url=`https://www.example.com/%locale/file`;",
+    "expected_output": "{\"url\":\"https://www.example.com/uk/file\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_locale=uk;url=`https://www.example.com/%locale/file`;"
+  },
+  {
+    "id": "348",
+    "input": "## use a defined reference in a string that's defined\n_here1 = 1;\ntest1 = this reference is %here1;",
+    "expected_output": "{\"test1\": \"this reference is 1\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here1=1;test1=this reference is %here1;"
+  },
+  {
+    "id": "349",
+    "input": "## use an undefined reference in a string\n_there2 = 1;\ntest2 = this reference is %here2;",
+    "expected_output": "{\"test2\": \"this reference is %here2\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_there2=1;test2=this reference is %here2;"
+  },
+  {
+    "id": "350",
+    "input": "## use a defined reference as a value\n_here3 = 3;\ntest3 = %here3;",
+    "expected_output": "{\"test3\": 3}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here3=3;test3=%here3;"
+  },
+  {
+    "id": "351",
+    "input": "## use an undefined reference as a value\n_there4 = 1;\ntest4 = %here4;",
+    "expected_output": "{\"test4\": \"%here4\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_there4=1;test4=%here4;"
+  },
+  {
+    "id": "352",
+    "input": "## use a defined reference in a graved string\n_here5 = 1;\ntest5 = `this reference is %here5`;",
+    "expected_output": "{\"test5\": \"this reference is 1\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here5=1;test5=`this reference is %here5`;"
+  },
+  {
+    "id": "353",
+    "input": "## use an undefined reference in a graved string\n_there6 = 1;\ntest6 = `this reference is %here6`;",
+    "expected_output": "{\"test6\": \"this reference is %here6\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_there6=1;test6=`this reference is %here6`;"
+  },
+  {
+    "id": "354",
+    "input": "## use a defined reference in a quoted string\n_here7 = 1;\ntest7 = \"this reference is %here7\";\n",
+    "expected_output": "{\"test7\": \"this reference is 1\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here7=1;test7=\"this reference is %here7\";"
+  },
+  {
+    "id": "355",
+    "input": "## use an undefined reference in a string\n_there8 = 1;\ntest8 = \"this reference is %here8\";",
+    "expected_output": "{\"test8\": \"this reference is %here8\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_there8=1;test8=\"this reference is %here8\";"
+  },
+  {
+    "id": "356",
+    "input": "## including percent prefix text when there's a reference defined\n_here9 = 1;\ntest9 = this reference is %`%here9`;",
+    "expected_output": "{\"test9\": \"this reference is %here9\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here9=1;test9=this reference is %`%here9`;"
+  },
+  {
+    "id": "357",
+    "input": "## including percent prefix text in a quoted value\n_here10 = 1;\ntest10 = \"this reference is %`%here10`\";",
+    "expected_output": "{\"test10\": \"this reference is %here10\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here10=1;test10=\"this reference is %`%here10`\";"
+  },
+  {
+    "id": "358",
+    "input": "## including percent prefix text in a graved value\n_here11 = 1;\ntest11 = `this reference is %`%here11``;",
+    "expected_output": "{\"test11\": \"this reference is %here11\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_here11=1;test11=`this reference is %`%here11``;"
+  },
+  {
+    "id": "359",
+    "input": "name=%`%-et3caab`.p",
+    "expected_output": "{\"name\":\"看看看%看\"}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "name=%`%-et3caab`.p"
   }
 ]
