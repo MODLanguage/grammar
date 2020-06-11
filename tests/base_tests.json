@@ -3396,5 +3396,14 @@
       "refs"
     ],
     "minimised_modl": "name=%`%-et3caab`.p"
+  },
+  {
+    "id": "360",
+    "input": "_a=1;\n_b(\n   _a=2;\n   _c(\n       _a=3\n   )\n);\n\nx=%a;\ny = %b.a;\nz = %b.c.a",
+    "expected_output": "{\"x\":1,\"y\":2,\"z\":3}",
+    "tested_features": [
+      "refs"
+    ],
+    "minimised_modl": "_a=1;_b(_a=2;_c(_a=3));x=%a;y = %b.a;z = %b.c.a"
   }
 ]
