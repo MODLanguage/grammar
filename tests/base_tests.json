@@ -3405,5 +3405,29 @@
       "refs"
     ],
     "minimised_modl": "_a=1;_b(_a=2;_c(_a=3));x=%a;y = %b.a;z = %b.c.a"
+  },
+  {
+    "id": "361",
+    "input": "()",
+    "expected_output": "{}",
+    "tested_features": [
+    ],
+    "minimised_modl": "()"
+  },
+  {
+    "id": "362",
+    "input": "[]",
+    "expected_output": "[]",
+    "tested_features": [
+    ],
+    "minimised_modl": "[]"
+  },
+  {
+    "id": "363",
+    "input": "x=%z;\ny=%x;\nz=%y",
+    "expected_output": "{\n    \"x\": \"%z\",\n    \"y\": \"%z\",\n    \"z\": \"%z\"\n}",
+    "tested_features": [
+    ],
+    "minimised_modl": "x=%z;y=%x;z=%y"
   }
 ]
