@@ -3429,5 +3429,13 @@
     "tested_features": [
     ],
     "minimised_modl": "x=%z;y=%x;z=%y"
+  },
+  {
+    "id": "364",
+    "input": "*class(\n  *id=h;\n  *name=hours;\n  *assign=[\n    [time_zone_city;available]\n  ]\n);\n\nperson(h=AD:[d@0-0])",
+    "expected_output": "{\"person\":{\"hours\":{\"time_zone_city\":\"AD\",\"available\":[\"d@0-0\"]}}}",
+    "tested_features": [
+    ],
+    "minimised_modl": "*class(*id=h;*name=hours;*assign=[[time_zone_city;available]]);person(h=AD:[d@0-0])"
   }
 ]
