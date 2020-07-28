@@ -581,5 +581,23 @@
       "errors"
     ],
     "minimised_modl": "x={\"a\"=b?match/?nomatch}"
+  },
+  {
+    "id": "84",
+    "input": "key=value;[one;two;three]",
+    "expected_output": "Interpreter Error: Mixed top-level types are not allowed.",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "key=value;[one;two;three]"
+  },
+  {
+    "id": "85",
+    "input": "x=y;(a=b)",
+    "expected_output": "Interpreter Error: Mixed top-level types are not allowed.",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "x=y;(a=b)"
   }
 ]
