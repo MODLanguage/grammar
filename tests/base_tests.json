@@ -3437,5 +3437,13 @@
     "tested_features": [
     ],
     "minimised_modl": "*class(*id=h;*name=hours;*assign=[[time_zone_city;available]]);person(h=AD:[d@0-0])"
+  },
+  {
+    "id": "365",
+    "input": "_vars(\n  test=1\n);\nprint_var = %vars.test,",
+    "expected_output": "{\"print_var\":\"1,\"}",
+    "tested_features": [
+    ],
+    "minimised_modl": "_vars(test=1);print_var=%vars.test,"
   }
 ]
