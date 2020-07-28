@@ -3445,5 +3445,13 @@
     "tested_features": [
     ],
     "minimised_modl": "_vars(test=1);print_var=%vars.test,"
+  },
+  {
+    "id": "366",
+    "input": "_vars(\n  test=hello world\n);\nprint_var = %vars.test.r< ,``>,",
+    "expected_output": "{\"print_var\":\"helloworld,\"}",
+    "tested_features": [
+    ],
+    "minimised_modl": "_vars(test=hello world);print_var=%vars.test.r< ,``>,"
   }
 ]
