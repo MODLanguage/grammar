@@ -3119,12 +3119,12 @@
   },
   {
     "id": "329",
-    "input": "*load=\"http://modules.num.uk/3/rcf.txt!\";_n=1;?=tesco.com;i[(t=icon;v[%U.l%%0%.png:%M.p%:300:300])]",
-    "expected_output": "{\"images\":[{\"type\":\"icon\",\"variants\":[{\"url\":\"https://www.logos.uk/num/tesco.com.png\",\"mime\":\"image/png\",\"width\":300,\"height\":300}]}]}",
+    "input": "*load=\"http://modules.num.uk/3/rcf.txt!\";@n=1;?=tesco.com;i[(t=icon;v[%U.l%%0%.png:%M.p%:300:300])]",
+    "expected_output": "{\"@n\":1,\"images\":[{\"type\":\"icon\",\"variants\":[{\"url\":\"https://www.logos.uk/num/tesco.com.png\",\"mime\":\"image/png\",\"width\":300,\"height\":300}]}]}",
     "tested_features": [
       "object_ref"
     ],
-    "minimised_modl": "*l=`http://modules.num.uk/3/rcf.txt!`;_n=1;?=tesco.com;i[(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])]"
+    "minimised_modl": "*l=`http://modules.num.uk/3/rcf.txt!`;@n=1;?=tesco.com;i[(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])]"
   },
   {
     "id": "330",
@@ -3192,39 +3192,39 @@
   },
   {
     "id": "337",
-    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=[thePermission];\n\n_n=1;c=[[theType;theHash;%a]]",
-    "expected_output": "{\n    \"custodians\": [\n        {\n            \"type\": \"theType\",\n            \"hash\": \"theHash\",\n            \"permissions\": [\n                \"thePermission\"\n            ]\n        }\n    ]\n}",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=[thePermission];\n\n@n=1;c=[[theType;theHash;%a]]",
+    "expected_output": "{\"@n\":1,\n    \"custodians\": [\n        {\n            \"type\": \"theType\",\n            \"hash\": \"theHash\",\n            \"permissions\": [\n                \"thePermission\"\n            ]\n        }\n    ]\n}",
     "tested_features": [
       "class"
     ],
-    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=[thePermission];_n=1;c=[[theType;theHash;%a]]"
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=[thePermission];@n=1;c=[[theType;theHash;%a]]"
   },
   {
     "id": "338",
-    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=thePermission;\n\n_n=1;c=[[theType;theHash;[%a]]]",
-    "expected_output": "{\n    \"custodians\": [\n        {\n            \"type\": \"theType\",\n            \"hash\": \"theHash\",\n            \"permissions\": [\n                \"thePermission\"\n            ]\n        }\n    ]\n}",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=thePermission;\n\n@n=1;c=[[theType;theHash;[%a]]]",
+    "expected_output": "{\"@n\":1,\n    \"custodians\": [\n        {\n            \"type\": \"theType\",\n            \"hash\": \"theHash\",\n            \"permissions\": [\n                \"thePermission\"\n            ]\n        }\n    ]\n}",
     "tested_features": [
       "class"
     ],
-    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=thePermission;_n=1;c=[[theType;theHash;[%a]]]"
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=thePermission;@n=1;c=[[theType;theHash;[%a]]]"
   },
   {
     "id": "339",
-    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=(x=thePermission;y=[1;2;3]);\n\n_n=1;c=[[theType;theHash;[%a]]]",
-    "expected_output": "{\"custodians\":[{\"type\":\"theType\",\"hash\":\"theHash\",\"permissions\":[{\"x\":\"thePermission\",\"y\":[1,2,3]}]}]}",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=(x=thePermission;y=[1;2;3]);\n\n@n=1;c=[[theType;theHash;[%a]]]",
+    "expected_output": "{\"@n\":1,\"custodians\":[{\"type\":\"theType\",\"hash\":\"theHash\",\"permissions\":[{\"x\":\"thePermission\",\"y\":[1,2,3]}]}]}",
     "tested_features": [
       "class"
     ],
-    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=(x=thePermission;y=[1;2;3]);_n=1;c=[[theType;theHash;[%a]]]"
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=(x=thePermission;y=[1;2;3]);@n=1;c=[[theType;theHash;[%a]]]"
   },
   {
     "id": "340",
-    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=admin;\n_b=bravo;\n_c=charlie;\n\n_n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]",
-    "expected_output": "{\"custodians\":[{\"type\":\"single\",\"hash\":\"cd89f92fe06f518536c86ff6e8eb85c2717bae35\",\"permissions\":[\"admin\",\"bravo\",\"charlie\"]}]}",
+    "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=admin;\n_b=bravo;\n_c=charlie;\n\n@n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]",
+    "expected_output": "{\"@n\":1,\"custodians\":[{\"type\":\"single\",\"hash\":\"cd89f92fe06f518536c86ff6e8eb85c2717bae35\",\"permissions\":[\"admin\",\"bravo\",\"charlie\"]}]}",
     "tested_features": [
       "class"
     ],
-    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=admin;_b=bravo;_c=charlie;_n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]"
+    "minimised_modl": "*class(*id=custodian;*assign=[[type;hash;permissions]]);*class(*id=c;*name=custodians;*assign=[[custodian*]]);_a=admin;_b=bravo;_c=charlie;@n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]"
   },
   {
     "id": "341",
