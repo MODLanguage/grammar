@@ -3119,12 +3119,12 @@
   },
   {
     "id": "329",
-    "input": "*load=\"http://modules.num.uk/3/rcf.txt!\";@n=1;?=tesco.com;i[(t=icon;v[%U.l%%0%.png:%M.p%:300:300])]",
+    "input": "*load=\"http://modules.numprotocol.com/3/rcf.txt!\";@n=1;?=tesco.com;i[(t=icon;v[%U.l%%0%.png:%M.p%:300:300])]",
     "expected_output": "{\"@n\":1,\"images\":[{\"type\":\"icon\",\"variants\":[{\"url\":\"https://www.logos.uk/num/tesco.com.png\",\"mime\":\"image/png\",\"width\":300,\"height\":300}]}]}",
     "tested_features": [
       "object_ref"
     ],
-    "minimised_modl": "*l=`http://modules.num.uk/3/rcf.txt!`;@n=1;?=tesco.com;i[(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])]"
+    "minimised_modl": "*l=`http://modules.numprotocol.com/3/rcf.txt!`;@n=1;?=tesco.com;i[(t=icon;v[[%U.l%%0%.png;%M.p%;300;300]])]"
   },
   {
     "id": "330",
@@ -3137,12 +3137,12 @@
   },
   {
     "id": "331",
-    "input": "_C=gb;_L=en;*load=\"http://modules.num.uk/1/rcf.txt!\";o(c[fb=abc;tw=abc])",
+    "input": "_C=gb;_L=en;*load=\"http://modules.numprotocol.com/1/rcf.txt!\";o(c[fb=abc;tw=abc])",
     "expected_output": "{\n    \"organisation\": {\n        \"contacts\": [\n            {\n                \"facebook\": {\n                    \"value\": \"abc\",\n                    \"object_type\": \"method\",\n                    \"object_display_name\": \"Facebook\",\n                    \"description_default\": \"View Facebook profile\",\n                    \"prefix\": \"https://www.facebook.com/\",\n                    \"method_type\": \"3p\",\n                    \"controller\": \"facebook.com\"\n                }\n            },\n            {\n                \"twitter\": {\n                    \"value\": \"abc\",\n                    \"object_type\": \"method\",\n                    \"object_display_name\": \"Twitter\",\n                    \"description_default\": \"View Twitter profile\",\n                    \"prefix\": \"https://www.twitter.com/\",\n                    \"method_type\": \"3p\",\n                    \"value_prefix\": \"@\",\n                    \"controller\": \"twitter.com\"\n                }\n            }\n        ],\n        \"object_type\": \"entity\",\n        \"object_display_name\": \"Organisation\",\n        \"description_default\": \"View Organisation\"\n    }\n}",
     "tested_features": [
       "object_ref"
     ],
-    "minimised_modl": "_C=gb;_L=en;*l=`http://modules.num.uk/1/rcf.txt!`;o(c[fb=abc;tw=abc])"
+    "minimised_modl": "_C=gb;_L=en;*l=`http://modules.numprotocol.com/1/rcf.txt!`;o(c[fb=abc;tw=abc])"
   },
   {
     "id": "332",
