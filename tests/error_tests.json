@@ -763,5 +763,68 @@
       "errors"
     ],
     "minimised_modl": "_var=[1;2;3];print_var=%var test"
+  },
+  {
+    "id": "88",
+    "input": "*class(*id=*id;*name=*id;*superclass=*id);*id=test",
+    "expected_output": "Interpreter Error: Class *id is not a valid pair name *id",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*class(*id=*id;*name=*id;*superclass=*id);*id=test"
+  },
+  {
+    "id": "89",
+    "input": "*class(*id=fb;*name=facebook;*superclass=map;*assign=[[children[v]]]);fb=fred",
+    "expected_output": "Interpreter Error: *assign statement should be an Array of Arrays of Strings.",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*class(*id=fb;*name=facebook;*superclass=map;*assign=[[children[v]]]);fb=fred"
+  },
+  {
+    "id": "90",
+    "input": "*class(*name=*name;*name=*id;*superclass=arr);*id=test",
+    "expected_output": "Interpreter Error: Class *name is not a valid pair name *name",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*class(*name=*name;*name=*id;*superclass=arr);*id=test"
+  },
+  {
+    "id": "91",
+    "input": "*class(*name=name;*name=id;*superclass=*id)",
+    "expected_output": "Interpreter Error: Class *superclass is not a valid pair name *id",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*class(*name=name;*name=id;*superclass=*id)"
+  },
+  {
+    "id": "92",
+    "input": "*method(*name=*name;*id=id;*transform=(a=b))",
+    "expected_output": "Interpreter Error: Method *name is not a valid pair name *name",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*method(*name=*name;*id=id;*transform=(a=b))"
+  },
+  {
+    "id": "93",
+    "input": "*method(*name=name;*id=*id;*transform=(a=b))",
+    "expected_output": "Interpreter Error: Method *id is not a valid pair name *id",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*method(*name=name;*id=*id;*transform=(a=b))"
+  },
+  {
+    "id": "93",
+    "input": "*method(*name=name;*id=id;*transform=(a=b))",
+    "expected_output": "Interpreter Error: Method *transform should be a String value, but is a Map",
+    "tested_features": [
+      "errors"
+    ],
+    "minimised_modl": "*method(*name=name;*id=id;*transform=(a=b))"
   }
 ]
