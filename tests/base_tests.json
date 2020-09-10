@@ -3477,5 +3477,13 @@
     "tested_features": [
     ],
     "minimised_modl": "_var=000;print_var=%var test"
+  },
+  {
+    "id": "370",
+    "input": "*class(\n  *id=v;\n  *name=value;\n  *superclass=str\n);\n*class(\n  *id=vs;\n  *name=values;\n  *assign=[[v*]];\n  *superclass=arr\n);\n*class(\n  *id=contact;\n  *name=contact;\n  *superclass=map\n);\n*class(\n  *id=method;\n  *name=method;\n  object_display_name=Contact Method;\n  *superclass=contact;\n  *assign=[\n    [v];\n    [d;v];\n    [d;v;h]\n  ]\n);\n*class(\n  *id=a;\n  *name=address;\n  *superclass=method;\n  *assign=[\n    [vs];\n    [d;vs];\n    [d;vs;h]\n  ];\n  object_type=method;\n  object_display_name=%locale.a.name;\n  description_default=%locale.a.default;\n  prefix=\"\";\n  method_type=core\n);\na=[address desc;[123;my address;true]];\nmethod=[method description;method value]",
+    "expected_output": "{\"address\":{\"d\":\"address desc\",\"values\":[\"123\",\"my address\",\"true\"],\"object_type\":\"method\",\"object_display_name\":\"locale.name\",\"description_default\":\"locale.default\",\"prefix\":\"\",\"method_type\":\"core\"},\"method\":{\"d\":\"method description\",\"value\":\"method value\",\"object_display_name\":\"Contact Method\"}}",
+    "tested_features": [
+    ],
+    "minimised_modl": "*class(*id=v;*name=value;*superclass=str);*class(*id=vs;*name=values;*assign=[[v*]];*superclass=arr);*class(*id=contact;*name=contact;*superclass=map);*class(*id=method;*name=method;object_display_name=Contact Method;*superclass=contact;*assign=[[v];[d;v];[d;v;h]]);*class(*id=a;*name=address;*superclass=method;*assign=[[vs];[d;vs];[d;vs;h]];object_type=method;object_display_name=%locale.a.name;description_default=%locale.a.default;prefix=\"\";method_type=core);a=[address desc;[123;my address;true]];method=[method description;method value]"
   }
 ]
