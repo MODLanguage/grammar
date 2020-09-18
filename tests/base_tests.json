@@ -2,7 +2,7 @@
   {
     "id": "1",
     "input": "*l=../grammar/tests/test_import_dir/nested_import1.txt;\nfiles=%*load",
-    "expected_output": "{\n    \"files\": [\n        \"../grammar/tests/test_import_dir/nested_import1.txt\",\n        \"../grammar/tests/test_import_dir/nested_import2.txt\",\n        \"../grammar/tests/test_import_dir/nested_import3.txt\",\n        \"../grammar/tests/test_import_dir/test_import.txt\"\n    ]\n}",
+    "expected_output": "{\"files\":[\"../grammar/tests/test_import_dir/nested_import1.txt\",\"../../../grammar/tests/test_import_dir/nested_import2.txt\",\"../../../grammar/tests/test_import_dir/nested_import3.txt\",\"../../../grammar/tests/test_import_dir/test_import.txt\"]}",
     "tested_features": [
       "load"
     ],
