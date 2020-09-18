@@ -45,10 +45,10 @@ lexer grammar MODLLexer;
     // String inside double quotes – any character is allowed inside quotes except for the double quote itself
     // OR
     // String inside graves – any character is allowed inside graves except for the grave
-    : ( ( '"' ( INSIDE_QUOTES | '~"' | '\\"' )* '"') | ('`' ( INSIDE_GRAVES ) '`' ) )
+    : ( ( '\'' ( INSIDE_QUOTES | '~\'' | '\\\'' )* '\'') | ('`' ( INSIDE_GRAVES ) '`' ) )
     ;
     fragment INSIDE_QUOTES
-      : ~["]
+      : ~[']
       ;
     fragment INSIDE_GRAVES
       : ~[`]*
@@ -115,7 +115,7 @@ mode CONDITIONAL;
     // String inside double quotes – any char is allowed inside quotes except for the double quote itself
     // OR
     // String inside graves – any character is allowed inside graves except for the grave
-    : ( ( '"' ( INSIDE_QUOTES | '~"' | '\\"' )* '"') | ('`' ( INSIDE_GRAVES ) '`' ) ) -> type(QUOTED)
+    : ( ( '\'' ( INSIDE_QUOTES | '~\'' | '\\\'' )* '\'') | ('`' ( INSIDE_GRAVES ) '`' ) ) -> type(QUOTED)
     ;
 
   // A different version of string is defined to protect the reserved characters

@@ -39,7 +39,7 @@ modl_structure
 modl_map
   // ( key = value; key = value )
   : LBRAC
-        ( (modl_pair | modl_map) ( STRUCT_SEP (modl_pair | modl_map) )* )?
+        modl_pair ( STRUCT_SEP modl_pair )*
     RBRAC
   ;
 
@@ -61,7 +61,7 @@ modl_pair
   // It's also possible to do the same with an array pair
   // e.g. numbers[1;2;3] – equivalent to numbers=[1;2;3]
 
-  : ( STRING | QUOTED ) EQUALS (modl_primitive | modl_map | modl_array)  // key = value (standard pair)
+  : STRING EQUALS modl_primitive  // key = value (standard pair)
   | STRING modl_map                             // key( key = value ) (map pair)
   | STRING modl_array                           // key[ item; item ] (array pair)
   ;
