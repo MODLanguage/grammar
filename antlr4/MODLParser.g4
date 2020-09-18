@@ -21,35 +21,33 @@ options {
 
 modl
   // Valid MODL is zero or more MODL structures separated by semi-colons
-  : ( ( modl_structure? ) | ( modl_structure ( STRUCT_SEP modl_structure )* ) STRUCT_SEP? ) EOF;
+  : ( ( modl_structure_cond? ) | ( modl_structure_cond ( STRUCT_SEP modl_structure_cond )* ) STRUCT_SEP? ) EOF;
 
-modl_structure
+modl_structure_cond
   : modl_map
   | modl_array
   | modl_top_level_conditional
   | modl_pair
   ;
 
+modl_structure
+  : modl_map
+  | modl_array
+  | modl_pair
+  ;
+
 modl_map
   // ( key = value; key = value )
   : LBRAC
-        ( modl_map_item ( STRUCT_SEP modl_map_item )* )?
+        ( (modl_pair | modl_map) ( STRUCT_SEP (modl_pair | modl_map) )* )?
     RBRAC
   ;
 
 modl_array
   // [ item; item ]
   : LSBRAC
-        ( ( modl_array_item | modl_nb_array ) (STRUCT_SEP+ ( modl_array_item | modl_nb_array ) STRUCT_SEP* )* )?
+        ( ( modl_primitive | modl_array) (STRUCT_SEP+ ( modl_primitive | modl_array) STRUCT_SEP* )* )?
     RSBRAC
-  ;
-
-modl_nb_array
-  // non-bracketed array
-  // numbers=1:2:3
-  // also possible to have blank items
-  // numbers=1:2:3:::4:5:6
-  : ( modl_array_item COLON+ )+ ( modl_array_item )* COLON?
   ;
 
 modl_pair
@@ -63,14 +61,11 @@ modl_pair
   // It's also possible to do the same with an array pair
   // e.g. numbers[1;2;3] – equivalent to numbers=[1;2;3]
 
-  : ( STRING | QUOTED ) EQUALS modl_value_item  // key = value (standard pair)
+  : ( STRING | QUOTED ) EQUALS (modl_primitive | modl_map | modl_array)  // key = value (standard pair)
   | STRING modl_map                             // key( key = value ) (map pair)
   | STRING modl_array                           // key[ item; item ] (array pair)
   ;
 
-modl_value_item
-  : ( modl_value | modl_value_conditional )
-  ;
 
 // Four conditional rules are set because the grammar validates the conditional return depending on
 // the context in which the conditional appears. A conditional at the top level can only return a
@@ -91,49 +86,7 @@ modl_top_level_conditional
     : modl_structure ( STRUCT_SEP modl_structure )*
     ;
 
-modl_map_conditional
-  // Conditionals within maps do not require else
-  // e.g. { country=gb? return=this /country=us? return=that }
-  : LCBRAC
-        modl_condition_test QMARK modl_map_conditional_return
-        ( FSLASH modl_condition_test? QMARK
-          modl_map_conditional_return )*
-    RCBRAC
-  ;
-  modl_map_conditional_return
-    : ( modl_map_item )+
-    ;
-    modl_map_item
-      : modl_pair | modl_map_conditional
-      ;
 
-modl_array_conditional
-  // Conditionals within arrays do not require else
-  // e.g. { country=gb? this /country=us? that }
-  : LCBRAC
-        modl_condition_test QMARK modl_array_conditional_return
-        ( FSLASH modl_condition_test? QMARK
-        modl_array_conditional_return )*
-    RCBRAC
-  ;
-  modl_array_conditional_return
-    : ( modl_array_item )+
-    ;
-    modl_array_item
-      : modl_array_value_item | modl_array_conditional
-      ;
-
-modl_value_conditional
-  // Conditionals within values DO require else
-  // e.g. { country=gb? this /country=us? that /? other }
-  : LCBRAC modl_condition_test QMARK ( modl_value_conditional_return
-        ( FSLASH modl_condition_test QMARK modl_value_conditional_return )*
-        ( FSLASH QMARK modl_value_conditional_return ) )?
-    RCBRAC
-  ;
-  modl_value_conditional_return
-    : modl_value_item ( COLON modl_value_item ) *
-    ;
 
 modl_condition_test
   // country=gb|language=en?
@@ -147,28 +100,13 @@ modl_operator
 
 modl_condition
   // e.g. country=gb
-  : STRING? modl_operator? modl_value ( FSLASH modl_value )*
+  : STRING? modl_operator? modl_primitive ( FSLASH modl_primitive )*
   ;
 
 modl_condition_group
   // { country=ca & language=fr }
   : LCBRAC modl_condition_test ( ( AMP | PIPE ) modl_condition_test )* RCBRAC
   ;
-
-modl_value
-  : modl_map
-  | modl_array
-  | modl_nb_array
-  | modl_pair
-  | modl_primitive
-;
-
-modl_array_value_item
-  : modl_map
-  | modl_pair
-  | modl_array
-  | modl_primitive
-;
 
 modl_primitive
   : QUOTED
@@ -178,3 +116,4 @@ modl_primitive
   | FALSE
   | NULL
 ;
+
