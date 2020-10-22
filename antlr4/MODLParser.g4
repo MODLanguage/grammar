@@ -21,13 +21,7 @@ options {
 
 modl
   // Valid MODL is zero or more MODL structures separated by semi-colons
-  : ( ( modl_structure_cond? ) | ( modl_structure_cond ( STRUCT_SEP modl_structure_cond )* ) STRUCT_SEP? ) EOF;
-
-modl_structure_cond
-  : modl_map
-  | modl_array
-  | modl_pair
-  ;
+  : ( ( modl_structure? ) | ( modl_structure ( STRUCT_SEP modl_structure )* ) STRUCT_SEP? ) EOF;
 
 modl_structure
   : modl_map
