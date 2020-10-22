@@ -26,7 +26,6 @@ modl
 modl_structure_cond
   : modl_map
   | modl_array
-  | modl_top_level_conditional
   | modl_pair
   ;
 
@@ -39,7 +38,7 @@ modl_structure
 modl_map
   // ( key = value; key = value )
   : LBRAC
-        modl_pair ( STRUCT_SEP modl_pair )*
+        ( (modl_pair | modl_map) ( STRUCT_SEP (modl_pair | modl_map) )* )?
     RBRAC
   ;
 
@@ -61,52 +60,11 @@ modl_pair
   // It's also possible to do the same with an array pair
   // e.g. numbers[1;2;3] – equivalent to numbers=[1;2;3]
 
-  : STRING EQUALS modl_primitive  // key = value (standard pair)
+  : ( STRING | QUOTED ) EQUALS (modl_primitive | modl_map | modl_array)  // key = value (standard pair)
   | STRING modl_map                             // key( key = value ) (map pair)
   | STRING modl_array                           // key[ item; item ] (array pair)
   ;
 
-
-// Four conditional rules are set because the grammar validates the conditional return depending on
-// the context in which the conditional appears. A conditional at the top level can only return a
-// MODL structure, a conditional within a map can only return a pair, a conditional within an array
-// can only return a value, a conditional assigned to a key MUST return a value. Each can return another
-// conditional of the same type.
-modl_top_level_conditional
-  // Conditionals at the top level do not require else
-  // { country=gb? return=this /country=us? return=that }
-  : LCBRAC
-        modl_condition_test QMARK
-        modl_top_level_conditional_return
-        ( FSLASH modl_condition_test? QMARK
-          modl_top_level_conditional_return )*
-    RCBRAC
-  ;
-  modl_top_level_conditional_return
-    : modl_structure ( STRUCT_SEP modl_structure )*
-    ;
-
-
-
-modl_condition_test
-  // country=gb|language=en?
-  : EXCLAM? ( modl_condition | modl_condition_group ) ( ( AMP | PIPE ) EXCLAM? ( modl_condition | modl_condition_group ) )*
-  ;
-
-modl_operator
-  // operator within conditionals
-  : EQUALS | GTHAN | GTHAN EQUALS | LTHAN | LTHAN EQUALS | EXCLAM EQUALS
-  ;
-
-modl_condition
-  // e.g. country=gb
-  : STRING? modl_operator? modl_primitive ( FSLASH modl_primitive )*
-  ;
-
-modl_condition_group
-  // { country=ca & language=fr }
-  : LCBRAC modl_condition_test ( ( AMP | PIPE ) modl_condition_test )* RCBRAC
-  ;
 
 modl_primitive
   : QUOTED
