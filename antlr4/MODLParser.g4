@@ -32,15 +32,23 @@ modl_structure
 modl_map
   // ( key = value; key = value )
   : LBRAC
-        ( (modl_pair | modl_map) ( STRUCT_SEP (modl_pair | modl_map) )* )?
+        ( modl_pair ( STRUCT_SEP modl_pair )* )?
     RBRAC
   ;
 
 modl_array
   // [ item; item ]
   : LSBRAC
-        ( ( modl_primitive | modl_array) (STRUCT_SEP+ ( modl_primitive | modl_array) STRUCT_SEP* )* )?
+        ( ( modl_array_value_item | modl_nb_array ) (STRUCT_SEP+ ( modl_array_value_item | modl_nb_array ) STRUCT_SEP* )* )?
     RSBRAC
+  ;
+
+modl_nb_array
+  // non-bracketed array
+  // numbers=1:2:3
+  // also possible to have blank items
+  // numbers=1:2:3:::4:5:6
+  : ( modl_array_value_item COLON+ )+ ( modl_array_value_item )* COLON?
   ;
 
 modl_pair
@@ -54,11 +62,30 @@ modl_pair
   // It's also possible to do the same with an array pair
   // e.g. numbers[1;2;3] – equivalent to numbers=[1;2;3]
 
-  : ( STRING | QUOTED ) EQUALS (modl_primitive | modl_map | modl_array)  // key = value (standard pair)
+  : ( STRING | QUOTED ) EQUALS modl_value_item  // key = value (standard pair)
   | STRING modl_map                             // key( key = value ) (map pair)
   | STRING modl_array                           // key[ item; item ] (array pair)
   ;
 
+modl_value_item
+  : ( modl_value )
+  ;
+
+
+modl_value
+  : modl_map
+  | modl_array
+  | modl_nb_array
+  | modl_pair
+  | modl_primitive
+;
+
+modl_array_value_item
+  : modl_map
+  | modl_pair
+  | modl_array
+  | modl_primitive
+;
 
 modl_primitive
   : QUOTED
