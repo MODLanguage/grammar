@@ -3063,7 +3063,7 @@
   {
     "id": "323",
     "input": "test=\\\\~u2019\\\\u2019~u2019\\\\u2019",
-    "expected_output": "{\n    \"test\": \"~u2019\\\\u2019\u2019\\\\u2019\"\n}",
+    "expected_output": "{\n    \"test\": \"\\\\~u2019\\\\u2019\u2019\\\\u2019\"\n}",
     "tested_features": [
       "unicode",
       "escape"
