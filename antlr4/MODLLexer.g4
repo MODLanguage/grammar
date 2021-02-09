@@ -17,9 +17,9 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 lexer grammar MODLLexer;
   // These tokens are for default mode (outside of conditionals)
   WS         : [ \t\r\n] + -> skip ;
-  NULL       : '000' | 'null' | 'NULL' ;
-  TRUE       : '01' | 'true' | 'TRUE' ;
-  FALSE      : '00' | 'false' | 'FALSE' ;
+  NULL       : '000';
+  TRUE       : '01';
+  FALSE      : '00';
   COLON      : ':' ;
   EQUALS     : '=' ;
   STRUCT_SEP : ';' ;

@@ -27,6 +27,7 @@ modl_structure
   : modl_map
   | modl_array
   | modl_pair
+  | modl_primitive
   ;
 
 modl_map
@@ -39,16 +40,8 @@ modl_map
 modl_array
   // [ item; item ]
   : LSBRAC
-        ( ( modl_array_value_item | modl_nb_array ) (STRUCT_SEP+ ( modl_array_value_item | modl_nb_array ) STRUCT_SEP* )* )?
+        ( ( modl_array_value_item ) (STRUCT_SEP+ ( modl_array_value_item ) STRUCT_SEP* )* )?
     RSBRAC
-  ;
-
-modl_nb_array
-  // non-bracketed array
-  // numbers=1:2:3
-  // also possible to have blank items
-  // numbers=1:2:3:::4:5:6
-  : ( modl_array_value_item COLON+ )+ ( modl_array_value_item )* COLON?
   ;
 
 modl_pair
@@ -75,7 +68,6 @@ modl_value_item
 modl_value
   : modl_map
   | modl_array
-  | modl_nb_array
   | modl_pair
   | modl_primitive
 ;

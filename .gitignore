@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/jetbrains
 
 ### JetBrains ###
@@ -11,7 +10,6 @@
 */.idea/dictionaries
 */.idea/codeStyles/
 */.idea/encodings.xml
-
 
 # Sensitive or high-churn files:
 */.idea/**/dataSources/
@@ -70,7 +68,6 @@ fabric.properties
 # Sonarlint plugin
 **/.idea/sonarlint
 
-
 # End of https://www.gitignore.io/api/jetbrains
 
 # mac file system
@@ -81,3 +78,5 @@ fabric.properties
 
 # All .idea files
 **/.idea
+
+gen
