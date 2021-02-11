@@ -17,29 +17,19 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 lexer grammar MODLLexer;
   // These tokens are for default mode (outside of conditionals)
   WS         : [ \t\r\n] + -> skip ;
-  NULL       : '000';
-  TRUE       : '01';
-  FALSE      : '00';
-  COLON      : ':' ;
+  NULL       : 'null';
+  TRUE       : 'true';
+  FALSE      : 'false';
   EQUALS     : '=' ;
   STRUCT_SEP : ';' ;
   ARR_SEP    : ',' ;
-  LBRAC      : '(' ;
-  RBRAC      : ')' ;
+  LBRAC      : '{' ;
+  RBRAC      : '}' ;
   LSBRAC     : '[' ;
   RSBRAC     : ']' ;
   NUMBER     : '-'? INT ('.' [0-9] +)? EXP? ;
     fragment INT : '0' | [1-9] [0-9]* ;
     fragment EXP : [Ee] [+\-]? INT ;
-
-  COMMENT
-    // Comments are made using ## anywhere, they are ignored by parser
-    : '##' ( INSIDE_COMMENT ) -> skip
-    ;
-    fragment INSIDE_COMMENT
-      // Any character is allowed inside of comments except for new lines (a new line ends the comment)
-      : ~[\n\r] *
-    ;
 
   QUOTED
     // String inside double quotes – any character is allowed inside quotes except for the double quote itself
@@ -54,13 +44,13 @@ lexer grammar MODLLexer;
       : ~[`]*
       ;
 
-  STRING : '# '? ( ESCAPED | UNRESERVED | HASH_PREFIX )+ ( ('#'? ' '+ '#'? ) ( ESCAPED | UNRESERVED )+ )*;
+  STRING : '# '? ( ESCAPED | UNRESERVED )+ ( (' '+  ) ( ESCAPED | UNRESERVED )+ )*;
     // These two should be identical except for regex inversion on first:
     fragment UNRESERVED
-      : ~ ( '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ' ' | ';' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '\\' | '~' | '#' | '{' | '}' | '(' | ')' | '[' | ']' | ' ' | ';' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
@@ -77,6 +67,3 @@ lexer grammar MODLLexer;
           : [0-9a-fA-F]
           ;
 
-  HASH_PREFIX
-    : '#' STRING
-    ;
