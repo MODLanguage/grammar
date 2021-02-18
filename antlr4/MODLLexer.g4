@@ -46,10 +46,10 @@ lexer grammar MODLLexer;
   STRING : '# '? ( ESCAPED | UNRESERVED )+ ( (' '+  ) ( ESCAPED | UNRESERVED )+ )*;
     // These two should be identical except for regex inversion on first:
     fragment UNRESERVED
-      : ~ ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '\\' | '~' | '(' | ')' | '[' | ']' | ' ' | ';' | '=' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '\\' | '~' | '(' | ')' | '[' | ']' | ' ' | ';' | '=' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab

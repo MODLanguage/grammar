@@ -75,6 +75,7 @@ fabric.properties
 
 # ANTLR4 files not needed.
 *.tokens
+antlr4/.antlr
 
 
 # All .idea files
