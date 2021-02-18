@@ -114,7 +114,7 @@
   {
     "id": "13",
     "input": "_test=[[a;b]];letters2=%test.0.0",
-    "expected_output": "{\"letters2\":\"%test.0.0\"}",
+    "expected_output": "{\"_test\":[[\"a\",\"b\"]],\"letters2\":\"%test.0.0\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -186,7 +186,7 @@
   {
     "id": "21",
     "input": "_test=123;object(print_test = %test.test)",
-    "expected_output": "{\"object\":{\"print_test\":\"%test.test\"}}",
+    "expected_output": "{\"_test\":123,\"object\":{\"print_test\":\"%test.test\"}}",
     "tested_features": [
       "object_ref"
     ],
@@ -231,7 +231,7 @@
   {
     "id": "26",
     "input": "_test=(a=b=c=d=f);\nx=%test.a.b.c.d",
-    "expected_output": "{\"x\":\"%test.a.b.c.d\"}",
+    "expected_output": "{\"_test\":{\"a\":{\"b\":{\"c\":{\"d\":\"f\"}}}},\"x\":\"%test.a.b.c.d\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -249,7 +249,7 @@
   {
     "id": "28",
     "input": "_test=(a=b=c=d=f);\ntesting=%test.a.b.c.d",
-    "expected_output": "{\"testing\":\"%test.a.b.c.d\"}",
+    "expected_output": "{\"_test\":{\"a\":{\"b\":{\"c\":{\"d\":\"f\"}}}},\"testing\":\"%test.a.b.c.d\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -303,7 +303,7 @@
   {
     "id": "34",
     "input": "_testing = quick-test of John's variable_methods;\nupcase_example = %testing.u;\ndowncase_example = %testing.d;\ninitcap_example = %testing.i;\nsentence_example = %testing.s;\nurl_encode_example = %testing.u.e",
-    "expected_output": "{\"upcase_example\":\"%testing.u\",\"downcase_example\":\"%testing.d\",\"initcap_example\":\"%testing.i\",\"sentence_example\":\"%testing.s\",\"url_encode_example\":\"%testing.u.e\"}",
+    "expected_output": "{\"_testing\":\"quick-test of John's variable_methods\",\"upcase_example\":\"%testing.u\",\"downcase_example\":\"%testing.d\",\"initcap_example\":\"%testing.i\",\"sentence_example\":\"%testing.s\",\"url_encode_example\":\"%testing.u.e\"}",
     "tested_features": [
       "string_method"
     ],
@@ -330,7 +330,7 @@
   {
     "id": "37",
     "input": "_branch=\"alex.\";\n_root=d;\nnamespace=%branch%blah.%root",
-    "expected_output": "{\"namespace\":\"%branch%blah.%root\"}",
+    "expected_output": "{\"_branch\":\"alex.\",\"_root\":\"d\",\"namespace\":\"%branch%blah.%root\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -349,7 +349,7 @@
   {
     "id": "39",
     "input": "_root=tesco.com;\n_branch=direct.;\nnamespace1=%branch%numrecord.%root;\nnamespace2=%branch%_%root%.numq.net",
-    "expected_output": "{\"namespace1\":\"%branch%numrecord.%root\",\"namespace2\":\"%branch%_%root%.numq.net\"}",
+    "expected_output": "{\"_root\":\"tesco.com\",\"_branch\":\"direct.\",\"namespace1\":\"%branch%numrecord.%root\",\"namespace2\":\"%branch%_%root%.numq.net\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -359,7 +359,7 @@
   {
     "id": "40",
     "input": "_branch=\"\";\n_root=\"\";\nnamespace=%branch%numrecord.%root",
-    "expected_output": "{\"namespace\":\"%branch%numrecord.%root\"}",
+    "expected_output": "{\"_branch\":\"\",\"_root\":\"\",\"namespace\":\"%branch%numrecord.%root\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -419,7 +419,7 @@
   {
     "id": "46",
     "input": "_test=\"123\";\nobject(\n print_test = %test%.test\n)",
-    "expected_output": "{\"object\":{\"print_test\":\"%test%.test\"}}",
+    "expected_output": "{\"_test\":\"123\",\"object\":{\"print_test\":\"%test%.test\"}}",
     "tested_features": [
       "object_ref"
     ],
@@ -428,7 +428,7 @@
   {
     "id": "47",
     "input": "_var = NotThisOne;\n_var=%var%blah;\nout=%var%deblah",
-    "expected_output": "{\"out\":\"%var%deblah\"}",
+    "expected_output": "{\"_var\":\"%var%blah\",\"out\":\"%var%deblah\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -437,7 +437,7 @@
   {
     "id": "48",
     "input": "_var = NotThisOne;\n_var=blah;\nout=%var%deblah",
-    "expected_output": "{\"out\":\"%var%deblah\"}",
+    "expected_output": "{\"_var\":\"blah\",\"out\":\"%var%deblah\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -476,7 +476,7 @@
   {
     "id": "52",
     "input": "_person(  \n name(\n   first=John;\n   last=Smith\n )\n);\nsay=%person.name.first",
-    "expected_output": "{\"say\":\"%person.name.first\"}",
+    "expected_output": "{\"_person\":{\"name\":{\"first\":\"John\",\"last\":\"Smith\"}},\"say\":\"%person.name.first\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -485,7 +485,7 @@
   {
     "id": "53",
     "input": "_C=gb;\n_COUNTRIES(\n us=United States;\n gb=United Kingdom;\n de=Germany\n);\n\ncountry_name = %COUNTRIES.%C",
-    "expected_output": "{\"country_name\":\"%COUNTRIES.%C\"}",
+    "expected_output": "{\"_C\":\"gb\",\"_COUNTRIES\":{\"us\":\"United States\",\"gb\":\"United Kingdom\",\"de\":\"Germany\"},\"country_name\":\"%COUNTRIES.%C\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -494,7 +494,7 @@
   {
     "id": "54",
     "input": "_person(  \n name(\n   first=\"John\"\n )\n);\na=%person.name.first",
-    "expected_output": "{\"a\":\"%person.name.first\"}",
+    "expected_output": "{\"_person\":{\"name\":{\"first\":\"John\"}},\"a\":\"%person.name.first\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -503,7 +503,7 @@
   {
     "id": "55",
     "input": "_test=123;\nprint=%_test",
-    "expected_output": "{\"print\":\"%_test\"}",
+    "expected_output": "{\"_test\":123,\"print\":\"%_test\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -539,7 +539,7 @@
   {
     "id": "59",
     "input": "_test[a;b;c];alex=%test.0",
-    "expected_output": "{\"alex\":\"%test.0\"}",
+    "expected_output": "{\"_test\":[\"a\",\"b\",\"c\"],\"alex\":\"%test.0\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -651,7 +651,7 @@
   {
     "id": "71",
     "input": "_COUNTRY=gb;\ncountry=The country is %COUNTRY",
-    "expected_output": "{\"country\":\"The country is %COUNTRY\"}",
+    "expected_output": "{\"_COUNTRY\":\"gb\",\"country\":\"The country is %COUNTRY\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -669,7 +669,7 @@
   {
     "id": "73",
     "input": "_co=gb;\ncountry=The country is %co",
-    "expected_output": "{\"country\":\"The country is %co\"}",
+    "expected_output": "{\"_co\":\"gb\",\"country\":\"The country is %co\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -678,7 +678,7 @@
   {
     "id": "74",
     "input": "_test = 123;\n_test2 = abc",
-    "expected_output": "null",
+    "expected_output": "{\"_test\":123,\"_test2\":\"abc\"}",
     "tested_features": [
       "object_ref",
       "null"
@@ -688,7 +688,7 @@
   {
     "id": "75",
     "input": "_co=gb;\ntest=123",
-    "expected_output": "{\"test\":123}",
+    "expected_output": "{\"_co\":\"gb\",\"test\":123}",
     "tested_features": [
       "object_ref"
     ],
@@ -697,7 +697,7 @@
   {
     "id": "76",
     "input": "*method(\n *id=cn;\n *name=company_name;\n *transform=replace<-, >.trim<.>.initcap\n);\n\n_domain = smiths-limited.com;\nfriendly_name = %domain.cn",
-    "expected_output": "{\"*method\":{\"*id\":\"cn\",\"*name\":\"company_name\",\"*transform\":\"replace<-, >.trim<.>.initcap\"},\"friendly_name\":\"%domain.cn\"}",
+    "expected_output": "{\"*method\":{\"*id\":\"cn\",\"*name\":\"company_name\",\"*transform\":\"replace<-, >.trim<.>.initcap\"},\"_domain\":\"smiths-limited.com\",\"friendly_name\":\"%domain.cn\"}",
     "tested_features": [
       "method"
     ],
@@ -706,7 +706,7 @@
   {
     "id": "77",
     "input": "*method(\n *id=rt;\n *name=remove_two;\n *transform=replace<two,>\n);\n\n_numbers = one two three;\nname = %numbers.rt",
-    "expected_output": "{\"*method\":{\"*id\":\"rt\",\"*name\":\"remove_two\",\"*transform\":\"replace<two,>\"},\"name\":\"%numbers.rt\"}",
+    "expected_output": "{\"*method\":{\"*id\":\"rt\",\"*name\":\"remove_two\",\"*transform\":\"replace<two,>\"},\"_numbers\":\"one two three\",\"name\":\"%numbers.rt\"}",
     "tested_features": [
       "method"
     ],
@@ -715,7 +715,7 @@
   {
     "id": "78",
     "input": "_var=2;\n*L=\"http://modl.uk/tests/testing.txt!\";\nprint=%update_date\n",
-    "expected_output": "{\"*L\":\"http://modl.uk/tests/testing.txt!\",\"print\":\"%update_date\"}",
+    "expected_output": "{\"_var\":2,\"*L\":\"http://modl.uk/tests/testing.txt!\",\"print\":\"%update_date\"}",
     "tested_features": [
       "object_ref",
       "load"
@@ -725,7 +725,7 @@
   {
     "id": "79",
     "input": "_T=../grammar/tests/demo;\n*L=%T%_config",
-    "expected_output": "{\"*L\":\"%T%_config\"}",
+    "expected_output": "{\"_T\":\"../grammar/tests/demo\",\"*L\":\"%T%_config\"}",
     "tested_features": [
       "object_ref",
       "load",
@@ -1081,7 +1081,7 @@
   {
     "id": "115",
     "input": "_test=(\n  numbers=[[1;2;3;4;5];[6;7;8;9;10]]\n);\n \ntesting=%test.numbers.0.0",
-    "expected_output": "{\"testing\":\"%test.numbers.0.0\"}",
+    "expected_output": "{\"_test\":{\"numbers\":[[1,2,3,4,5],[6,7,8,9,10]]},\"testing\":\"%test.numbers.0.0\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1090,7 +1090,7 @@
   {
     "id": "116",
     "input": "_test=(\n  numbers=(\"one\"=1)\n);\n \ntesting = this is a string that includes a reference with a letter s after it %test.numbers.one%s",
-    "expected_output": "{\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.one%s\"}",
+    "expected_output": "{\"_test\":{\"numbers\":{\"one\":1}},\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.one%s\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1099,7 +1099,7 @@
   {
     "id": "117",
     "input": "_test=(\n  numbers=(\"v\"=TEST)\n);\n \ntesting = this is a string that includes extra transforms for the value %test.numbers.v.d%_value",
-    "expected_output": "{\"testing\":\"this is a string that includes extra transforms for the value %test.numbers.v.d%_value\"}",
+    "expected_output": "{\"_test\":{\"numbers\":{\"v\":\"TEST\"}},\"testing\":\"this is a string that includes extra transforms for the value %test.numbers.v.d%_value\"}",
     "tested_features": [
       "object_ref",
       "string_method"
@@ -1109,7 +1109,7 @@
   {
     "id": "118",
     "input": "_test=(\n  first=(\"v\"=TEST);\n  second=(\"v\"=TEST2)\n);\n \ntesting = this is a string that includes extra transforms for the value %test.second.v.d%_value",
-    "expected_output": "{\"testing\":\"this is a string that includes extra transforms for the value %test.second.v.d%_value\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v\":\"TEST\"},\"second\":{\"v\":\"TEST2\"}},\"testing\":\"this is a string that includes extra transforms for the value %test.second.v.d%_value\"}",
     "tested_features": [
       "object_ref",
       "string_method"
@@ -1119,7 +1119,7 @@
   {
     "id": "119",
     "input": "_test=(\n  first=(\"v1\"=one);\n  second=(\"v2\"=two:three)\n);\n \ntesting = %test.second.v2.1",
-    "expected_output": "{\"testing\":\"%test.second.v2.1\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":\"one\"},\"second\":{\"v2\":\"two:three\"}},\"testing\":\"%test.second.v2.1\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -1129,7 +1129,7 @@
   {
     "id": "120",
     "input": "_test=(\n  first=(\"v1\"=[one]);\n  second=(\"v2\"=two:three)\n);\n \ntesting = %test.first.v1.0%%test.second.v2.0%%test.second.v2.1",
-    "expected_output": "{\"testing\":\"%test.first.v1.0%%test.second.v2.0%%test.second.v2.1\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":[\"one\"]},\"second\":{\"v2\":\"two:three\"}},\"testing\":\"%test.first.v1.0%%test.second.v2.0%%test.second.v2.1\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1138,7 +1138,7 @@
   {
     "id": "121",
     "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.two",
-    "expected_output": "{\"testing\":\"%test.first.v1.one.two\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.one.two\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1192,7 +1192,7 @@
   {
     "id": "127",
     "input": "_test=( numbers=[[1;2;3;4;5];[6;7;8;9;10]]\n);\n \ntesting=%test.numbers.0.0",
-    "expected_output": "{\"testing\":\"%test.numbers.0.0\"}",
+    "expected_output": "{\"_test\":{\"numbers\":[[1,2,3,4,5],[6,7,8,9,10]]},\"testing\":\"%test.numbers.0.0\"}",
     "tested_features": [
       "undefined"
     ],
@@ -1201,7 +1201,7 @@
   {
     "id": "128",
     "input": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.one%s",
-    "expected_output": "{\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.one%s\"}",
+    "expected_output": "{\"_test\":{\"numbers\":{\"one\":1}},\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.one%s\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1220,7 +1220,7 @@
   {
     "id": "130",
     "input": "_x=[1;2:3:4];\na=%x.1.1",
-    "expected_output": "{\"a\":\"%x.1.1\"}",
+    "expected_output": "{\"_x\":[1,\"2:3:4\"],\"a\":\"%x.1.1\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1483,7 +1483,7 @@
   {
     "id": "157",
     "input": "_a=one;\n_b=two;\n_c=three;\n\nd=%a:%b:%c;\ne=[%a;%b;%c]",
-    "expected_output": "{\"d\":\"%a:%b:%c\",\"e\":[\"%a\",\"%b\",\"%c\"]}",
+    "expected_output": "{\"_a\":\"one\",\"_b\":\"two\",\"_c\":\"three\",\"d\":\"%a:%b:%c\",\"e\":[\"%a\",\"%b\",\"%c\"]}",
     "tested_features": [
       "object_ref"
     ],
@@ -1492,7 +1492,7 @@
   {
     "id": "158",
     "input": "_x=abc;\ny=`%x`",
-    "expected_output": "{\"y\":\"%x\"}",
+    "expected_output": "{\"_x\":\"abc\",\"y\":\"%x\"}",
     "tested_features": [
       "graves"
     ],
@@ -1501,7 +1501,7 @@
   {
     "id": "159",
     "input": "_x=abc;\ny=\"%x\"",
-    "expected_output": "{\"y\":\"%x\"}",
+    "expected_output": "{\"_x\":\"abc\",\"y\":\"%x\"}",
     "tested_features": [
       "quotes"
     ],
@@ -1510,7 +1510,7 @@
   {
     "id": "160",
     "input": "_replace_me=new value;\n\none=%replace_me.u;\n\ntwo=`replace_me`.u;\n\nthree=`replace_me.u`;\n\nfour=`%replace_me.u`;\n\nfive=`%replace_me`.u;\n\nsix=%replace_me.u%_added;\n\nseven=replace_me.u;\n\neight=%`replace_me`.u;\n\nnine=%`replace_me`.u%;",
-    "expected_output": "{\"one\":\"%replace_me.u\",\"two\":\"`replace_me`.u\",\"three\":\"replace_me.u\",\"four\":\"%replace_me.u\",\"five\":\"`%replace_me`.u\",\"six\":\"%replace_me.u%_added\",\"seven\":\"replace_me.u\",\"eight\":\"%`replace_me`.u\",\"nine\":\"%`replace_me`.u%\"}",
+    "expected_output": "{\"_replace_me\":\"new value\",\"one\":\"%replace_me.u\",\"two\":\"`replace_me`.u\",\"three\":\"replace_me.u\",\"four\":\"%replace_me.u\",\"five\":\"`%replace_me`.u\",\"six\":\"%replace_me.u%_added\",\"seven\":\"replace_me.u\",\"eight\":\"%`replace_me`.u\",\"nine\":\"%`replace_me`.u%\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1546,7 +1546,7 @@
   {
     "id": "164",
     "input": "_test=abc;\nkey=%test",
-    "expected_output": "{\"key\":\"%test\"}",
+    "expected_output": "{\"_test\":\"abc\",\"key\":\"%test\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1555,7 +1555,7 @@
   {
     "id": "165",
     "input": "_test=abc;\nkey=\"%test\"",
-    "expected_output": "{\"key\":\"%test\"}",
+    "expected_output": "{\"_test\":\"abc\",\"key\":\"%test\"}",
     "tested_features": [
       "object_ref",
       "quotes"
@@ -1565,7 +1565,7 @@
   {
     "id": "166",
     "input": "_test=abc;\nkey=`%test`",
-    "expected_output": "{\"key\":\"%test\"}",
+    "expected_output": "{\"_test\":\"abc\",\"key\":\"%test\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -1645,7 +1645,7 @@
   {
     "id": "174",
     "input": "_test=abc;\nkey=%test.u",
-    "expected_output": "{\"key\":\"%test.u\"}",
+    "expected_output": "{\"_test\":\"abc\",\"key\":\"%test.u\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1654,7 +1654,7 @@
   {
     "id": "175",
     "input": "_test=replace the word this in this string;\ntesting=%test.replace<`this`,`that`>",
-    "expected_output": "{\"testing\":\"%test.replace<`this`,`that`>\"}",
+    "expected_output": "{\"_test\":\"replace the word this in this string\",\"testing\":\"%test.replace<`this`,`that`>\"}",
     "tested_features": [
       "method",
       "object_ref",
@@ -1665,7 +1665,7 @@
   {
     "id": "176",
     "input": "_test=replace the word this in this string;\ntesting=%test.replace<this,``>",
-    "expected_output": "{\"testing\":\"%test.replace<this,``>\"}",
+    "expected_output": "{\"_test\":\"replace the word this in this string\",\"testing\":\"%test.replace<this,``>\"}",
     "tested_features": [
       "method",
       "object_ref",
@@ -1697,7 +1697,7 @@
   {
     "id": "179",
     "input": "_vat=20;\nkey=vat rate is %vat%%",
-    "expected_output": "{\"key\":\"vat rate is %vat%%\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat%%\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1706,7 +1706,7 @@
   {
     "id": "180",
     "input": "_vat=20;\nkey=vat rate is %vat%",
-    "expected_output": "{\"key\":\"vat rate is %vat%\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat%\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1715,7 +1715,7 @@
   {
     "id": "181",
     "input": "_vat=20;\nkey=vat rate is %vat%%",
-    "expected_output": "{\"key\":\"vat rate is %vat%%\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat%%\"}",
     "tested_features": [
       "object_ref",
       "escape"
@@ -1725,7 +1725,7 @@
   {
     "id": "182",
     "input": "_vat=20;\nkey=vat rate is %vat %",
-    "expected_output": "{\"key\":\"vat rate is %vat %\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat %\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1734,7 +1734,7 @@
   {
     "id": "183",
     "input": "_vat=20;\nkey=`vat rate is %vat%%`",
-    "expected_output": "{\"key\":\"vat rate is %vat%%\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat%%\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -1744,7 +1744,7 @@
   {
     "id": "184",
     "input": "_vat=20;\nkey=\"vat rate is %vat%%\"",
-    "expected_output": "{\"key\":\"vat rate is %vat%%\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat%%\"}",
     "tested_features": [
       "object_ref",
       "quotes"
@@ -1754,7 +1754,7 @@
   {
     "id": "185",
     "input": "_vat=20;\nkey=\"vat rate is %vat%`%`\"",
-    "expected_output": "{\"key\":\"vat rate is %vat%`%`\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat%`%`\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -1764,7 +1764,7 @@
   {
     "id": "186",
     "input": "_vat=20;\nkey=\"vat rate is %vat`%`\"",
-    "expected_output": "{\"key\":\"vat rate is %vat`%`\"}",
+    "expected_output": "{\"_vat\":20,\"key\":\"vat rate is %vat`%`\"}",
     "tested_features": [
       "object_ref",
       "graves"
@@ -1774,7 +1774,7 @@
   {
     "id": "187",
     "input": "_test1=e1afmkfd;\nrussian1=%test1.p;\n\n_test2=\"e1afmkfd\";\nrussian2=%test2.p;\n\n_test3=`e1afmkfd`;\nrussian3=%test3.p;",
-    "expected_output": "{\"russian1\":\"%test1.p\",\"russian2\":\"%test2.p\",\"russian3\":\"%test3.p\"}",
+    "expected_output": "{\"_test1\":\"e1afmkfd\",\"russian1\":\"%test1.p\",\"_test2\":\"e1afmkfd\",\"russian2\":\"%test2.p\",\"_test3\":\"e1afmkfd\",\"russian3\":\"%test3.p\"}",
     "tested_features": [
       "punycode",
       "method"
@@ -1784,7 +1784,7 @@
   {
     "id": "188",
     "input": "_letters=abc;key=\"~%letters\"",
-    "expected_output": "{\"key\":\"~%letters\"}",
+    "expected_output": "{\"_letters\":\"abc\",\"key\":\"~%letters\"}",
     "tested_features": [
       "escape"
     ],
@@ -1793,7 +1793,7 @@
   {
     "id": "189",
     "input": "_letters=abc;key=\"\\%letters\"",
-    "expected_output": "{\"key\":\"\\\\%letters\"}",
+    "expected_output": "{\"_letters\":\"abc\",\"key\":\"\\\\%letters\"}",
     "tested_features": [
       "escape"
     ],
@@ -1897,7 +1897,7 @@
   {
     "id": "200",
     "input": "_u=[\"https://www.logos.uk/\"];\nl=%u.0%logo.png",
-    "expected_output": "{\"l\":\"%u.0%logo.png\"}",
+    "expected_output": "{\"_u\":[\"https://www.logos.uk/\"],\"l\":\"%u.0%logo.png\"}",
     "tested_features": [
       "object_ref"
     ],
@@ -1906,7 +1906,7 @@
   {
     "id": "201",
     "input": "_C=gb;_L=en;*load=\"http://modules.numprotocol.com/1/rcf.txt!\";o(c[fb=abc;tw=abc])",
-    "expected_output": "{\"*load\":\"http://modules.numprotocol.com/1/rcf.txt!\",\"o\":{\"c\":[{\"fb\":\"abc\"},{\"tw\":\"abc\"}]}}",
+    "expected_output": "{\"_C\":\"gb\",\"_L\":\"en\",\"*load\":\"http://modules.numprotocol.com/1/rcf.txt!\",\"o\":{\"c\":[{\"fb\":\"abc\"},{\"tw\":\"abc\"}]}}",
     "tested_features": [
       "object_ref"
     ],
@@ -1934,7 +1934,7 @@
   {
     "id": "204",
     "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=[thePermission];\n\n@n=1;c=[[theType;theHash;%a]]",
-    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"@n\":1,\"c\":[[\"theType\",\"theHash\",\"%a\"]]}",
+    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"_a\":[\"thePermission\"],\"@n\":1,\"c\":[[\"theType\",\"theHash\",\"%a\"]]}",
     "tested_features": [
       "class"
     ],
@@ -1943,7 +1943,7 @@
   {
     "id": "205",
     "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=thePermission;\n\n@n=1;c=[[theType;theHash;[%a]]]",
-    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"@n\":1,\"c\":[[\"theType\",\"theHash\",[\"%a\"]]]}",
+    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"_a\":\"thePermission\",\"@n\":1,\"c\":[[\"theType\",\"theHash\",[\"%a\"]]]}",
     "tested_features": [
       "class"
     ],
@@ -1952,7 +1952,7 @@
   {
     "id": "206",
     "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=(x=thePermission;y=[1;2;3]);\n\n@n=1;c=[[theType;theHash;[%a]]]",
-    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"@n\":1,\"c\":[[\"theType\",\"theHash\",[\"%a\"]]]}",
+    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"_a\":{\"x\":\"thePermission\",\"y\":[1,2,3]},\"@n\":1,\"c\":[[\"theType\",\"theHash\",[\"%a\"]]]}",
     "tested_features": [
       "class"
     ],
@@ -1961,7 +1961,7 @@
   {
     "id": "207",
     "input": "*class(\n  *id=custodian;\n  *assign=[\n    [type;hash;permissions]\n  ]\n);\n\n*class(\n  *id=c;\n  *name=custodians;\n  *assign=[[custodian*]]\n);\n\n_a=admin;\n_b=bravo;\n_c=charlie;\n\n@n=1;c[single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:[%a;%b;%c]]",
-    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"@n\":1,\"c\":[{\"single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:\":[\"%a\",\"%b\",\"%c\"]}]}",
+    "expected_output": "{\"*class\":{\"*id\":\"c\",\"*name\":\"custodians\",\"*assign\":[[\"custodian*\"]]},\"_a\":\"admin\",\"_b\":\"bravo\",\"_c\":\"charlie\",\"@n\":1,\"c\":[{\"single:cd89f92fe06f518536c86ff6e8eb85c2717bae35:\":[\"%a\",\"%b\",\"%c\"]}]}",
     "tested_features": [
       "class"
     ],
@@ -1970,7 +1970,7 @@
   {
     "id": "208",
     "input": "_here = 1;test=%`%missing`;test2=%`%here`",
-    "expected_output": "{\"test\":\"%`%missing`\",\"test2\":\"%`%here`\"}",
+    "expected_output": "{\"_here\":1,\"test\":\"%`%missing`\",\"test2\":\"%`%here`\"}",
     "tested_features": [
       "refs"
     ],
@@ -2006,7 +2006,7 @@
   {
     "id": "212",
     "input": "?=a:b:c:d;_x=xxx;test=%`%0 %x x%`",
-    "expected_output": "{\"?\":\"a:b:c:d\",\"test\":\"%`%0 %x x%`\"}",
+    "expected_output": "{\"?\":\"a:b:c:d\",\"_x\":\"xxx\",\"test\":\"%`%0 %x x%`\"}",
     "tested_features": [
       "refs"
     ],
@@ -2015,7 +2015,7 @@
   {
     "id": "213",
     "input": "_locale=uk;url=`https://www.example.com/%locale/file`;",
-    "expected_output": "{\"url\":\"https://www.example.com/%locale/file\"}",
+    "expected_output": "{\"_locale\":\"uk\",\"url\":\"https://www.example.com/%locale/file\"}",
     "tested_features": [
       "refs"
     ],
@@ -2033,7 +2033,7 @@
   {
     "id": "215",
     "input": "_a=1;\n_b(\n   _a=2;\n   _c(\n       _a=3\n   )\n);\n\nx=%a;\ny = %b.a;\nz = %b.c.a",
-    "expected_output": "{\"x\":\"%a\",\"y\":\"%b.a\",\"z\":\"%b.c.a\"}",
+    "expected_output": "{\"_a\":1,\"_b\":{\"_a\":2,\"_c\":{\"_a\":3}},\"x\":\"%a\",\"y\":\"%b.a\",\"z\":\"%b.c.a\"}",
     "tested_features": [
       "refs"
     ],
@@ -2070,35 +2070,35 @@
   {
     "id": "220",
     "input": "_vars(\n  test=1\n);\nprint_var = %vars.test,",
-    "expected_output": "{\"print_var\":\"%vars.test,\"}",
+    "expected_output": "{\"_vars\":{\"test\":1},\"print_var\":\"%vars.test,\"}",
     "tested_features": [],
     "minimised_modl": "_vars(test=1);print_var=%vars.test,"
   },
   {
     "id": "221",
     "input": "_vars(\n  test=hello world\n);\nprint_var = %vars.test.r< ,``>,",
-    "expected_output": "{\"print_var\":\"%vars.test.r< ,``>,\"}",
+    "expected_output": "{\"_vars\":{\"test\":\"hello world\"},\"print_var\":\"%vars.test.r< ,``>,\"}",
     "tested_features": [],
     "minimised_modl": "_vars(test=hello world);print_var=%vars.test.r< ,``>,"
   },
   {
     "id": "222",
     "input": "_var=01;print_var=%var test",
-    "expected_output": "{\"print_var\":\"%var test\"}",
+    "expected_output": "{\"_var\":true,\"print_var\":\"%var test\"}",
     "tested_features": [],
     "minimised_modl": "_var=01;print_var=%var test"
   },
   {
     "id": "223",
     "input": "_var=00;print_var=%var test",
-    "expected_output": "{\"print_var\":\"%var test\"}",
+    "expected_output": "{\"_var\":false,\"print_var\":\"%var test\"}",
     "tested_features": [],
     "minimised_modl": "_var=00;print_var=%var test"
   },
   {
     "id": "224",
     "input": "_var=000;print_var=%var test",
-    "expected_output": "{\"print_var\":\"%var test\"}",
+    "expected_output": "{\"_var\":null,\"print_var\":\"%var test\"}",
     "tested_features": [],
     "minimised_modl": "_var=000;print_var=%var test"
   },

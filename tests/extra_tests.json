@@ -184,70 +184,70 @@
   {
     "id": "27",
     "input": "_12*3=1",
-    "expected_output": "null",
+    "expected_output": "{\"_12*3\":1}",
     "tested_features": [],
     "minimised_modl": "_12*3=1"
   },
   {
     "id": "28",
     "input": "_12!3=1",
-    "expected_output": "null",
+    "expected_output": "{\"_12!3\":1}",
     "tested_features": [],
     "minimised_modl": "_12!3=1"
   },
   {
     "id": "29",
     "input": "_12#3=1",
-    "expected_output": "null",
+    "expected_output": "{\"_12#3\":1}",
     "tested_features": [],
     "minimised_modl": "_12#3=1"
   },
   {
     "id": "30",
     "input": "_12$3=1",
-    "expected_output": "null",
+    "expected_output": "{\"_12$3\":1}",
     "tested_features": [],
     "minimised_modl": "_12$3=1"
   },
   {
     "id": "31",
     "input": "_12^3=1",
-    "expected_output": "null",
+    "expected_output": "{\"_12^3\":1}",
     "tested_features": [],
     "minimised_modl": "_12^3=1"
   },
   {
     "id": "32",
     "input": "_12&3=1",
-    "expected_output": "null",
+    "expected_output": "{\"_12&3\":1}",
     "tested_features": [],
     "minimised_modl": "_12&3=1"
   },
   {
     "id": "33",
     "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.0",
-    "expected_output": "{\"testing\":\"%test.first.v1.one.0\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.one.0\"}",
     "tested_features": [],
     "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.0"
   },
   {
     "id": "34",
     "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.two",
-    "expected_output": "{\"testing\":\"%test.first.v1.0.two\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.0.two\"}",
     "tested_features": [],
     "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.two"
   },
   {
     "id": "35",
     "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.0",
-    "expected_output": "{\"testing\":\"%test.first.v1.0.0\"}",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.0.0\"}",
     "tested_features": [],
     "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.0"
   },
   {
     "id": "36",
     "input": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.ones",
-    "expected_output": "{\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.ones\"}",
+    "expected_output": "{\"_test\":{\"numbers\":{\"one\":1}},\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.ones\"}",
     "tested_features": [],
     "minimised_modl": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.ones"
   },
@@ -408,14 +408,14 @@
   {
     "id": "59",
     "input": "_vars(\n  test=1\n);\nprint_var = %vars,,,,,test",
-    "expected_output": "{\"print_var\":\"%vars,,,,,test\"}",
+    "expected_output": "{\"_vars\":{\"test\":1},\"print_var\":\"%vars,,,,,test\"}",
     "tested_features": [],
     "minimised_modl": "_vars(test=1);print_var=%vars,,,,,test"
   },
   {
     "id": "60",
     "input": "_var=[1;2;3];print_var=%var test",
-    "expected_output": "{\"print_var\":\"%var test\"}",
+    "expected_output": "{\"_var\":[1,2,3],\"print_var\":\"%var test\"}",
     "tested_features": [],
     "minimised_modl": "_var=[1;2;3];print_var=%var test"
   },
