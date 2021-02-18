@@ -15,7 +15,6 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 */
 
 lexer grammar MODLLexer;
-  // These tokens are for default mode (outside of conditionals)
   WS         : [ \t\r\n] + -> skip ;
   NULL       : 'null';
   TRUE       : 'true';
@@ -23,8 +22,8 @@ lexer grammar MODLLexer;
   EQUALS     : '=' ;
   STRUCT_SEP : ';' ;
   ARR_SEP    : ',' ;
-  LBRAC      : '{' ;
-  RBRAC      : '}' ;
+  LBRAC      : '(' ;
+  RBRAC      : ')' ;
   LSBRAC     : '[' ;
   RSBRAC     : ']' ;
   NUMBER     : '-'? INT ('.' [0-9] +)? EXP? ;
@@ -47,23 +46,16 @@ lexer grammar MODLLexer;
   STRING : '# '? ( ESCAPED | UNRESERVED )+ ( (' '+  ) ( ESCAPED | UNRESERVED )+ )*;
     // These two should be identical except for regex inversion on first:
     fragment UNRESERVED
-      : ~ ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      : ~ ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment RESERVED_CHARS
-      :   ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | ':' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
+      :   ( '\\' | '~' | '{' | '}' | '[' | ']' | ' ' | ';' | '=' | '"' | '\b' | '\f' | '\n' | '\r' | '\t' )
     ;
     fragment ESCAPED
       // Standard JSON escaping, e.g. \t for tab
-      : '\\' ( [\\/bfnrt] | UNICODE )
+      : '\\' ( [\\/bfnrt] | 'u')
       // Standard back slash can be used to escape reserved characters
       | '\\' RESERVED_CHARS
       // Additionally, MODL allows tilde ( ~ ) escapes because backslash is problematic in DNS
-      | '~' ( RESERVED_CHARS | UNICODE )
+      | '~' ( RESERVED_CHARS | 'u')
       ;
-      fragment UNICODE
-        : 'u' HEX HEX HEX HEX
-        ;
-          fragment HEX
-          : [0-9a-fA-F]
-          ;
-

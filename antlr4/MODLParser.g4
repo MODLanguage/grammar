@@ -14,7 +14,7 @@
 
 parser grammar MODLParser;
 
-options {
+options { 
 	tokenVocab = MODLLexer;
 }
 
@@ -42,13 +42,9 @@ modl_array
 // A pair can be a traditional name-value pair split by an equals sign (standard pair), e.g.
 // name=John
 // 
-  //
-// 
 // For efficiency, it's also possible to assign a map to a pair without an equals sign, since the
 // left bracket separates the key from the value – this is called a map pair. e.g. person(name=John)
 // – this is equivalent to person=(name=John)
-// 
-  //
 // 
 // It's also possible to do the same with an array pair e.g. numbers[1;2;3] – equivalent to
 // numbers=[1;2;3]
