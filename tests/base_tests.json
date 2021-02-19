@@ -1784,7 +1784,7 @@
   {
     "id": "188",
     "input": "_letters=abc;key=\"~%letters\"",
-    "expected_output": "{\"_letters\":\"abc\",\"key\":\"~%letters\"}",
+    "expected_output": "{\"_letters\":\"abc\",\"key\":\"%letters\"}",
     "tested_features": [
       "escape"
     ],
@@ -1793,7 +1793,7 @@
   {
     "id": "189",
     "input": "_letters=abc;key=\"\\%letters\"",
-    "expected_output": "{\"_letters\":\"abc\",\"key\":\"\\\\%letters\"}",
+    "expected_output": "{\"_letters\":\"abc\",\"key\":\"%letters\"}",
     "tested_features": [
       "escape"
     ],
@@ -1802,7 +1802,7 @@
   {
     "id": "190",
     "input": "We\\u2019re=We\\u2019re;You~u2019re=We~u2019re",
-    "expected_output": "{\"We\\\\u2019re\":\"We\\\\u2019re\",\"You~u2019re\":\"We~u2019re\"}",
+    "expected_output": "{\"We’re\":\"We’re\",\"You’re\":\"We’re\"}",
     "tested_features": [
       "unicode"
     ],
@@ -1820,7 +1820,7 @@
   {
     "id": "192",
     "input": "test=\\~u2019",
-    "expected_output": "{\"test\":\"\\\\~u2019\"}",
+    "expected_output": "{\"test\":\"~u2019\"}",
     "tested_features": [
       "unicode",
       "escape"
@@ -1830,7 +1830,7 @@
   {
     "id": "193",
     "input": "test=\\\\u2019",
-    "expected_output": "{\"test\":\"\\\\\\\\u2019\"}",
+    "expected_output": "{\"test\":\"\\\\u2019\"}",
     "tested_features": [
       "unicode",
       "escape"
@@ -1840,7 +1840,7 @@
   {
     "id": "194",
     "input": "test=\\\\~u2019\\\\u2019~u2019\\\\u2019",
-    "expected_output": "{\"test\":\"\\\\\\\\~u2019\\\\\\\\u2019~u2019\\\\\\\\u2019\"}",
+    "expected_output": "{\"test\":\"~u2019\\\\u2019’\\\\u2019\"}",
     "tested_features": [
       "unicode",
       "escape"
@@ -1850,7 +1850,7 @@
   {
     "id": "195",
     "input": "test=~~u2019",
-    "expected_output": "{\"test\":\"~~u2019\"}",
+    "expected_output": "{\"test\":\"~u2019\"}",
     "tested_features": [
       "unicode",
       "escape"
@@ -1860,7 +1860,7 @@
   {
     "id": "196",
     "input": "test=\\~u2019",
-    "expected_output": "{\"test\":\"\\\\~u2019\"}",
+    "expected_output": "{\"test\":\"~u2019\"}",
     "tested_features": [
       "unicode",
       "escape"
@@ -1915,7 +1915,7 @@
   {
     "id": "202",
     "input": "test=~u1f60000",
-    "expected_output": "{\"test\":\"~u1f60000\"}",
+    "expected_output": "{\"test\":\"😀00\"}",
     "tested_features": [
       "unicode",
       "escape"
