@@ -77,7 +77,7 @@
   },
   {
     "id": "9",
-    "input": "[\none;\ntwo;\nthree;\n]",
+    "input": "[\none;\ntwo;\nthree\n]",
     "expected_output": "[\"one\",\"two\",\"three\"]",
     "tested_features": [
       "array"
@@ -1030,7 +1030,7 @@
   },
   {
     "id": "110",
-    "input": "o=[1;2;;4;5]",
+    "input": "o=[1;2;4;5]",
     "expected_output": "{\"o\":[1,2,4,5]}",
     "tested_features": [
       "pair",
@@ -1228,14 +1228,14 @@
   },
   {
     "id": "131",
-    "input": "x=[1;;;;;;;2:::::::::3;;;;;;;;;;4:::::::::5]",
+    "input": "x=[1;2:::::::::3;4:::::::::5]",
     "expected_output": "{\"x\":[1,\"2:::::::::3\",\"4:::::::::5\"]}",
     "tested_features": [
       "array",
       "map",
       "null"
     ],
-    "minimised_modl": "x=1:::::::[2;;;;;;;;;3]::::::::::[4;;;;;;;;;5]"
+    "minimised_modl": "x=[1;2:::::::::3;4:::::::::5]"
   },
   {
     "id": "132",

@@ -29,7 +29,7 @@ modl_map: // ( key = value; key = value )
 	LBRAC (modl_pair ( STRUCT_SEP modl_pair)*)? RBRAC;
 
 modl_array: // [ item; item ]
-	LSBRAC ((modl_value) (STRUCT_SEP+ ( modl_value) STRUCT_SEP*)*)? RSBRAC;
+	LSBRAC (modl_value ( STRUCT_SEP modl_value)*)? RSBRAC;
 
 // A pair can be a traditional name-value pair split by an equals sign (standard pair), e.g.
 // name=John
