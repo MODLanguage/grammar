@@ -19,8 +19,11 @@ options {
 }
 
 modl: (
-		// Valid MODL is zero or more MODL structures separated by semi-colons
-		(modl_structure ( STRUCT_SEP modl_structure)*) STRUCT_SEP?
+		// Valid MODL is zero or more MODL structures separated by semi-colons, or a single modl_primitive
+		(
+			(modl_structure ( STRUCT_SEP modl_structure)*) STRUCT_SEP?
+		)
+		| modl_primitive
 	) EOF;
 
 modl_structure: modl_map | modl_array | modl_pair;
@@ -40,7 +43,8 @@ modl_array: // [ item; item ]
 // 
 // It's also possible to do the same with an array pair e.g. numbers[1;2;3] – equivalent to
 // numbers=[1;2;3]
-modl_pair: (STRING | QUOTED | NUMBER) EQUALS modl_value // key = value (standard pair)
+modl_pair: (STRING | QUOTED) EQUALS modl_value
+	// key = value (standard pair)
 	| STRING modl_map // key( key = value ) (map pair)
 	| STRING modl_array; // key[ item; item ] (array pair)
 
