@@ -1784,7 +1784,7 @@
   {
     "id": "188",
     "input": "_letters=abc;key=\"~%letters\"",
-    "expected_output": "{\"_letters\":\"abc\",\"key\":\"%letters\"}",
+    "expected_output": "{\"_letters\":\"abc\",\"key\":\"~%letters\"}",
     "tested_features": [
       "escape"
     ],
@@ -1793,7 +1793,7 @@
   {
     "id": "189",
     "input": "_letters=abc;key=\"\\%letters\"",
-    "expected_output": "{\"_letters\":\"abc\",\"key\":\"%letters\"}",
+    "expected_output": "{\"_letters\":\"abc\",\"key\":\"\\\\%letters\"}",
     "tested_features": [
       "escape"
     ],
@@ -2108,5 +2108,47 @@
     "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"address\",\"*superclass\":\"method\",\"*assign\":[[\"vs\"],[\"d\",\"vs\"],[\"d\",\"vs\",\"h\"]],\"object_type\":\"method\",\"object_display_name\":\"%locale.a.name\",\"description_default\":\"%locale.a.default\",\"prefix\":\"\",\"method_type\":\"core\"},\"a\":[\"address desc\",[123,\"my address\",true]],\"method\":[\"method description\",\"method value\"]}",
     "tested_features": [],
     "minimised_modl": "*class(*id=v;*name=value;*superclass=str);*class(*id=vs;*name=values;*assign=[[v*]];*superclass=arr);*class(*id=contact;*name=contact;*superclass=map);*class(*id=method;*name=method;object_display_name=Contact Method;*superclass=contact;*assign=[[v];[d;v];[d;v;h]]);*class(*id=a;*name=address;*superclass=method;*assign=[[vs];[d;vs];[d;vs;h]];object_type=method;object_display_name=%locale.a.name;description_default=%locale.a.default;prefix=\"\";method_type=core);a=[address desc;[123;my address;true]];method=[method description;method value]"
+  },
+  {
+    "id": "226",
+    "input": "x=\"~n\"",
+    "expected_output": "{\"x\":\"\\n\"}",
+    "tested_features": [],
+    "minimised_modl": ""
+  },
+  {
+    "id": "227",
+    "input": "x=\"~t\"",
+    "expected_output": "{\"x\":\"\\t\"}",
+    "tested_features": [],
+    "minimised_modl": ""
+  },
+  {
+    "id": "228",
+    "input": "x=\"~~n\"",
+    "expected_output": "{\"x\":\"~n\"}",
+    "tested_features": [],
+    "minimised_modl": ""
+  },
+  {
+    "id": "229",
+    "input": "x=\"~\\n\"",
+    "expected_output": "{\"x\":\"\\\\n\"}",
+    "tested_features": [],
+    "minimised_modl": ""
+  },
+  {
+    "id": "230",
+    "input": "x=\"\\\\n\"",
+    "expected_output": "{\"x\":\"\\\\n\"}",
+    "tested_features": [],
+    "minimised_modl": ""
+  },
+  {
+    "id": "231",
+    "input": "x=\"\\~n\"",
+    "expected_output": "{\"x\":\"~n\"}",
+    "tested_features": [],
+    "minimised_modl": ""
   }
 ]
