@@ -2,7 +2,7 @@
   {
     "id": "1",
     "input": "*VERSION=100;\"123\"=1",
-    "expected_output": "{\"123\":1,\"*VERSION\":100}",
+    "expected_output": "{\"*VERSION\":100,\"123\":1}",
     "tested_features": [],
     "minimised_modl": "*VERSION=100;\"123\"=1"
   },
