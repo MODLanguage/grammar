@@ -11,3 +11,9 @@ Machine diagrams are shown below:
 
 Tests are provided in the `tests` directory. Implementations of the parsers should use those tests to check if it
 behaves as expected.
+
+## ANTLR4 Parser Generation
+```
+antlr4 MODLLexer.g4 MODLParser.g4 -o ../../typescript-modl-interpreter/lib/gen/MODL -package MODL -Dlanguage=JavaScript
+antlr4 MODLLexer.g4 MODLParser.g4 -o ../../java-interpreter/src/main/java/uk/modl/parser/antlr -package uk.modl.parser.antlr -Dlanguage=Java
+```

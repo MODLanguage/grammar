@@ -1,0 +1,471 @@
+[
+  {
+    "id": "1",
+    "input": "*VERSION=100;\"123\"=1",
+    "expected_output": "{\"*VERSION\":100,\"123\":1}",
+    "tested_features": [],
+    "minimised_modl": "*VERSION=100;\"123\"=1"
+  },
+  {
+    "id": "2",
+    "input": "b=(c=(d=(e=(f=(g=(h=(i=(j=1))))))));a=%b.c.e.f.g.h.i.j",
+    "expected_output": "{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":1}}}}}}}},\"a\":\"%b.c.e.f.g.h.i.j\"}",
+    "tested_features": [],
+    "minimised_modl": "b=(c=(d=(e=(f=(g=(h=(i=(j=1))))))));a=%b.c.e.f.g.h.i.j"
+  },
+  {
+    "id": "3",
+    "input": "*method(*id=hy;*name=hyp1;*transform=replace< ,->);*method(*id=hy;*name=hyp2;*transform=replace< ,->)",
+    "expected_output": "{\"*method\":{\"*id\":\"hy\",\"*name\":\"hyp2\",\"*transform\":\"replace< ,->\"}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*id=hy;*name=hyp1;*transform=replace< ,->);*method(*id=hy;*name=hyp2;*transform=replace< ,->)"
+  },
+  {
+    "id": "4",
+    "input": "*method(*id=hy;*name=hyp1;*transform=replace< ,->);*method(*id=hy1;*name=hyp1;*transform=replace< ,->)",
+    "expected_output": "{\"*method\":{\"*id\":\"hy1\",\"*name\":\"hyp1\",\"*transform\":\"replace< ,->\"}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*id=hy;*name=hyp1;*transform=replace< ,->);*method(*id=hy1;*name=hyp1;*transform=replace< ,->)"
+  },
+  {
+    "id": "5",
+    "input": "*method(*id=hy;*name=hyp;*transform=replace< ,->);*method(*id=hyp1;*name=hy;*transform=replace< ,->)",
+    "expected_output": "{\"*method\":{\"*id\":\"hyp1\",\"*name\":\"hy\",\"*transform\":\"replace< ,->\"}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*id=hy;*name=hyp;*transform=replace< ,->);*method(*id=hyp1;*name=hy;*transform=replace< ,->)"
+  },
+  {
+    "id": "6",
+    "input": "*method(*id=hy;*name=hyp;*transform=replace< ,->);*method(*id=hyp;*name=hyp1;*transform=replace< ,->)",
+    "expected_output": "{\"*method\":{\"*id\":\"hyp\",\"*name\":\"hyp1\",\"*transform\":\"replace< ,->\"}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*id=hy;*name=hyp;*transform=replace< ,->);*method(*id=hyp;*name=hyp1;*transform=replace< ,->)"
+  },
+  {
+    "id": "7",
+    "input": "*class(*id=t;*name=test;*assign=[[a;b];[a]])",
+    "expected_output": "{\"*class\":{\"*id\":\"t\",\"*name\":\"test\",\"*assign\":[[\"a\",\"b\"],[\"a\"]]}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=t;*name=test;*assign=[[a;b];[a]])"
+  },
+  {
+    "id": "8",
+    "input": "*class(*id=t;*name=test;*assign=[[a;b]]);test=1:2:3",
+    "expected_output": "{\"*class\":{\"*id\":\"t\",\"*name\":\"test\",\"*assign\":[[\"a\",\"b\"]]},\"test\":\"1:2:3\"}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=t;*name=test;*assign=[[a;b]]);test=1:2:3"
+  },
+  {
+    "id": "9",
+    "input": "*class(*id=t;*name=test);*class(*id=tt;*name=test)",
+    "expected_output": "{\"*class\":{\"*id\":\"tt\",\"*name\":\"test\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=t;*name=test);*class(*id=tt;*name=test)"
+  },
+  {
+    "id": "10",
+    "input": "*class(*id=test;*name=t);*class(*id=tt;*name=test)",
+    "expected_output": "{\"*class\":{\"*id\":\"tt\",\"*name\":\"test\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=test;*name=t);*class(*id=tt;*name=test)"
+  },
+  {
+    "id": "11",
+    "input": "*class(*id=test;*name=t);*class(*id=test;*name=tt)",
+    "expected_output": "{\"*class\":{\"*id\":\"test\",\"*name\":\"tt\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=test;*name=t);*class(*id=test;*name=tt)"
+  },
+  {
+    "id": "12",
+    "input": "*class(*name=test;*id=t);*class(*id=test;*name=tt)",
+    "expected_output": "{\"*class\":{\"*id\":\"test\",\"*name\":\"tt\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=test;*id=t);*class(*id=test;*name=tt)"
+  },
+  {
+    "id": "13",
+    "input": "*L=../grammar/tests/1;*l=../grammar/tests/1;a=1",
+    "expected_output": "{\"*L\":\"../grammar/tests/1\",\"*l\":\"../grammar/tests/1\",\"a\":1}",
+    "tested_features": [],
+    "minimised_modl": "*L=../grammar/tests/1;*l=../grammar/tests/1;a=1"
+  },
+  {
+    "id": "14",
+    "input": "*L=../grammar/tests/1;*L=../grammar/tests/1",
+    "expected_output": "{\"*L\":\"../grammar/tests/1\"}",
+    "tested_features": [],
+    "minimised_modl": "*L=../grammar/tests/1;*L=../grammar/tests/1"
+  },
+  {
+    "id": "15",
+    "input": "*class(*id=n;*name=name;*superclass=num);n=Elliott",
+    "expected_output": "{\"*class\":{\"*id\":\"n\",\"*name\":\"name\",\"*superclass\":\"num\"},\"n\":\"Elliott\"}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=n;*name=name;*superclass=num);n=Elliott"
+  },
+  {
+    "id": "16",
+    "input": "*class(*id=newstr;*superclass=str);*class(*id=a;*name=age;*superclass=anotherstr);a=10",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"age\",\"*superclass\":\"anotherstr\"},\"a\":10}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=newstr;*superclass=str);*class(*id=a;*name=age;*superclass=anotherstr);a=10"
+  },
+  {
+    "id": "17",
+    "input": "!a=1",
+    "expected_output": "{\"!a\":1}",
+    "tested_features": [],
+    "minimised_modl": "!a=1"
+  },
+  {
+    "id": "18",
+    "input": "a!=1",
+    "expected_output": "{\"a!\":1}",
+    "tested_features": [],
+    "minimised_modl": "a!=1"
+  },
+  {
+    "id": "19",
+    "input": "!a!=1",
+    "expected_output": "{\"!a!\":1}",
+    "tested_features": [],
+    "minimised_modl": "!a!=1"
+  },
+  {
+    "id": "20",
+    "input": "£x=y",
+    "expected_output": "{\"£x\":\"y\"}",
+    "tested_features": [],
+    "minimised_modl": "£x=y"
+  },
+  {
+    "id": "21",
+    "input": "$x=y",
+    "expected_output": "{\"$x\":\"y\"}",
+    "tested_features": [],
+    "minimised_modl": "$x=y"
+  },
+  {
+    "id": "22",
+    "input": "-x=y",
+    "expected_output": "{\"-x\":\"y\"}",
+    "tested_features": [],
+    "minimised_modl": "-x=y"
+  },
+  {
+    "id": "23",
+    "input": "+x=y",
+    "expected_output": "{\"+x\":\"y\"}",
+    "tested_features": [],
+    "minimised_modl": "+x=y"
+  },
+  {
+    "id": "24",
+    "input": "'x'=y",
+    "expected_output": "{\"'x'\":\"y\"}",
+    "tested_features": [],
+    "minimised_modl": "'x'=y"
+  },
+  {
+    "id": "25",
+    "input": "'x?=y",
+    "expected_output": "{\"'x?\":\"y\"}",
+    "tested_features": [],
+    "minimised_modl": "'x?=y"
+  },
+  {
+    "id": "26",
+    "input": "*nonsense=1",
+    "expected_output": "{\"*nonsense\":1}",
+    "tested_features": [],
+    "minimised_modl": "*nonsense=1"
+  },
+  {
+    "id": "27",
+    "input": "_12*3=1",
+    "expected_output": "{\"_12*3\":1}",
+    "tested_features": [],
+    "minimised_modl": "_12*3=1"
+  },
+  {
+    "id": "28",
+    "input": "_12!3=1",
+    "expected_output": "{\"_12!3\":1}",
+    "tested_features": [],
+    "minimised_modl": "_12!3=1"
+  },
+  {
+    "id": "29",
+    "input": "_12#3=1",
+    "expected_output": "{\"_12#3\":1}",
+    "tested_features": [],
+    "minimised_modl": "_12#3=1"
+  },
+  {
+    "id": "30",
+    "input": "_12$3=1",
+    "expected_output": "{\"_12$3\":1}",
+    "tested_features": [],
+    "minimised_modl": "_12$3=1"
+  },
+  {
+    "id": "31",
+    "input": "_12^3=1",
+    "expected_output": "{\"_12^3\":1}",
+    "tested_features": [],
+    "minimised_modl": "_12^3=1"
+  },
+  {
+    "id": "32",
+    "input": "_12&3=1",
+    "expected_output": "{\"_12&3\":1}",
+    "tested_features": [],
+    "minimised_modl": "_12&3=1"
+  },
+  {
+    "id": "33",
+    "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.0",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.one.0\"}",
+    "tested_features": [],
+    "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.one.0"
+  },
+  {
+    "id": "34",
+    "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.two",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.0.two\"}",
+    "tested_features": [],
+    "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.two"
+  },
+  {
+    "id": "35",
+    "input": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.0",
+    "expected_output": "{\"_test\":{\"first\":{\"v1\":{\"one\":{\"two\":\"three\"}}}},\"testing\":\"%test.first.v1.0.0\"}",
+    "tested_features": [],
+    "minimised_modl": "_test=(\n  first=(\"v1\"=(one=(two=three)))\n);\n \ntesting = %test.first.v1.0.0"
+  },
+  {
+    "id": "36",
+    "input": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.ones",
+    "expected_output": "{\"_test\":{\"numbers\":{\"one\":1}},\"testing\":\"this is a string that includes a reference with a letter s after it %test.numbers.ones\"}",
+    "tested_features": [],
+    "minimised_modl": "_test=(\n  numbers=(\"one\"=1)\n);\n\ntesting = this is a string that includes a reference with a letter s after it %test.numbers.ones"
+  },
+  {
+    "id": "37",
+    "input": "*class(*id=arr)",
+    "expected_output": "{\"*class\":{\"*id\":\"arr\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=arr)"
+  },
+  {
+    "id": "38",
+    "input": "*class(*id=num)",
+    "expected_output": "{\"*class\":{\"*id\":\"num\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=num)"
+  },
+  {
+    "id": "39",
+    "input": "*class(*id=map)",
+    "expected_output": "{\"*class\":{\"*id\":\"map\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=map)"
+  },
+  {
+    "id": "40",
+    "input": "*class(*id=str)",
+    "expected_output": "{\"*class\":{\"*id\":\"str\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=str)"
+  },
+  {
+    "id": "41",
+    "input": "*class(*name=arr)",
+    "expected_output": "{\"*class\":{\"*name\":\"arr\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=arr)"
+  },
+  {
+    "id": "42",
+    "input": "*class(*name=num)",
+    "expected_output": "{\"*class\":{\"*name\":\"num\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=num)"
+  },
+  {
+    "id": "43",
+    "input": "*class(*name=map)",
+    "expected_output": "{\"*class\":{\"*name\":\"map\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=map)"
+  },
+  {
+    "id": "44",
+    "input": "*class(*name=str)",
+    "expected_output": "{\"*class\":{\"*name\":\"str\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=str)"
+  },
+  {
+    "id": "45",
+    "input": "IMMUTABLE=true;IMMUTABLE=false",
+    "expected_output": "{\"IMMUTABLE\":false}",
+    "tested_features": [],
+    "minimised_modl": "IMMUTABLE=true;IMMUTABLE=false"
+  },
+  {
+    "id": "46",
+    "input": "*VERSION=test",
+    "expected_output": "{\"*VERSION\":\"test\"}",
+    "tested_features": [],
+    "minimised_modl": "*VERSION=test"
+  },
+  {
+    "id": "47",
+    "input": "*V=test",
+    "expected_output": "{\"*V\":\"test\"}",
+    "tested_features": [],
+    "minimised_modl": "*V=test"
+  },
+  {
+    "id": "48",
+    "input": "*VERSION=0",
+    "expected_output": "{\"*VERSION\":0}",
+    "tested_features": [],
+    "minimised_modl": "*VERSION=0"
+  },
+  {
+    "id": "49",
+    "input": "*VERSION=0.1",
+    "expected_output": "{\"*VERSION\":0.1}",
+    "tested_features": [],
+    "minimised_modl": "*VERSION=0.1"
+  },
+  {
+    "id": "50",
+    "input": "a=b;*VERSION=1",
+    "expected_output": "{\"a\":\"b\",\"*VERSION\":1}",
+    "tested_features": [],
+    "minimised_modl": "a=b;*VERSION=1"
+  },
+  {
+    "id": "51",
+    "input": "*class(*id=a;*name=alpha;*superclass=str);a=null",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"alpha\",\"*superclass\":\"str\"},\"a\":null}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=str);a=null"
+  },
+  {
+    "id": "52",
+    "input": "*class(*id=a;*name=alpha;*superclass=num);a=null",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"alpha\",\"*superclass\":\"num\"},\"a\":null}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=null"
+  },
+  {
+    "id": "53",
+    "input": "*class(*id=a;*name=alpha;*superclass=num);a=x",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"alpha\",\"*superclass\":\"num\"},\"a\":\"x\"}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=x"
+  },
+  {
+    "id": "54",
+    "input": "*class(*id=a;*name=alpha;*superclass=num);a=null",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"alpha\",\"*superclass\":\"num\"},\"a\":null}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=num);a=null"
+  },
+  {
+    "id": "55",
+    "input": "*class(*id=a;*name=alpha;*superclass=map);a=[1;2;3]",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"alpha\",\"*superclass\":\"map\"},\"a\":[1,2,3]}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=map);a=[1;2;3]"
+  },
+  {
+    "id": "56",
+    "input": "*class(*id=a;*name=alpha;*superclass=arr);a=(c=d)",
+    "expected_output": "{\"*class\":{\"*id\":\"a\",\"*name\":\"alpha\",\"*superclass\":\"arr\"},\"a\":{\"c\":\"d\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=a;*name=alpha;*superclass=arr);a=(c=d)"
+  },
+  {
+    "id": "57",
+    "input": "*L=../grammar/tests/test_import_dir/nested_import1.txt;files=%*load",
+    "expected_output": "{\"*L\":\"../grammar/tests/test_import_dir/nested_import1.txt\",\"files\":\"%*load\"}",
+    "tested_features": [],
+    "minimised_modl": "*L=../grammar/tests/test_import_dir/nested_import1.txt;files=%*load"
+  },
+  {
+    "id": "58",
+    "input": "x=y;(a=b)",
+    "expected_output": "{\"x\":\"y\",\"a\":\"b\"}",
+    "tested_features": [],
+    "minimised_modl": "x=y;(a=b)"
+  },
+  {
+    "id": "59",
+    "input": "_vars(\n  test=1\n);\nprint_var = %vars,,,,,test",
+    "expected_output": "{\"_vars\":{\"test\":1},\"print_var\":\"%vars,,,,,test\"}",
+    "tested_features": [],
+    "minimised_modl": "_vars(test=1);print_var=%vars,,,,,test"
+  },
+  {
+    "id": "60",
+    "input": "_var=[1;2;3];print_var=%var test",
+    "expected_output": "{\"_var\":[1,2,3],\"print_var\":\"%var test\"}",
+    "tested_features": [],
+    "minimised_modl": "_var=[1;2;3];print_var=%var test"
+  },
+  {
+    "id": "61",
+    "input": "*class(*id=*id;*name=*id;*superclass=*id);*id=test",
+    "expected_output": "{\"*class\":{\"*id\":\"*id\",\"*name\":\"*id\",\"*superclass\":\"*id\"},\"*id\":\"test\"}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=*id;*name=*id;*superclass=*id);*id=test"
+  },
+  {
+    "id": "62",
+    "input": "*class(*id=fb;*name=facebook;*superclass=map;*assign=[[children[v]]]);fb=fred",
+    "expected_output": "{\"*class\":{\"*id\":\"fb\",\"*name\":\"facebook\",\"*superclass\":\"map\",\"*assign\":[[{\"children\":[\"v\"]}]]},\"fb\":\"fred\"}",
+    "tested_features": [],
+    "minimised_modl": "*class(*id=fb;*name=facebook;*superclass=map;*assign=[[children[v]]]);fb=fred"
+  },
+  {
+    "id": "63",
+    "input": "*class(*name=*name;*name=*id;*superclass=arr);*id=test",
+    "expected_output": "{\"*class\":{\"*name\":\"*id\",\"*superclass\":\"arr\"},\"*id\":\"test\"}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=*name;*name=*id;*superclass=arr);*id=test"
+  },
+  {
+    "id": "64",
+    "input": "*class(*name=name;*name=id;*superclass=*id)",
+    "expected_output": "{\"*class\":{\"*name\":\"id\",\"*superclass\":\"*id\"}}",
+    "tested_features": [],
+    "minimised_modl": "*class(*name=name;*name=id;*superclass=*id)"
+  },
+  {
+    "id": "65",
+    "input": "*method(*name=*name;*id=id;*transform=(a=b))",
+    "expected_output": "{\"*method\":{\"*name\":\"*name\",\"*id\":\"id\",\"*transform\":{\"a\":\"b\"}}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*name=*name;*id=id;*transform=(a=b))"
+  },
+  {
+    "id": "66",
+    "input": "*method(*name=name;*id=*id;*transform=(a=b))",
+    "expected_output": "{\"*method\":{\"*name\":\"name\",\"*id\":\"*id\",\"*transform\":{\"a\":\"b\"}}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*name=name;*id=*id;*transform=(a=b))"
+  },
+  {
+    "id": "67",
+    "input": "*method(*name=name;*id=id;*transform=(a=b))",
+    "expected_output": "{\"*method\":{\"*name\":\"name\",\"*id\":\"id\",\"*transform\":{\"a\":\"b\"}}}",
+    "tested_features": [],
+    "minimised_modl": "*method(*name=name;*id=id;*transform=(a=b))"
+  }
+]
