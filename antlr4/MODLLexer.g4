@@ -16,9 +16,9 @@
 
 lexer grammar MODLLexer;
 WS: [ \t\r\n]+ -> skip;
-NULL: 'null' | '000';
-TRUE: 'true' | '01';
-FALSE: 'false' | '00';
+NULL: 'null';
+TRUE: 'true';
+FALSE: 'false';
 EQUALS: '=';
 STRUCT_SEP: ';';
 ARR_SEP: ',';

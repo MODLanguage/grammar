@@ -464,14 +464,14 @@
   },
   {
     "id": "51",
-    "input": "true2 = 01;\ntrue1 = true;\nfalse2 = 00;\nfalse1 = false;\nnull2 = 000;\nnull1 = null",
+    "input": "true2 = true;\ntrue1 = true;\nfalse2 = false;\nfalse1 = false;\nnull2 = null;\nnull1 = null",
     "expected_output": "{\"true2\":true,\"true1\":true,\"false2\":false,\"false1\":false,\"null2\":null,\"null1\":null}",
     "tested_features": [
       "bool",
       "map",
       "null"
     ],
-    "minimised_modl": "true2=01;true1=01;false2=00;false1=00;null2=000;null1=000"
+    "minimised_modl": "true2=true;true1=true;false2=false;false1=false;null2=null;null1=null"
   },
   {
     "id": "52",
@@ -2083,24 +2083,24 @@
   },
   {
     "id": "222",
-    "input": "_var=01;print_var=%var test",
+    "input": "_var=true;print_var=%var test",
     "expected_output": "{\"_var\":true,\"print_var\":\"%var test\"}",
     "tested_features": [],
-    "minimised_modl": "_var=01;print_var=%var test"
+    "minimised_modl": "_var=true;print_var=%var test"
   },
   {
     "id": "223",
-    "input": "_var=00;print_var=%var test",
+    "input": "_var=false;print_var=%var test",
     "expected_output": "{\"_var\":false,\"print_var\":\"%var test\"}",
     "tested_features": [],
-    "minimised_modl": "_var=00;print_var=%var test"
+    "minimised_modl": "_var=false;print_var=%var test"
   },
   {
     "id": "224",
-    "input": "_var=000;print_var=%var test",
+    "input": "_var=null;print_var=%var test",
     "expected_output": "{\"_var\":null,\"print_var\":\"%var test\"}",
     "tested_features": [],
-    "minimised_modl": "_var=000;print_var=%var test"
+    "minimised_modl": "_var=null;print_var=%var test"
   },
   {
     "id": "225",
