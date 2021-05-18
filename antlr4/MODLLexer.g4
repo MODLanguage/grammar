@@ -35,10 +35,10 @@ fragment EXP: [Ee] [+\-]? INT;
 QUOTED:
 	(
 		( '"' ( INSIDE_QUOTES | '~"' | '\\"')* '"')
-		| ('`' ( INSIDE_GRAVES) '`')
+		| ('`' ( INSIDE_GRAVES | '~`' | '\\`')* '`')
 	);
 fragment INSIDE_QUOTES: ~["];
-fragment INSIDE_GRAVES: ~[`]*;
+fragment INSIDE_GRAVES: ~[`];
 
 STRING:
 	'# '? (ESCAPED | UNRESERVED)+ (
@@ -54,6 +54,7 @@ fragment UNRESERVED:
 		| '['
 		| ']'
 		| ' '
+		| '`'
 		| ';'
 		| '='
 		| '"'
@@ -71,6 +72,7 @@ fragment RESERVED_CHARS: (
 		| '['
 		| ']'
 		| ' '
+		| '`'
 		| ';'
 		| '='
 		| '"'
