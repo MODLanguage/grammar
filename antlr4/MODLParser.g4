@@ -43,7 +43,11 @@ modl_array: // [ item; item ]
 // 
 // It's also possible to do the same with an array pair e.g. numbers[1;2;3] – equivalent to
 // numbers=[1;2;3]
-modl_pair: (STRING | QUOTED) EQUALS modl_value
+modl_pair: (STRING | QUOTED) EQUALS (
+		modl_map
+		| modl_array
+		| modl_primitive
+	)
 	// key = value (standard pair)
 	| STRING modl_map // key( key = value ) (map pair)
 	| STRING modl_array; // key[ item; item ] (array pair)

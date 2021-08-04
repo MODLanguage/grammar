@@ -57,23 +57,23 @@
   },
   {
     "id": "7",
-    "input": "*class(\n  *i=test;\n  *a=[\n    [one;two;three]\n  ]\n);\n\ntest=1:2:(a=Alpha;b=Bravo;c=Charlie)",
-    "expected_output": "{\"*class\":{\"*i\":\"test\",\"*a\":[[\"one\",\"two\",\"three\"]]},\"test\":{\"1:2:\":{\"a\":\"Alpha\",\"b\":\"Bravo\",\"c\":\"Charlie\"}}}",
+    "input": "*class(\n  *i=test;\n  *a=[\n    [one;two;three]\n  ]\n);\n\ntest=(a=Alpha;b=Bravo;c=Charlie)",
+    "expected_output": "{\"*class\":{\"*i\":\"test\",\"*a\":[[\"one\",\"two\",\"three\"]]},\"test\":{\"a\":\"Alpha\",\"b\":\"Bravo\",\"c\":\"Charlie\"}}",
     "tested_features": [
       "class",
       "assign"
     ],
-    "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=1:2:(a=Alpha;b=Bravo;c=Charlie)"
+    "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=(a=Alpha;b=Bravo;c=Charlie)"
   },
   {
     "id": "8",
-    "input": "*class(\n  *i=test;\n  *a=[\n    [one;two;three]\n  ]\n);\n\ntest=1:2:[a;b;c]",
-    "expected_output": "{\"*class\":{\"*i\":\"test\",\"*a\":[[\"one\",\"two\",\"three\"]]},\"test\":{\"1:2:\":[\"a\",\"b\",\"c\"]}}",
+    "input": "*class(\n  *i=test;\n  *a=[\n    [one;two;three]\n  ]\n);\n\ntest=[a;b;c]",
+    "expected_output": "{\"*class\":{\"*i\":\"test\",\"*a\":[[\"one\",\"two\",\"three\"]]},\"test\":[\"a\",\"b\",\"c\"]}",
     "tested_features": [
       "class",
       "assign"
     ],
-    "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=1:2:[a;b;c]"
+    "minimised_modl": "*c(*i=test;*a[[one;two;three]]);test=[a;b;c]"
   },
   {
     "id": "9",
@@ -229,15 +229,6 @@
     "minimised_modl": "a=1:2:3;b=4:5:6"
   },
   {
-    "id": "26",
-    "input": "_test=(a=b=c=d=f);\nx=%test.a.b.c.d",
-    "expected_output": "{\"_test\":{\"a\":{\"b\":{\"c\":{\"d\":\"f\"}}}},\"x\":\"%test.a.b.c.d\"}",
-    "tested_features": [
-      "object_ref"
-    ],
-    "minimised_modl": "_test(a=b=c=d=f);x=%test.a.b.c.d"
-  },
-  {
     "id": "27",
     "input": "a(b(c(d(e(f=1)))));\ntesting=%a.b.c.d.e.f",
     "expected_output": "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":1}}}}},\"testing\":\"%a.b.c.d.e.f\"}",
@@ -247,24 +238,6 @@
     "minimised_modl": "a(b(c(d(e(f=1)))));testing=%a.b.c.d.e.f"
   },
   {
-    "id": "28",
-    "input": "_test=(a=b=c=d=f);\ntesting=%test.a.b.c.d",
-    "expected_output": "{\"_test\":{\"a\":{\"b\":{\"c\":{\"d\":\"f\"}}}},\"testing\":\"%test.a.b.c.d\"}",
-    "tested_features": [
-      "object_ref"
-    ],
-    "minimised_modl": "_test(a=b=c=d=f);testing=%test.a.b.c.d"
-  },
-  {
-    "id": "29",
-    "input": "a=\nb\n=c;\nd=e",
-    "expected_output": "{\"a\":{\"b\":\"c\"},\"d\":\"e\"}",
-    "tested_features": [
-      "map"
-    ],
-    "minimised_modl": "a=b=c;d=e"
-  },
-  {
     "id": "30",
     "input": "test=this is a #hashtag test;test2=#testing 123",
     "expected_output": "{\"test\":\"this is a #hashtag test\",\"test2\":\"#testing 123\"}",
@@ -272,24 +245,6 @@
       "pair"
     ],
     "minimised_modl": "test=this is a #hashtag test;test2=#testing 123"
-  },
-  {
-    "id": "31",
-    "input": "a=(b=c=d=e=f)",
-    "expected_output": "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":\"f\"}}}}}",
-    "tested_features": [
-      "map"
-    ],
-    "minimised_modl": "a(b=c=d=e=f)"
-  },
-  {
-    "id": "32",
-    "input": "a=b=c=d=e=f",
-    "expected_output": "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":\"f\"}}}}}",
-    "tested_features": [
-      "map"
-    ],
-    "minimised_modl": "a=b=c=d=e=f"
   },
   {
     "id": "33",
@@ -2053,10 +2008,10 @@
   },
   {
     "id": "219",
-    "input": "*class(\n  *id=h;\n  *name=hours;\n  *assign=[\n    [time_zone_city;available]\n  ]\n);\n\nperson(h=AD:[d@0-0])",
-    "expected_output": "{\"*class\":{\"*id\":\"h\",\"*name\":\"hours\",\"*assign\":[[\"time_zone_city\",\"available\"]]},\"person\":{\"h\":{\"AD:\":[\"d@0-0\"]}}}",
+    "input": "*class(\n  *id=h;\n  *name=hours;\n  *assign=[\n    [time_zone_city;available]\n  ]\n);\n\nperson(h=[AD;[d@0-0]])",
+    "expected_output": "{\"*class\":{\"*id\":\"h\",\"*name\":\"hours\",\"*assign\":[[\"time_zone_city\",\"available\"]]},\"person\":{\"h\":[\"AD\",[\"d@0-0\"]]}}",
     "tested_features": [],
-    "minimised_modl": "*class(*id=h;*name=hours;*assign=[[time_zone_city;available]]);person(h=AD:[d@0-0])"
+    "minimised_modl": "*class(*id=h;*name=hours;*assign=[[time_zone_city;available]]);person(h=[AD;[d@0-0]])"
   },
   {
     "id": "220",
