@@ -1860,7 +1860,7 @@
   },
   {
     "id": "202",
-    "input": "test=~u1f60000",
+    "input": "test=~uD83D~uDE0000",
     "expected_output": "{\"test\":\"😀00\"}",
     "tested_features": [
       "unicode",
